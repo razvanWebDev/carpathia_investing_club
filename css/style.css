@@ -1,0 +1,514 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap");
+:root {
+  --main-color: #176083;
+  --main-color-transparent: rgba(23, 96, 131, 0.95);
+  --secondary-color: #6791a5;
+  --secondary-color-transparent: #146082;
+  --white-color: #ffffff;
+
+  --main-text-color: rgb(32, 32, 32);
+  --light-text-color: #666666;
+  --link-color: #176083;
+  --link-hover-color: rgb(32, 32, 32);
+
+  --danger-color: #ec312b;
+
+  --sides-padding: 8vw;
+  --top-bottom-padding: 4em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.smootth-scroll {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--white-color);
+  color: var(--main-text-color);
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+p {
+  text-align: justify;
+  margin-bottom: 0.5em;
+}
+
+strong {
+  font-weight: 500;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+a:hover {
+  color: var(--link-hover-color);
+  opacity: 0.6;
+}
+
+ul {
+  padding-left: 5em;
+}
+
+button {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.8;
+  transition: all 0.2s ease-in-out;
+}
+
+/* floating labels */
+.floating-label {
+  display: block;
+  pointer-events: none;
+  padding-left: 1em;
+  font-size: 1.1em;
+  line-height: 1.5rem;
+  transform: translateY(1.6em);
+  color: var(--light-text-color);
+  transition: all 0.3s ease, color 0.4s;
+}
+
+.floating-label.moveUp {
+  transform: translateY(0);
+  line-height: 1.5rem;
+  font-size: 0.8em;
+  color: var(--main-color);
+}
+
+input,
+textarea {
+  background-color: transparent;
+  padding: 0.5em 1.5em;
+  border: none;
+  border-bottom: 1px solid var(--light-text-color);
+  font-size: 1em;
+  outline: none;
+  width: 100%;
+}
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.3em;
+  transform: translateY(8%);
+}
+.current-input {
+  border-bottom: 1px solid var(--main-color);
+}
+
+::placeholder {
+  opacity: 0.7;
+}
+
+:-ms-input-placeholder {
+  opacity: 0.7;
+}
+
+::-ms-input-placeholder {
+  opacity: 0.7;
+}
+
+hr {
+  height: 1px;
+  background-color: var(--main-text-color);
+  opacity: 0.5;
+  border: none;
+  margin: 1em 0;
+}
+
+section {
+  padding: var(--top-bottom-padding) var(--sides-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 2.5em;
+  font-weight: 400;
+  margin-bottom: 2em;
+}
+
+::placeholder {
+  color: var(--main-text-color);
+  opacity: 0.7;
+}
+
+:-ms-input-placeholder {
+  color: var(--white-color);
+  opacity: 0.7;
+}
+
+::-ms-input-placeholder {
+  color: var(--main-text-color);
+  opacity: 0.7;
+}
+
+/* ======================HEADER=============================== */
+header {
+  z-index: 10;
+  width: 100%;
+  padding: 2em var(--sides-padding);
+  background-color: white;
+}
+
+.header-menu {
+  width: 100%;
+}
+
+header.showNav {
+  transform: translateY(-100%);
+  animation-name: slideDown;
+  animation-fill-mode: forwards;
+}
+
+header.hideNav {
+  transform: translateY(-100%);
+  animation-name: slideUp;
+  animation-fill-mode: forwards;
+}
+
+#logo-section {
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  width: 8em;
+}
+
+#logo-section h1 {
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.nav-links div {
+  display: flex;
+}
+
+header .nav-links a,
+header .nav-links li {
+  padding: 0 1em;
+  color: var(--main-text-color);
+  cursor: pointer;
+}
+
+header .nav-links li:first-child {
+  padding-left: 0;
+}
+header .nav-links a:last-child {
+  padding-right: 0;
+}
+
+.link-to-page {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.link-to-page a {
+  font-weight: 500;
+}
+
+.current {
+  color: var(--secondary-color);
+}
+
+/* Hamburger */
+#hamburger {
+  display: none;
+  transition: all 0.7s ease-in-out;
+  z-index: 2;
+}
+
+#hamburger div {
+  pointer-events: none;
+  width: 1.9em;
+  height: 0.3em;
+  margin: 0.4em;
+  transition: all 0.7s ease;
+  background-color: var(--main-color);
+}
+
+#hamburger.toggle-burger .line1 {
+  transform: rotate(-135deg) translate(-5px, 6px);
+  position: relative;
+  top: 0.15em;
+  background-color: var(--white-color);
+}
+
+.toggle-burger .line2 {
+  opacity: 0;
+}
+
+#hamburger.toggle-burger .line3 {
+  transform: rotate(135deg) translate(-5px, -6px);
+  position: relative;
+  bottom: 0.1em;
+  background-color: var(--white-color);
+}
+
+/* ########################## FOOTER ##################################### */
+footer {
+  width: 100%;
+  padding: var(--top-bottom-padding) var(--sides-padding);
+  background-color: var(--main-color);
+  color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer a,
+footer a:visited {
+  color: var(--white-color);
+}
+
+/* ################################# MAIN CONTENT ############################### */
+/* Home page */
+.hero {
+  width: 100%;
+  height: 75vh;
+  background: url("../img/hero.jpg") no-repeat center/cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+}
+.hero-btns button {
+  margin: 1em;
+  color: var(--white-color);
+  border: 1px solid var(--white-color);
+  font-size: 1.2em;
+}
+.hero-btns button.call-to-action {
+  background-color: var(--white-color);
+  color: var(--main-color);
+}
+.hero-btns button.call-to-action:hover {
+  color: var(--white-color);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#strategy {
+  background-color: var(--main-text-color);
+  color: var(--white-color);
+}
+#about-us p,
+#strategy p {
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 1em;
+}
+
+.contact-container {
+  display: flex;
+  width: 100%;
+}
+.contact-container .contact-logo {
+  width: 50%;
+}
+.contact-container .contact-logo img {
+  width: 80%;
+  margin: auto;
+}
+.contact-container form {
+  width: 50%;
+}
+.form-line {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.form-line .input-container {
+  width: 100%;
+}
+.form-line .input-container.half-width {
+  width: 45%;
+}
+.input-container input {
+  width: 100%;
+}
+
+.terms-checkbox {
+  margin: 1em 0;
+}
+
+.all-fields-required-message {
+  color: var(--danger-color);
+  margin: 0;
+  display: none;
+}
+
+.submit-contact {
+  color: var(--white-color);
+  background-color: var(--main-color);
+  font-size: 1.2em;
+  margin-top: 1em;
+  width: 100%;
+  /* padding: 1em 2em; */
+}
+
+/* ++++ Portfolio Page ++++++ */
+.portfolio-table {
+  width: 100%;
+  border: 1px solid black;
+}
+
+/* ################################## RESPONSIVE ########################## */
+
+@media screen and (max-width: 1024px) {
+  header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+  }
+
+  header hr {
+    display: none;
+  }
+
+  #hamburger {
+    display: block;
+  }
+  .header-menu {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    transform: translateX(100%);
+  }
+
+  .nav-links {
+    width: 70%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10vh 0;
+    background-color: var(--main-color-transparent);
+    color: var(--white-color);
+  }
+
+  .nav-links div {
+    flex-direction: column;
+  }
+
+  header .nav-links a,
+  header .nav-links li {
+    color: var(--white-color);
+    font-size: 1.5em;
+    min-height: 1em;
+    padding: 0;
+    margin-bottom: 2em;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .hero {
+    height: 45vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header .nav-links a,
+  header .nav-links li {
+    color: var(--white-color);
+    font-size: 1.2em;
+  }
+  .hero-btns button {
+    font-size: 0.9em;
+  }
+  .contact-logo {
+    display: none;
+  }
+  .contact-container form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  :root {
+    --sides-padding: 5vw;
+  }
+  body {
+    font-size: 0.6em;
+  }
+  .nav-links {
+    width: 100%;
+  }
+  #logo-section h1 {
+    font-size: 1.4em;
+  }
+}
+
+/* ################################# ANIMATIONS ########################### */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* navslide in mobile */
+@keyframes navSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes navSlideOut {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
