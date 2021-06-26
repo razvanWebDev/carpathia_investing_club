@@ -296,6 +296,10 @@ footer {
   align-items: center;
 }
 
+footer p {
+  text-align: center;
+}
+
 footer a,
 footer a:visited {
   color: var(--white-color);
