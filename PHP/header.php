@@ -13,3 +13,6 @@
 </head>
 
 <body>
+<div class="preloader">
+    <img src="img/Logo_small.png" alt="logo">
+</div>
