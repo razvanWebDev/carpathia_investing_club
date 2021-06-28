@@ -1,7 +1,7 @@
 <header>
     <a href="/" id="logo-section">
         <img id="logo" src="img/Logo_small.png" alt="Logo">
-        <h1>Carpathia Investings Club</h1>
+        <h1>Carpathia Investing Club</h1>
     </a>
     <hr>
     <nav class="header-menu">

@@ -5,7 +5,7 @@ header("Location: ../index.php#contact");
 
 <?php
 if(isset($_POST['submit'])) {
-    $email_to = "razvan.crisan@ctotech.io, crsn_razvan@yahoo.com, flavian.pah@ctotech.io";
+    $email_to = "razvan.crisan@ctotech.io, crsn_razvan@yahoo.com, invest@carpathiainvestingclub.org";
     $email_subject = "Mesaj nou pe site!";
      
     function died($error) {

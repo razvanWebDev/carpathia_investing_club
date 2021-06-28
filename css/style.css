@@ -352,10 +352,29 @@ footer a:visited {
 }
 .contact-container .contact-logo {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
-.contact-container .contact-logo img {
-  width: 80%;
-  margin: auto;
+.logo-details {
+  width: 60%;
+}
+.contact-container .contact-logo-img {
+  width: 100%;
+  margin-bottom: 2em;
+}
+.contact-container .contact-logo img.contact-icon {
+  width: 1.8em;
+  transform: translateY(20%);
+  margin-right: 0.5em;
+}
+.contact-details {
+  width: 100%;
+}
+.contact-container .contact-logo p {
+  width: 100%;
+  text-align: center;
 }
 .contact-container form {
   width: 50%;
