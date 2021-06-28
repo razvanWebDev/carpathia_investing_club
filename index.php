@@ -3,7 +3,7 @@
 
 <section class="hero">
     <div class="hero-btns">
-        <button class="call-to-action">Become a member</button>
+        <!-- <button class="call-to-action">Become a member</button> -->
         <button class="home-page-link" data-link="about-us">More Information</button>
     </div>
 
