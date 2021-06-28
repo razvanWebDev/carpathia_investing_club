@@ -35,20 +35,36 @@ window.onload = () => {
     }
     hamburger.classList.toggle("toggle-burger");
   };
+  const closeNav = () => {
+    nav.classList.remove("show-nav");
+    nav.style.animation = `navSlideOut 0.7s`;
+    hamburger.classList.remove("toggle-burger");
+  };
 
   //Scroll to selected sections from menu links
   const homePageLinks = document.querySelectorAll(".home-page-link");
   const scroollToSection = (section) => {
     const dataLink = section.getAttribute("data-link");
     const targetSection = document.querySelector(`#${dataLink}`);
+    //smooth scroll if the target section is on the current page
     if (elementExists(targetSection)) {
-      targetSection.scrollIntoView({
+      const targetPosition =
+        targetSection.getBoundingClientRect().top + window.pageYOffset;
+      const headerOffset =
+        window.innerWidth <= 1024
+          ? document.querySelector("header").offsetHeight
+          : 0;
+      const offsetPosition = targetPosition - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
         behavior: "smooth",
       });
     } else {
+      //target section is on annother page
       location.href = `index.php#${dataLink}`;
     }
-    navToggle();
+    //close nav on mobile
+    closeNav();
   };
 
   // =============================custom dropdown=======================================

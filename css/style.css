@@ -419,6 +419,12 @@ footer a:visited {
   border: 1px solid black;
 }
 
+/* ========================================== */
+.hide {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* ################################## RESPONSIVE ########################## */
 
 @media screen and (max-width: 1024px) {
@@ -483,11 +489,6 @@ footer a:visited {
     height: 45vh;
   }
 }
-/* ========================================== */
-.hide {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
 
 @media screen and (max-width: 768px) {
   header .nav-links a,
@@ -498,9 +499,24 @@ footer a:visited {
   .hero-btns button {
     font-size: 0.9em;
   }
-  .contact-logo {
-    display: none;
+  .contact-container {
+    flex-direction: column;
   }
+  .contact-container .contact-logo {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 5em;
+  }
+  .logo-details {
+    width: 100%;
+  }
+  .contact-container .contact-logo-img {
+    width: 15em;
+    margin-bottom: 2em;
+    display: block;
+    margin: 0 auto 2em auto;
+  }
+
   .contact-container form {
     width: 100%;
   }
