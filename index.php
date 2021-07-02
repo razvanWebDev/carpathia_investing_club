@@ -44,7 +44,7 @@
                 <img class="contact-logo-img" src="img/Logo.png" alt="">
                 <div class="contact-details">
                     <p><img src="img/logos/location.svg" alt="address" class="contact-icon">Retezat street, no. 2, Cluj-Napoca, Romania</p>
-                    <p><img src="img/logos/phone.svg" alt="phone" class="contact-icon">(+4)0723 20 21 10</p>
+                    <!-- <p><img src="img/logos/phone.svg" alt="phone" class="contact-icon">(+4)0723 20 21 10</p> -->
                     <p><a href="invest@carpathiainvestingclub.org"><img src="img/logos/email.svg" alt="email"
                                 class="contact-icon">invest@carpathiainvestingclub.org</a>
                     </p>
