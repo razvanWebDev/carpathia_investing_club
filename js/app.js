@@ -1,15 +1,13 @@
 window.onload = () => {
   // =====================CACHE DOM ELEMENTS=====================
-  const header = document.querySelector("header");
-  const body = document.querySelector("body");
   const hamburger = document.querySelector("#hamburger");
   const nav = document.querySelector(".header-menu");
-
   const labelTransform = document.querySelectorAll(".label-transform");
   const upArrow = document.querySelector(".to-top-arrow");
 
   //FOOTER
   const currentYearSpan = document.querySelector(".current-year-span");
+
   // =========== General Functions =================
 
   // Check if element exists before calling function
@@ -123,7 +121,51 @@ window.onload = () => {
 
   //====================================================================
 
-  // Scroll to top arrow
+  //================AUM COUNTER ANIMATION ==========================
+  const counters = document.querySelectorAll(".counter");
+  const aumSection = document.querySelector("#aum-section");
+  let aumSectionPosition = aumSection.getBoundingClientRect().top;
+  const countersSpeed = 75;
+
+  const animateCounters = () => {
+    counters.forEach((counter) => {
+      let count = 0;
+      const updateCount = () => {
+        //added "+" to trasnform strings to numbers
+        const target = +counter.getAttribute("data-target");
+        const inc = target / countersSpeed;
+
+        if (counter.innerText < target && count < target) {
+          count += inc;
+          counter.innerText = Math.round(count);
+          setTimeout(updateCount, 10);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  const startAnimateCounters = () => {
+    if (
+      aumSectionPosition - window.innerHeight <
+      -(aumSection.offsetHeight / 2)
+    ) {
+      animateCounters();
+    }
+  };
+
+  //Start counters on refresh if in viewport
+  startAnimateCounters();
+
+  //Start counters on scroll when in viewport
+  window.addEventListener("scroll", function () {
+    aumSectionPosition = aumSection.getBoundingClientRect().top;
+    startAnimateCounters();
+  });
+  //  ##############################################################
+  // Scroll to top arrow==================
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   // Show scroll up arrow
   const showItem = (item, scrollHeight) => {

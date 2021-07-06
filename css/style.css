@@ -346,6 +346,31 @@ footer a:visited {
   margin-bottom: 1em;
 }
 
+#aum-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+#aum-section .counter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 3em;
+  text-transform: uppercase;
+  color: var(--main-color);
+  margin: 0.5em;
+}
+
+#aum-section .counter-container h3 {
+  font-size: 0.5em;
+  font-weight: 300;
+}
+
 .contact-container {
   display: flex;
   width: 100%;

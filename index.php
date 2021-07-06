@@ -25,7 +25,7 @@
         the trust and transparency in the investing process.
     </p>
 </section>
-<section id="strategy" class="strategy">
+<section id="strategy">
     <h2 class="section-title">Our strategy</h2>
     <p>
         <strong>Carpathia Investing Club (CIC)</strong> investing strategy is based on a bottom-up approach. CIC active
@@ -35,6 +35,21 @@
         in support of its members, CIC designs and tracks various portfolio configurations that can serve as models for
         real-time investing strategies.
     </p>
+</section>
+<section id="aum-section">
+    <div class="counter-container">
+        <div><span class="counter" data-target="100">0</span>k</div>
+        <h3>Assets under <br> management</h3>
+    </div>
+    <div class="counter-container">
+        <div><span class="counter" data-target="5">0</span></div>
+        <h3>Members</h3>
+    </div>
+    <div class="counter-container">
+        <div><span class="counter" data-target="1">0</span></div>
+        <h3>Years <br> established</h3>
+    </div>
+
 </section>
 <section id="contact">
     <h2 class="section-title">Contact Us</h2>
