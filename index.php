@@ -38,8 +38,8 @@
 </section>
 <section id="aum-section">
     <div class="counter-container">
-        <div><span class="counter" data-target="100">0</span>k</div>
-        <h3>Assets under <br> management</h3>
+        <div><span class="counter" data-target="120">0</span>k</div>
+        <h3>Assets under <br> advisement</h3>
     </div>
     <div class="counter-container">
         <div><span class="counter" data-target="5">0</span></div>
