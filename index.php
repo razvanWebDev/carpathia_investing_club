@@ -3,7 +3,7 @@
 
 <section class="hero">
     <div class="hero-btns">
-        <button class="call-to-action">Become a member</button>
+        <button class="call-to-action open-modal-btn" data-modal="become-a-member-modal">Become a member</button>
         <button class="home-page-link" data-link="about-us">More Information</button>
     </div>
 
@@ -70,7 +70,7 @@
         <form action="PHP/contact.php" method="POST" enctype="multipart/form-data">
             <div class="form-line">
                 <div class="input-container half-width">
-                    <label for="name" class="floating-label">Name</label>
+                    <label for="name" class="floating-label">First Name</label>
                     <input class="label-transform  required-field" type="text" name="name">
                 </div>
                 <div class="input-container half-width">

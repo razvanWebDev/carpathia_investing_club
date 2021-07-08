@@ -3,9 +3,15 @@ window.onload = () => {
   const hamburger = document.querySelector("#hamburger");
   const nav = document.querySelector(".header-menu");
   const labelTransform = document.querySelectorAll(".label-transform");
-  const upArrow = document.querySelector(".to-top-arrow");
+
+  const submitBecomeAmember = document.querySelector(".submit-become-a-member");
+  const submitContact = document.querySelector(".submit-contact");
+  const allFieldsRequiredMessage_p = document.querySelector(
+    ".all-fields-required-message"
+  );
 
   //FOOTER
+  const upArrow = document.querySelector(".to-top-arrow");
   const currentYearSpan = document.querySelector(".current-year-span");
 
   // =========== General Functions =================
@@ -42,10 +48,12 @@ window.onload = () => {
   //Scroll to selected sections from menu links
   const homePageLinks = document.querySelectorAll(".home-page-link");
   const scroollToSection = (section) => {
+    console.log("click");
     const dataLink = section.getAttribute("data-link");
     const targetSection = document.querySelector(`#${dataLink}`);
     //smooth scroll if the target section is on the current page
     if (elementExists(targetSection)) {
+      console.log("this");
       const targetPosition =
         targetSection.getBoundingClientRect().top + window.pageYOffset;
       const headerOffset =
@@ -58,6 +66,7 @@ window.onload = () => {
         behavior: "smooth",
       });
     } else {
+      console.log("other");
       //target section is on annother page
       location.href = `index.php#${dataLink}`;
     }
@@ -103,28 +112,13 @@ window.onload = () => {
   });
 
   // ***********************************************************************************
-  // ==============FORMS=========================================
-  // Floating labels
-  const moveUp = (input) => {
-    const currenLabel = input.previousElementSibling;
-    input.classList.add("current-input");
-    currenLabel.classList.add("moveUp");
-  };
-
-  const moveDown = (input) => {
-    const currenLabel = input.previousElementSibling;
-    if (input.value == "") {
-      input.classList.remove("current-input");
-      currenLabel.classList.remove("moveUp");
-    }
-  };
-
-  //====================================================================
 
   //================AUM COUNTER ANIMATION ==========================
   const counters = document.querySelectorAll(".counter");
   const aumSection = document.querySelector("#aum-section");
-  let aumSectionPosition = aumSection.getBoundingClientRect().top;
+  let aumSectionPosition = !!aumSection
+    ? aumSection.getBoundingClientRect().top
+    : 0;
   const countersSpeed = 75;
 
   const animateCounters = () => {
@@ -157,13 +151,17 @@ window.onload = () => {
   };
 
   //Start counters on refresh if in viewport
-  startAnimateCounters();
+  if (elementExists(aumSection)) {
+    startAnimateCounters();
+  }
 
   //Start counters on scroll when in viewport
-  window.addEventListener("scroll", function () {
-    aumSectionPosition = aumSection.getBoundingClientRect().top;
-    startAnimateCounters();
-  });
+  if (elementExists(aumSection)) {
+    window.addEventListener("scroll", function () {
+      aumSectionPosition = aumSection.getBoundingClientRect().top;
+      startAnimateCounters();
+    });
+  }
   //  ##############################################################
   // Scroll to top arrow==================
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
@@ -188,10 +186,6 @@ window.onload = () => {
   }
 
   // ==============================Forms validation======================
-  const submitContact = document.querySelector(".submit-contact");
-  const allFieldsRequiredMessage_p = document.querySelector(
-    ".all-fields-required-message"
-  );
   function validateEmail(email) {
     var re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -213,7 +207,8 @@ window.onload = () => {
   };
 
   function validateForm(event) {
-    const requiredFields = document.querySelectorAll(".required-field");
+    const currentForm = event.target.parentNode;
+    const requiredFields = currentForm.querySelectorAll(".required-field");
     // check required inputs
     requiredFields.forEach((field) => {
       validateFormInput(event, field.value == "", field);
@@ -246,6 +241,58 @@ window.onload = () => {
     });
   }
   // ************************************************************
+
+  // ==============FORMS=========================================
+  // Floating labels
+  const moveUp = (input) => {
+    const currenLabel = input.previousElementSibling;
+    input.classList.add("current-input");
+    currenLabel.classList.add("moveUp");
+  };
+
+  const moveDown = (input) => {
+    const currenLabel = input.previousElementSibling;
+    if (input.value == "") {
+      input.classList.remove("current-input");
+      currenLabel.classList.remove("moveUp");
+    }
+  };
+
+  // ************************************************************************
+
+  // ================== OPEN/CLOSED MODALS ======================
+  const openModalBtns = document.querySelectorAll(".open-modal-btn");
+  const closeModalBtns = document.querySelectorAll(".close-modal-btn");
+  // open modal (get modal name from button attribute)
+  const openModalOnClick = (openModalBtn) => {
+    const modalName = openModalBtn.getAttribute("data-modal");
+    const currentModal = document.querySelector(`.${modalName}`);
+    currentModal.classList.add("show");
+  };
+  // open modal event listener
+  if (elementExists(openModalBtns)) {
+    openModalBtns.forEach((openModalBtn) => {
+      openModalBtn.addEventListener("click", () =>
+        openModalOnClick(openModalBtn)
+      );
+    });
+  }
+  // close modal (the modal should be direct parent to the close-button)
+  const closeModalOnClick = (closeModalBtn) => {
+    const currentModal = closeModalBtn.parentNode;
+    currentModal.classList.remove("show");
+  };
+
+  // close modal event listeners
+  if (elementExists(closeModalBtns)) {
+    closeModalBtns.forEach((closeModalBtn) => {
+      closeModalBtn.addEventListener("click", () =>
+        closeModalOnClick(closeModalBtn)
+      );
+    });
+  }
+
+  // ***********************************************************
 
   //=========================EVENT LISTENERS=====================
   if (elementExists(homePageLinks)) {
@@ -282,7 +329,11 @@ window.onload = () => {
     upArrow.addEventListener("click", scrollToTop);
   }
 
-  //Contact form
+  //Validate become-a-member form
+  if (elementExists(submitBecomeAmember)) {
+    submitBecomeAmember.addEventListener("click", validateForm);
+  }
+  //Validate contact form
   if (elementExists(submitContact)) {
     submitContact.addEventListener("click", validateForm);
   }

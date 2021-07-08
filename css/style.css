@@ -6,6 +6,9 @@
   --secondary-color-transparent: #146082;
   --white-color: #ffffff;
 
+  --modal-bg-color: rgba(0, 0, 0, 0.85);
+  --modal-grey-color: #acacac;
+
   --main-text-color: rgb(32, 32, 32);
   --light-text-color: #666666;
   --link-color: #176083;
@@ -305,8 +308,172 @@ footer a:visited {
   color: var(--white-color);
 }
 
+/* =====================CUSTOM DROPDOWN NEW====================== */
+.custom-select-wrapper {
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+.custom-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.custom-select__trigger {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  font-size: 1.1em;
+  color: var(--grey-text-color);
+  text-align: left;
+  background: #ffffff;
+  cursor: pointer;
+  border-bottom: 1px solid var(--light-text-color);
+}
+.custom-options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border-top: 0;
+  background: #fff;
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+}
+.custom-select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+.custom-option {
+  position: relative;
+  display: block;
+  padding: 1em;
+  color: var(--light-text-color);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.custom-option:hover {
+  cursor: pointer;
+  background-color: #b2b2b2;
+}
+.custom-option.selected {
+  color: #ffffff;
+  background-color: var(--main-color);
+}
+/* arrow */
+.arrow {
+  position: relative;
+  height: 0.8em;
+  width: 0.8em;
+  margin-left: 1em;
+}
+.arrow::before,
+.arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 0.1em;
+  height: 100%;
+  transition: all 0.5s;
+}
+.arrow::before {
+  left: 0.2em;
+  transform: rotate(45deg);
+  background-color: var(--main-color);
+}
+.arrow::after {
+  left: -0.3em;
+  transform: rotate(-45deg);
+  background-color: var(--main-color);
+}
+.open .arrow::before {
+  left: 0.2em;
+  transform: rotate(-45deg);
+}
+.open .arrow::after {
+  left: -0.3em;
+  transform: rotate(45deg);
+}
+/* ********************************************************* */
+
 /* ################################# MAIN CONTENT ############################### */
-/* Home page */
+/* ================Become a member modal ======================== */
+.become-a-member-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  transform: translate(-50%, -50%);
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4em 6em;
+  background-color: var(--modal-bg-color);
+  color: var(--white-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+.close-modal-btn {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  width: 2em;
+  transition: transform 0.3s ease-in-out;
+}
+.close-modal-btn:hover {
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+.become-a-member-modal form {
+  width: 50em;
+}
+.become-a-member-modal .floating-label {
+  color: var(--white-color);
+}
+.become-a-member-modal .floating-label.moveUp {
+  color: var(--modal-grey-color);
+}
+.become-a-member-modal label,
+.become-a-member-modal input,
+.become-a-member-modal textarea {
+  color: var(--white-color);
+}
+.become-a-member-modal input,
+.become-a-member-modal textarea {
+  border-bottom: 1px solid var(--modal-grey-color);
+}
+.become-a-member-modal .current-input {
+  border-bottom: 1px solid var(--white-color);
+}
+
+/* modal custom dropdon */
+.become-a-member-modal .custom-select__trigger {
+  color: var(--white-color);
+  background: transparent;
+  border-bottom: 1px solid var(--modal-grey-color);
+}
+.become-a-member-modal .arrow::before,
+.become-a-member-modal .arrow::after {
+  background-color: var(--white-color);
+}
+
+/*================ Home page======================== */
 .hero {
   width: 100%;
   height: 75vh;
@@ -429,13 +596,13 @@ footer a:visited {
   display: none;
 }
 
-.submit-contact {
+.submit-contact,
+.submit-become-a-member {
   color: var(--white-color);
   background-color: var(--main-color);
   font-size: 1.2em;
   margin-top: 1em;
   width: 100%;
-  /* padding: 1em 2em; */
 }
 
 /* ++++ Portfolio Page ++++++ */
@@ -448,6 +615,10 @@ footer a:visited {
 .hide {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+.show {
+  opacity: 1 !important;
+  pointer-events: all !important;
 }
 
 /* ################################## RESPONSIVE ########################## */
