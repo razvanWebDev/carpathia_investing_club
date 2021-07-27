@@ -59,6 +59,28 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item sidebar-page-header" id="members-page-header">
+              <a href="#" class="nav-link sidebar-page-title">
+                <p>
+                  Memebers
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <!-- <li class="nav-item">
+                  <a href="members.php" class="nav-link" data-page="members.php" data-page-header="members-page-header">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Members</p>
+                  </a>
+                </li> -->
+                <li class="nav-item">
+                  <a href="member-requests.php" class="nav-link" data-page="member-requests.php" data-page-header="members-page-header">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Member Requests</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item sidebar-page-header" id="users-page-header">
               <a href="#" class="nav-link sidebar-page-title">
                 <p>

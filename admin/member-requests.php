@@ -16,7 +16,7 @@
       switch($source) {
 
           default:
-          include "includes/view_contact_messages.php";
+          include "includes/view_member_requsts.php";
       }
     ?>
   </div>
