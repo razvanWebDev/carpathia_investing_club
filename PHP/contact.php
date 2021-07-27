@@ -38,7 +38,7 @@ if(isset($_POST['submit'])) {
       return str_replace($bad,"",$string);
     }
 
-    $email_message .= "Nume si prenume: ".clean_string($name)." ".clean_string($lastName)."\n";
+    $email_message .= "Nume si prenume: ".clean_string($firstname)." ".clean_string($lastName)."\n";
     $email_message .= "Nr. Telefon: ".clean_string($phone)."\n";
     $email_message .= "Email: ".clean_string($email)."\n";
     $email_message .= "Mesaj: ".clean_string($message)."\n\n";
@@ -51,8 +51,8 @@ if(isset($_POST['submit'])) {
 
     //DB contact=======================================================
 
-    $query = "INSERT INTO contact (name, lastName, email, phone, message) ";
-    $query .= "VALUES ('{$name}', '{$lastName}', '{$email}', '{$phone}', '{$message}')";
+    $query = "INSERT INTO contact (firstname, lastName, email, phone, message) ";
+    $query .= "VALUES ('{$firstname}', '{$lastName}', '{$email}', '{$phone}', '{$message}')";
 
     $result =  mysqli_query($connection, $query);
 
