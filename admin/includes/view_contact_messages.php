@@ -44,7 +44,7 @@
         $count = mysqli_num_rows($select_post_query_count);
         $count = ceil($count / $articles_per_page); 
 
-        $query = "SELECT * FROM contact LIMIT $page_1, $articles_per_page";
+        $query = "SELECT * FROM contact ORDER BY id DESC LIMIT $page_1, $articles_per_page";
         $select_users = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_users)) {
