@@ -70,8 +70,8 @@
         <form action="PHP/contact.php" method="POST" enctype="multipart/form-data">
             <div class="form-line">
                 <div class="input-container half-width">
-                    <label for="name" class="floating-label">First Name</label>
-                    <input class="label-transform  required-field" type="text" name="name">
+                    <label for="firstname" class="floating-label">First Name</label>
+                    <input class="label-transform  required-field" type="text" name="firstname">
                 </div>
                 <div class="input-container half-width">
                     <label for="lastName" class="floating-label">Last Name</label>

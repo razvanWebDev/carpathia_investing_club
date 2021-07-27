@@ -1,5 +1,4 @@
 <?php 
-$dbClmnName="";
 function escape($string) {
   global $connection;
   return mysqli_real_escape_string($connection, trim($string));
@@ -8,6 +7,70 @@ function escape($string) {
 function ifExists($item){
   global $connection;
   return $item != "" && $item != " " && $item != "  " && $item != "undefined" && $item != null ;
+}
+
+function userExists($username, $email) {
+  global $connection;
+
+  $query = "SELECT * FROM users WHERE username = ? OR email = ?";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: users.php?source=add_user");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
+    $resultData = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($resultData)){
+      return $row;
+    }else{
+      $result = false;
+      return $result;
+    }
+    mysqli_stmt_close($stmt);
+  }
+}
+
+function createUser($firstname, $lastname, $username, $email, $phone, $user_image, $user_password) {
+  global $connection;
+
+  $query = "INSERT INTO users (firstname, lastname, username, email, phone, user_image, user_password) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: users.php?source=add_user");
+    exit();
+  }else{
+    $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
+    mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $username, $email, $phone, $user_image, $hashed_password);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
+function loginUser($username, $password){
+  $userExists = userExists($username, $username);
+
+  if($userExists === false) {
+    header("Location: ../index.php");
+    exit();
+  }
+
+  $hashed_password = $userExists["user_password"];
+  $check_passwords = password_verify($password, $hashed_password);
+
+  if($check_passwords === false) {
+    header("Location: ../index.php");
+    exit();
+  }else if($check_passwords === true){
+    $_SESSION["userId"] = $userExists["id"];
+    $_SESSION["username"] = $userExists["username"];
+    $_SESSION["user_image"] = $userExists["user_image"];
+
+    header("Location: ../admin.php");
+    exit();
+  }
 }
 
 function getYTVideoId($videoLink){
@@ -60,10 +123,17 @@ function uploadImage($inputName, $path, $dbClmnName, $inputIndex="no_index"){
 
   $inputIndexExists = ($inputIndex != "no_index" || $inputIndex === 0);
 
+  $fileError = $inputIndexExists ? $_FILES[$inputName]['error'][$inputIndex] : $_FILES[$inputName]['error'];
+
+  //check if input is empty
+  if($fileError != 0) {
+    $GLOBALS[$dbClmnName] = "";
+    return;
+  } 
+
   $fileName = $inputIndexExists ? $_FILES[$inputName]['name'][$inputIndex] : $_FILES[$inputName]['name'];
   $fileTmpName = $inputIndexExists ? $_FILES[$inputName]['tmp_name'][$inputIndex] : $_FILES[$inputName]['tmp_name'];
   $fileSize = $inputIndexExists ? $_FILES[$inputName]['size'][$inputIndex] : $_FILES[$inputName]['size'];
-  $fileError = $inputIndexExists ? $_FILES[$inputName]['error'][$inputIndex] : $_FILES[$inputName]['error'];
   $fileType = $inputIndexExists ? $_FILES[$inputName]['type'][$inputIndex] : $_FILES[$inputName]['type'];
   $fileExt = explode('.', $fileName);
   $fileActualExt = strtolower(end($fileExt));

@@ -15,14 +15,11 @@ if(isset($_POST['submit'])) {
     };
 
     //form data 
-    $name = escape($_POST['name']); 
+    $firstname = escape($_POST['firstname']); 
     $lastName = escape($_POST['lastName']);
     $phone = escape($_POST['phone']);
     $email = escape($_POST['email']); 
     $message = escape($_POST['message']);
-
-    $contact_date = date("Y-m-d");
-    $formated_date = date('d.m.Y',strtotime($contact_date));
 
     $error_message = "";
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
@@ -44,7 +41,6 @@ if(isset($_POST['submit'])) {
     $email_message .= "Nume si prenume: ".clean_string($name)." ".clean_string($lastName)."\n";
     $email_message .= "Nr. Telefon: ".clean_string($phone)."\n";
     $email_message .= "Email: ".clean_string($email)."\n";
-    $email_message .= "Data: ".clean_string($formated_date)."\n";
     $email_message .= "Mesaj: ".clean_string($message)."\n\n";
          
     // create email headers
@@ -55,8 +51,8 @@ if(isset($_POST['submit'])) {
 
     //DB contact=======================================================
 
-    $query = "INSERT INTO contact (name, lastName, email, phone, message, contact_date) ";
-    $query .= "VALUES ('{$name}', '{$lastName}', '{$email}', '{$phone}', '{$message}', '{$contact_date}')";
+    $query = "INSERT INTO contact (name, lastName, email, phone, message) ";
+    $query .= "VALUES ('{$name}', '{$lastName}', '{$email}', '{$phone}', '{$message}')";
 
     $result =  mysqli_query($connection, $query);
 
