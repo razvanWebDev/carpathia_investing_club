@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-info">
+              <div class="small-box bg-primary">
                 <div class="inner">
                   <?php
                   $query = "SELECT * FROM users";
@@ -36,7 +36,7 @@
             <!-- ./col -->
 
             <div class="col-lg-3 col-6">
-              <div class="small-box bg-warning">
+              <div class="small-box bg-success">
                 <div class="inner">
                 <?php
                   $query = "SELECT * FROM member_requests";
@@ -44,7 +44,6 @@
                   $num_requests = mysqli_num_rows($result);
                   ?>
                   <h3><?php echo $num_requests ?></h3>
-
                   <p>Memeber Requests</p>
                 </div>
                 <div class="icon">
@@ -54,38 +53,27 @@
               </div>
             </div>
 
-            <!-- ./col -->
-
-            <!-- <div class="col-lg-3 col-6">
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>44</h3>
-
-                  <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <?php
+                  $query = "SELECT * FROM contact";
+                  $result = mysqli_query($connection, $query);
+                  $num_items = mysqli_num_rows($result);
+                  ?>
+                <h3>
+                  <?php echo $num_items ?>
+                </h3>
+                <p>Total Messages</p>
               </div>
-            </div> -->
-
-            <!-- ./col -->
-
-            <!-- <div class="col-lg-3 col-6">
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>65</h3>
-
-                  <p>Unique Visitors</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <div class="icon">
+                <i class="fas fa-envelope"></i>
               </div>
-            </div> -->
-            <!-- ./col -->
+              <a href="contact.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
           </div>
           <!-- /.row -->
         </div><!-- /.container-fluid -->

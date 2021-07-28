@@ -731,6 +731,13 @@ footer a:visited {
   #logo-section h1 {
     font-size: 1.4em;
   }
+  /* .form-line {
+    flex-direction: column;
+    width: 80%;
+  }
+  .form-line .half-width {
+    width: 50% !important;
+  } */
 }
 
 /* ################################# ANIMATIONS ########################### */
