@@ -442,6 +442,7 @@ footer a:visited {
 }
 .become-a-member-modal form {
   width: 50em;
+  max-width: 100%;
 }
 .become-a-member-modal .floating-label {
   color: var(--white-color);
@@ -712,10 +713,6 @@ footer a:visited {
     display: block;
     margin: 0 auto 2em auto;
   }
-
-  .contact-container form {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 450px) {
@@ -731,13 +728,28 @@ footer a:visited {
   #logo-section h1 {
     font-size: 1.4em;
   }
-  /* .form-line {
+
+  /* become a member modal */
+  .become-a-member-modal {
+    padding: 4em 2em;
+    font-size: 1.3em;
+  }
+  .become-a-member-modal .section-title {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+  .form-line {
     flex-direction: column;
-    width: 80%;
   }
   .form-line .half-width {
-    width: 50% !important;
-  } */
+    width: 100% !important;
+  }
+
+  /* contact form */
+  .contact-container form {
+    font-size: 1.3em;
+    width: 100%;
+  }
 }
 
 /* ################################# ANIMATIONS ########################### */
