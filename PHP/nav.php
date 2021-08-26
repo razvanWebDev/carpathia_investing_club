@@ -7,6 +7,7 @@
     <nav class="header-menu">
         <ul class="nav-links">
             <div>
+                <li class="home-page-link"><a href="/">Home</a></li>
                 <li class="home-page-link" data-link="about-us">About</li>
                 <li class="home-page-link" data-link="strategy">Strategy</li>
                 <li class="home-page-link" data-link="contact">Contact</li>

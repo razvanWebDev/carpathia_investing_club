@@ -254,17 +254,20 @@ header.hideNav {
   display: flex;
 }
 
-header .nav-links a,
 header .nav-links li {
   padding: 0 1em;
   color: var(--main-text-color);
   cursor: pointer;
 }
 
+header .nav-links li a {
+  color: var(--main-text-color);
+}
+
 header .nav-links li:first-child {
   padding-left: 0;
 }
-header .nav-links a:last-child {
+header .nav-links li:last-child {
   padding-right: 0;
 }
 
