@@ -182,6 +182,74 @@ window.onload = () => {
     });
   });
 
+  //Add Company form validation
+  $(function () {
+    $("#add-company-form").validate({
+      rules: {
+        date_pitched: {
+          required: true,
+        },
+        company: {
+          required: true,
+        },
+        ticker: {
+          required: true,
+        },
+        purchase_price: {
+          required: true,
+        },
+        exit_price: {
+          required: true,
+        },
+      },
+      errorElement: "span",
+      errorPlacement: function (error, element) {
+        error.addClass("invalid-feedback");
+        element.closest(".form-group").append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass("is-invalid");
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass("is-invalid");
+      },
+    });
+  });
+
+  //Edit Company form validation
+  $(function () {
+    $("#edit-company-form").validate({
+      rules: {
+        date_pitched: {
+          required: true,
+        },
+        company: {
+          required: true,
+        },
+        ticker: {
+          required: true,
+        },
+        purchase_price: {
+          required: true,
+        },
+        exit_price: {
+          required: true,
+        },
+      },
+      errorElement: "span",
+      errorPlacement: function (error, element) {
+        error.addClass("invalid-feedback");
+        element.closest(".form-group").append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass("is-invalid");
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass("is-invalid");
+      },
+    });
+  });
+
   //Initialize Custom file input
   $(function () {
     bsCustomFileInput.init();

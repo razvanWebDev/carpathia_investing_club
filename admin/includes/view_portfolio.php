@@ -1,26 +1,49 @@
-<?php include "PHP/header.php"; ?>
-<?php include "PHP/nav.php"; ?>
+<!-- DELETE COMPANY -->
+<?php 
+ if(isset($_GET['delete'])) {
+    if(isset($_SESSION['username'])){
+        $company_id = mysqli_real_escape_string($connection, $_GET['delete']);
+        deleteItem("portfolio", $company_id);
+    }
+    header("Location: portfolio.php");
+    exit();
+ }
+?>
 
-<section class="portfolio">
-    <h2 class="section-title">Portfolio</h2>
-    <table class="portfolio-table">
+<?php $page_title = "Portfolio"; ?>
+<?php include "includes/page_title.php"; ?>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="card card-solid">
+    <div class="card-body">
+
+    <a href="portfolio.php?source=add_company" class="btn bg-primary mb-4">
+      <i class="fas fa-plus mr-2"></i>Add Company
+    </a>
+
+      <table class="table table-bordered table-hover">
         <thead>
-            <tr>
-                <th>#</th>
-                <th>Date Pitched</th>
-                <th>Company</th>
-                <th>Ticker</th>
-                <th>Purchased</th>
-                <th>Purchase Price</th>
-                <th>Exit Price</th>
-            </tr>
+          <tr>
+            <th>#</th>
+            <th>Date pitched</th>
+            <th>Company</th>
+            <th>Ticker</th>
+            <th>Purchased</th>
+            <th>Purchase Price</th>
+            <th>Exit Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
         </thead>
         <tbody>
           <?php
         //pagination
         $rowCounter_per_page = 0;
         //the number of posts per page
-        $articles_per_page = 25;
+        $articles_per_page = 30;
     
         if(isset($_GET['page'])){
             $page = $_GET['page'];
@@ -76,28 +99,46 @@
             <td>
               <?php echo $exit_price ?>
             </td>
+            <td class="text-center">
+              <a href="portfolio.php?source=edit_company&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">
+                <i class="far fa-edit mr-2"></i>Edit
+              </a>
+            </td>
+            <td class="text-center">
+              <a href="portfolio.php?delete=<?php echo $id; ?>" onClick="javascript:return confirm('Delete <?php echo $company; ?>?')"; class="btn btn-sm bg-danger">
+                <i class="fas fa-trash-alt mr-2"></i>
+                  Delete
+              </a>
+            </td>
           </tr>
           <?php } ?>
 
         </tbody>
-    </table>
+      </table>
 
-    <nav>
-        <div class="pagination">
+          </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+      <nav>
+        <ul class="pagination justify-content-center m-0">
           <?php
         if($count > 1){
             for($i = 1; $i <= $count; $i++){
                 if($i == $page){
-                    echo "<a class='page-item active' href='portfolio.php?page={$i}'>$i</a>";
+                    echo "<li class='page-item active'><a class='page-link' href='portfolio.php?page={$i}'>$i</a></li>";
                 }else{
-                    echo "<a class='page-item' href='portfolio.php?page={$i}'>$i</a>";
+                    echo "<li class='page-item'><a class='page-link' href='portfolio.php?page={$i}'>$i</a></li>";
                 }
             }
         }
         ?>
-        </div>
+        </ul>
       </nav>
+    </div>
+    <!-- /.card-footer -->
+  </div>
+  <!-- /.card -->
 
 </section>
-
-<?php include "PHP/footer.php"; ?>
+<!-- /.content -->

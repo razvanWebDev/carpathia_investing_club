@@ -49,6 +49,46 @@ function createUser($firstname, $lastname, $username, $email, $phone, $user_imag
   }
 }
 
+function addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price) {
+  global $connection;
+
+  $query = "INSERT INTO portfolio (date_pitched, company, ticker, purchased, purchase_price, exit_price) VALUES (?, ?, ?, ?, ?, ?);";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: portfolio.php?source=add_company");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ssssss", $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
+function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price) {
+  global $connection;
+
+  $query = "UPDATE portfolio SET ";
+            $query .= "date_pitched = ?, ";
+            $query .= "company = ?, ";
+            $query .= "ticker = ?, ";
+            $query .= "purchased = ?, ";
+            $query .= "purchase_price = ?, ";
+            $query .= "exit_price = ? ";
+            $query .= "WHERE id = ?";
+
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: portfolio.php?source=edit_company&id=$the_company_id");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "sssssss", $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $the_company_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
 function loginUser($username, $password){
   $userExists = userExists($username, $username);
 

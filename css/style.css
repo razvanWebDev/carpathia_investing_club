@@ -179,6 +179,32 @@ section {
   animation: rotate 2s infinite;
 }
 
+/* =======pagination============= */
+.pagination {
+  display: flex;
+  margin-top: 2em;
+  font-size: 0.8em;
+}
+.pagination .page-item {
+  padding: 0.4em 1em;
+  border-top: 1px solid var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+  border-right: 1px solid var(--main-color);
+}
+.pagination .page-item:last-child {
+  border-radius: 0 0.3em 0.3em 0;
+}
+.pagination .page-item:first-child {
+  border-left: 1px solid var(--main-color);
+  border-radius: 0.3em 0 0 0.3em;
+}
+.pagination .page-item.active {
+  background-color: var(--main-color);
+  color: var(--white-color);
+}
+.pagination .page-item.active a {
+  color: var(--white-color);
+}
 /* ======================HEADER=============================== */
 header {
   z-index: 10;
@@ -609,7 +635,18 @@ footer a:visited {
 /* ++++ Portfolio Page ++++++ */
 .portfolio-table {
   width: 100%;
-  border: 1px solid black;
+  max-width: 100% !important;
+  border-collapse: collapse;
+}
+
+.portfolio-table tr:hover {
+  background-color: #aaaaaa30;
+  cursor: default;
+}
+.portfolio-table th,
+.portfolio-table td {
+  text-align: center;
+  padding: 1em 0.5em;
 }
 
 /* ========================================== */
@@ -749,6 +786,10 @@ footer a:visited {
   .contact-container form {
     font-size: 1.3em;
     width: 100%;
+  }
+  /* portfolio page */
+  .portfolio-table {
+    font-size: 0.8em;
   }
 }
 
