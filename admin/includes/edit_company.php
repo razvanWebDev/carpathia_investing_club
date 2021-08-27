@@ -70,6 +70,7 @@
                 <select name="purchased" class="form-control">
                   <option value="No" <?php echo $purchased=="No" ? "selected" : "" ?>>No</option>
                   <option value="Yes" <?php echo $purchased=="Yes" ? "selected" : "" ?>>Yes</option>
+                  <option value="Under Review" <?php echo $purchased=="Under Review" ? "selected" : "" ?>>Under Review</option>
                 </select>
               </div>
               <div class="form-group">

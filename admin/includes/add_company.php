@@ -51,6 +51,7 @@
                 <select name="purchased" class="form-control">
                   <option value="No">No</option>
                   <option value="Yes">Yes</option>
+                  <option value='Under Review'>Under Review</option>
                 </select>
               </div>
               <div class="form-group">

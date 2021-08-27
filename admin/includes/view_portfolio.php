@@ -74,8 +74,8 @@
             $company = $row['company'];
             $ticker = $row['ticker'];
             $purchased = $row['purchased'];
-            $purchase_price = $row['purchase_price'];
-            $exit_price = $row['exit_price'];
+            $purchase_price = $row['purchase_price'] > 0 ? $row['purchase_price'] : "";
+            $exit_price = $row['exit_price'] > 0 ? $row['exit_price'] : "";
         ?>
           <tr>
             <td>

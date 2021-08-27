@@ -198,9 +198,6 @@ window.onload = () => {
         purchase_price: {
           required: true,
         },
-        exit_price: {
-          required: true,
-        },
       },
       errorElement: "span",
       errorPlacement: function (error, element) {
@@ -230,9 +227,6 @@ window.onload = () => {
           required: true,
         },
         purchase_price: {
-          required: true,
-        },
-        exit_price: {
           required: true,
         },
       },
