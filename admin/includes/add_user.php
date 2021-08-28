@@ -1,27 +1,57 @@
-<?php 
-    if(isset($_POST['add_user'])) {
-      $firstname = escape($_POST['firstname']);
-      $lastname = escape($_POST['lastname']);
-      $username = escape($_POST['username']);
-      $email = escape($_POST['email']);
-      $phone = escape($_POST['phone']);
-      $user_password = escape($_POST['user_password']);
+<?php
 
-      // TOOOOOOO DOOOOOOOO -> find a better way do display the error
-      if(userExists($username, $email) !== false){
-          echo "<p class='alert alert-danger'>Username or email already taken</p>";
-      }else{
-        //add new user to db
-        uploadImage('user_image', 'dist/img/users/', 'user_image');
-        //used default user image if user image is empty
-        $user_image = $user_image !== "" ? $user_image : "user.png"; 
+$invalidUsernameClass = "";
+$showUsernameError = "none";
+$invalidEmailClass = "";
+$showEmailError = "none";
 
-        createUser($firstname, $lastname, $username, $email, $phone, $user_image, $user_password);
+//check if username exists
+if(isset($_GET['signup'])){
+  if($_GET['signup'] == "username"){
+   $invalidUsernameClass = "is-invalid";
+   $showUsernameError = "block";
+  }
+  if($_GET['signup'] == "email"){
+    $invalidEmailClass = "is-invalid";
+    $showEmailError = "block";
+  }
+} 
+//get input values in case the username or email already exist
+$firstNameInputValue = isset($_GET['firstname']) ? $_GET['firstname'] : "";
+$lastNameInputValue = isset($_GET['lastname']) ? $_GET['lastname'] : "";
+$userNameInputValue = isset($_GET['username']) ? $_GET['username'] : "";
+$emailInputValue = isset($_GET['email']) ? $_GET['email'] : "";
+$phoneInputValue = isset($_GET['phone']) ? $_GET['phone'] : "";
 
-        header("Location: users.php");
-        exit();
-      }
-    }
+
+if(isset($_POST['add_user'])) {
+  $firstname = escape($_POST['firstname']);
+  $lastname = escape($_POST['lastname']);
+  $username = escape($_POST['username']);
+  $email = escape($_POST['email']);
+  $phone = escape($_POST['phone']);
+  $user_password = escape($_POST['user_password']);
+
+  $image_path = $_FILES["user_image"]["name"];
+  
+  // Check if user already exists
+  if(userExists($username, $username)){
+    header("Location: users.php?source=add_user&signup=username&firstname=$firstname&lastname=$lastname&username=$username&email=$email&phone=$phone&image_path=$image_path");
+    exit();
+  }
+  if(userExists($email, $email)){
+    header("Location: users.php?source=add_user&signup=email&firstname=$firstname&lastname=$lastname&username=$username&email=$email&phone=$phone");
+    exit();
+  }
+  else{
+    //add new user to db
+    uploadImage('user_image', 'dist/img/users/', 'user_image');
+    createUser($firstname, $lastname, $username, $email, $phone, $user_image, $user_password);
+
+    header("Location: users.php");
+    exit();
+  }
+}
 ?>
 
 <?php $page_title = "Add User"; ?>
@@ -31,7 +61,6 @@
   <section class="content">
     <form id="add-user-form" action="" method="post" enctype="multipart/form-data">
       <div class="row">
-        <form action="" method="post" enctype="multipart/form-data">
         <div class="col-md-6">
           <div class="card card-primary">
             <div class="card-header">
@@ -46,15 +75,16 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="firstname">First Name*</label>
-                <input type="text" name="firstname" class="form-control">
+                <input type="text" name="firstname" class="form-control" value="<?php echo $firstNameInputValue ?>">
               </div>
               <div class="form-group">
                 <label for="lastname">Last Name*</label>
-                <input type="text" name="lastname" class="form-control">
+                <input type="text" name="lastname" class="form-control" value="<?php echo $lastNameInputValue ?>">
               </div>
               <div class="form-group">
                 <label for="username">Username*</label>
-                <input type="text" name="username" class="form-control">
+                <input type="text" name="username" class="form-control <?php echo $invalidUsernameClass ?>" value="<?php echo $userNameInputValue ?>">
+                <span class="error invalid-feedback" style="display: <?php $showUsernameError ?>">Username already taken.</span>
               </div>
             </div>
             <!-- /.card-body -->
@@ -75,11 +105,12 @@
 
               <div class="form-group">
                 <label for="email">Email*</label>
-                <input type="email" name="email" class="form-control">
+                <input type="email" name="email" class="form-control <?php echo $invalidEmailClass ?>" value="<?php echo $emailInputValue ?>">
+                <span class="error invalid-feedback" style="display: <?php $showEmailError ?>">Email already taken.</span>
               </div>
               <div class="form-group">
                 <label for="phone">Phone*</label>
-                <input type="tel" name="phone" class="form-control">
+                <input type="tel" name="phone" class="form-control" value="<?php echo $phoneInputValue ?>">
               </div>
 
               <div class="form-group">

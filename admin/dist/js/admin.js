@@ -72,7 +72,7 @@ window.onload = () => {
         },
         username: {
           required: true,
-          minlength: 4,
+          minlength: 6,
         },
         email: {
           required: true,
@@ -93,7 +93,7 @@ window.onload = () => {
       messages: {
         username: {
           required: "Please provide a username",
-          minlength: "Your username must be at least 4 characters long",
+          minlength: "Your username must be at least 6 characters long",
         },
         email: {
           required: "Please enter a email address",
@@ -132,7 +132,7 @@ window.onload = () => {
         },
         username: {
           required: true,
-          minlength: 4,
+          minlength: 6,
         },
         email: {
           required: true,
@@ -153,7 +153,7 @@ window.onload = () => {
       messages: {
         username: {
           required: "Please provide a username",
-          minlength: "Your username must be at least 4 characters long",
+          minlength: "Your username must be at least 6 characters long",
         },
         email: {
           required: "Please enter a email address",
@@ -166,68 +166,6 @@ window.onload = () => {
         repeat_user_password: {
           required: "Please enter the same a password",
           equalTo: "Your password must be the same",
-        },
-      },
-      errorElement: "span",
-      errorPlacement: function (error, element) {
-        error.addClass("invalid-feedback");
-        element.closest(".form-group").append(error);
-      },
-      highlight: function (element, errorClass, validClass) {
-        $(element).addClass("is-invalid");
-      },
-      unhighlight: function (element, errorClass, validClass) {
-        $(element).removeClass("is-invalid");
-      },
-    });
-  });
-
-  //Add Company form validation
-  $(function () {
-    $("#add-company-form").validate({
-      rules: {
-        date_pitched: {
-          required: true,
-        },
-        company: {
-          required: true,
-        },
-        ticker: {
-          required: true,
-        },
-        purchase_price: {
-          required: true,
-        },
-      },
-      errorElement: "span",
-      errorPlacement: function (error, element) {
-        error.addClass("invalid-feedback");
-        element.closest(".form-group").append(error);
-      },
-      highlight: function (element, errorClass, validClass) {
-        $(element).addClass("is-invalid");
-      },
-      unhighlight: function (element, errorClass, validClass) {
-        $(element).removeClass("is-invalid");
-      },
-    });
-  });
-
-  //Edit Company form validation
-  $(function () {
-    $("#edit-company-form").validate({
-      rules: {
-        date_pitched: {
-          required: true,
-        },
-        company: {
-          required: true,
-        },
-        ticker: {
-          required: true,
-        },
-        purchase_price: {
-          required: true,
         },
       },
       errorElement: "span",

@@ -1,65 +1,83 @@
 <?php 
-    if(isset($_GET['u_id'])) {
-        $the_user_id = $_GET['u_id'];
-    }
+
+$userNameInputValue = "";
+$invalidUsernameClass = "";
+$showUsernameError = "none";
+
+$emailInputValue = "";
+$invalidEmailClass = "";
+$showEmailError = "none";
+
+if(isset($_GET['u_id'])) {
+    $the_user_id = $_GET['u_id'];
+}
+
+$query = "SELECT * FROM users WHERE id = $the_user_id";
+$select_users_by_id = mysqli_query($connection, $query);
+
+while ($row = mysqli_fetch_assoc($select_users_by_id)) {
+  $id = $row['id'];
+  $firstname = $row['firstname'];
+  $lastname = $row['lastname'];
+  $db_username = $row['username'];
+  $db_email = $row['email'];
+  $phone = $row['phone'];
+  $user_password = $row['user_password'];
+  $user_image = $row['user_image'];  
+  $displayUserImage = ifExists($user_image) ? $user_image : "user.png";
+
+  //get values for username and email inputs
+  $userNameInputValue = $db_username; 
+  $emailInputValue = $db_email;
+}
+
+if(isset($_POST['edit_user'])) {
     
-    $query = "SELECT * FROM users WHERE id = $the_user_id";
-    $select_users_by_id = mysqli_query($connection, $query);
+  $firstname = escape($_POST['firstname']);
+  $lastname = escape($_POST['lastname']);
+  $username = escape($_POST['username']);
+  $email = escape($_POST['email']);
+  $phone = escape($_POST['phone']);
+  $user_password = escape($_POST['user_password']);
+  $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-    while ($row = mysqli_fetch_assoc($select_users_by_id)) {
-        $id = $row['id'];
-        $firstname = $row['firstname'];
-        $lastname = $row['lastname'];
-        $db_username = $row['username'];
-        $db_email = $row['email'];
-        $phone = $row['phone'];
-        $user_password = $row['user_password'];
-        $user_image = $row['user_image'];   
+  if(($db_username !== $username && userExists($username, $username))){
+    $invalidUsernameClass = "is-invalid";
+    $showUsernameError = "block";
+    $userNameInputValue = $username;
+      // echo "<p class='alert alert-danger'>Username already taken</p>";
+  }elseif(($db_email !== $email && userExists($email, $email))){
+    $invalidEmailClass = "is-invalid";
+    $showEmailError = "block";
+    $emailInputValue = $email;
+      // echo "<p class='alert alert-danger'>Email already taken</p>";
+  }else{
+      if(ifExists(escape($_FILES['user_image']['name']))){
+          $user_image = escape($_FILES['user_image']['name']);
+          $user_image_temp = $_FILES['user_image']['tmp_name'];
+          move_uploaded_file($user_image_temp, "dist/img/users/$user_image");
+      }
+
+      $query = "UPDATE users SET ";
+      $query .= "firstname = '{$firstname}', ";
+      $query .= "lastname = '{$lastname}', ";
+      $query .= "username = '{$username}', ";
+      $query .= "email = '{$email}', ";
+      $query .= "phone = '{$phone}', ";
+      $query .= "user_image = '{$user_image}', ";
+      $query .= "user_password = '{$hashed_password}' ";
+      $query .= "WHERE id = {$the_user_id}";
+
+      $update_user = mysqli_query($connection, $query);
+
+      if(!$update_user) {
+          die("QUERY FAILED" . mysqli_error($connection));
+      }
+
+      header("Location: users.php");
+      exit();
     }
-
-    if(isset($_POST['edit_user'])) {
-        
-        $firstname = escape($_POST['firstname']);
-        $lastname = escape($_POST['lastname']);
-        $username = escape($_POST['username']);
-        $email = escape($_POST['email']);
-        $phone = escape($_POST['phone']);
-        $user_password = escape($_POST['user_password']);
-        $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
-
-
-        // TOOOOOOO DOOOOOOOO -> find a better way do display the error
-        if(($db_username !== $username && userExists($username, $username))){
-            echo "<p class='alert alert-danger'>Username already taken</p>";
-        }elseif(($db_email !== $email && userExists($email, $email))){
-            echo "<p class='alert alert-danger'>Email already taken</p>";
-        }else{
-            if(ifExists(escape($_FILES['user_image']['name']))){
-                $user_image = escape($_FILES['user_image']['name']);
-                $user_image_temp = $_FILES['user_image']['tmp_name'];
-                move_uploaded_file($user_image_temp, "dist/img/users/$user_image");
-            }
-
-            $query = "UPDATE users SET ";
-            $query .= "firstname = '{$firstname}', ";
-            $query .= "lastname = '{$lastname}', ";
-            $query .= "username = '{$username}', ";
-            $query .= "email = '{$email}', ";
-            $query .= "phone = '{$phone}', ";
-            $query .= "user_image = '{$user_image}', ";
-            $query .= "user_password = '{$hashed_password}' ";
-            $query .= "WHERE id = {$the_user_id}";
-
-            $update_user = mysqli_query($connection, $query);
-
-            if(!$update_user) {
-                die("QUERY FAILED" . mysqli_error($connection));
-            }
-
-            header("Location: users.php");
-            exit();
-        }
-    }
+}
 ?>
 
 <?php $page_title = "Edit user $db_username"; ?>
@@ -83,7 +101,7 @@
             </div>
             <div class="card-body">
               <div class='image-container'>
-                <img src='dist/img/users/<?php echo $user_image; ?>'>
+                <img src='dist/img/users/<?php echo $displayUserImage; ?>'>
                 <div class='image-actions'>
                   <a class='btn btn-primary'
                     href='users.php?source=edit_user_photo&id=<?php echo $the_user_id ?>'>Chage</a>
@@ -117,11 +135,13 @@
               </div>
               <div class="form-group">
                 <label for="username">Username*</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $db_username ?>">
+                <input type="text" name="username" class="form-control <?php echo $invalidUsernameClass ?>" value="<?php echo $userNameInputValue ?>">
+                <span class="error invalid-feedback" style="display: <?php $showUsernameError ?>">Username already taken.</span>
               </div>
               <div class="form-group">
                 <label for="email">Email*</label>
-                <input type="email" name="email" class="form-control" value="<?php echo $db_email ?>">
+                <input type="email" name="email" class="form-control <?php echo $invalidEmailClass ?>" value="<?php echo $emailInputValue ?>">
+                <span class="error invalid-feedback" style="display: <?php $showEmailError ?>">Email already taken.</span>
               </div>
               <div class="form-group">
                 <label for="phone">Phone*</label>
