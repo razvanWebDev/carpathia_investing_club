@@ -1,4 +1,7 @@
 <?php
+$site_key = '6LfN8zAcAAAAAHttXGnld2PxkLVn2uXG9x80cv8Y';
+$secret_key = '6LfN8zAcAAAAAOxPtyCvnWqW5MMgHdGE8HrUx0_z';
+
   $server = 'localhost';
   $username = 'root';
   $password = '';

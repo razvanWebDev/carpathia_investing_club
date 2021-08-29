@@ -9,6 +9,12 @@ function ifExists($item){
   return $item != "" && $item != " " && $item != "  " && $item != "undefined" && $item != null ;
 }
 
+function getCaptcha($secret_key, $g_response){
+  $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$g_response");
+  $return = json_decode($response);
+  return $return;
+}
+
 function userExists($username, $email) {
   global $connection;
 

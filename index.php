@@ -1,6 +1,13 @@
 <?php include "PHP/header.php"; ?>
 <?php include "PHP/nav.php"; ?>
 
+<?php
+    $showCaptchaError = "none";
+    if(isset($_GET['error']) == "captcha_failed"){
+        $showCaptchaError = "block";
+    }
+?>
+
 <section class="hero">
     <div class="hero-btns">
         <button class="call-to-action open-modal-btn" data-modal="become-a-member-modal">Become a member</button>
@@ -68,6 +75,9 @@
             </div>
         </div>
         <form action="PHP/contact.php" method="POST" enctype="multipart/form-data">
+            <p class="error captcha-failed-p" style="display: <?php echo $showCaptchaError ?>">Captcha failed. The form was not sent!</p>
+            <!-- input needed for reCaptcha -->
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
             <div class="form-line">
                 <div class="input-container half-width">
                     <label for="firstname" class="floating-label">First Name</label>
@@ -104,5 +114,22 @@
         </form>
     </div>
 </section>
+
+<!-- CAPTCHA -->
+<script>
+    function getReCaptcha() {
+            grecaptcha.ready(function() {
+            grecaptcha.execute("<?php echo $site_key ?>", {action: 'homepage'}).then(function(token) {
+                document.getElementById("g-recaptcha-response").value = token;
+            });
+        });
+
+    }       
+    getReCaptcha();
+    //Refesh token Every 110 Seconds
+    setInterval(function(){
+        getReCaptcha();
+    }, 110*1000)
+</script> 
 
 <?php include "PHP/footer.php"; ?>

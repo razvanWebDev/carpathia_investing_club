@@ -1,10 +1,13 @@
 <?php include "db.php";?>
-<?php include "../admin/includes/functions.php";
-header("Location: ../index.php#contact");
-?>
+<?php include "../admin/includes/functions.php";?>
 
 <?php
 if(isset($_POST['submit'])) {
+  //check captcha
+  $captcha = getCaptcha($secret_key, $_POST['g-recaptcha-response']);
+
+  //Captcha passed
+  if($captcha->success == true && $captcha->score > 0.5){
     $email_to = "razvan.crisan@ctotech.io, crsn_razvan@yahoo.com, invest@carpathiainvestingclub.org";
     $email_subject = "Mesaj nou pe site!";
      
@@ -59,8 +62,14 @@ if(isset($_POST['submit'])) {
     if(!$result) {
     die("DB query failed" . mysqli_error());
     }
+    header("Location: ../index.php#contact");
 
   mysqli_close($connection);
+  }else{
+    //Captcha failed
+    header("Location: ../index.php#contact?error=captcha_failed");
+  }
+  mysqli_close($connection);  
 }
 
 die();
