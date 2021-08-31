@@ -9,7 +9,8 @@ if(isset($_POST['submit'])) {
   //Captcha passed
   if($captcha->success == true && $captcha->score > 0.5){
     $email_to = "razvan.crisan@ctotech.io, crsn_razvan@yahoo.com, invest@carpathiainvestingclub.org";
-    $email_subject = "Mesaj nou pe site!";
+   // $email_to = "razvan.crisan@ctotech.io, crsn_razvan@yahoo.com";
+    $email_subject = "Mesaj nou pe carpathia_investing_club!";
      
     function died($error) {
         // your error code can go here
@@ -34,22 +35,24 @@ if(isset($_POST['submit'])) {
   }
 
     //Own Email==========================================  
-    $email_message = "Detaliile mesajului.\n\n";
+    $email_message = "<p><b>Message details: </b></p>";
      
     function clean_string($string) {
       $bad = array("content-type","bcc:","to:","cc:","href");
       return str_replace($bad,"",$string);
     }
 
-    $email_message .= "Nume si prenume: ".clean_string($firstname)." ".clean_string($lastName)."\n";
-    $email_message .= "Nr. Telefon: ".clean_string($phone)."\n";
-    $email_message .= "Email: ".clean_string($email)."\n";
-    $email_message .= "Mesaj: ".clean_string($message)."\n\n";
+    $email_message .= "<p>Name: ".clean_string($name)." ".clean_string($lastName) . "</p>";
+    $email_message .= "<p>Phone: ".clean_string($phone)."</p>";
+    $email_message .= "<p>Email: ".clean_string($email)."</p>";
+    $email_message .= "<p>Message: ".clean_string($message)."</p>";
          
     // create email headers
-    $headers = 'From: '.$email."\r\n".
-    'Reply-To: '.$email."\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+    $headers = "From: ".$email."\r\n";
+    $headers .= "Reply-To: ".$email."\r\n";
+    $headers .= "Content-type: text/html\r\n";
+    $headers .= 'X-Mailer: PHP/' . phpversion();  
+
     mail($email_to, $email_subject, $email_message, $headers);  
 
     //DB contact=======================================================
