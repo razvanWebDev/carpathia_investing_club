@@ -646,6 +646,9 @@ footer a:visited {
   font-size: 1.2em;
   font-weight: 500;
 }
+.grecaptcha-badge {
+  visibility: hidden;
+}
 
 /* ++++ Portfolio Page ++++++ */
 .portfolio-table {

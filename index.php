@@ -110,6 +110,11 @@
             </p>
 
             <p class="all-fields-required-message">Please fill in all fields</p>
+            <small class="g-recaptcha-branding">This site is protected by reCAPTCHA and the Google 
+                <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+            </small>
+            
             <button type="submit" name="submit" class="submit-contact">SEND</button>
         </form>
     </div>
