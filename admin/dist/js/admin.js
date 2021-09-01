@@ -56,7 +56,6 @@ window.onload = () => {
       }
     });
   };
-
   getCurrentSidebarPage();
 
   //FORMS VALIDATION

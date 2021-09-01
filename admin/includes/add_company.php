@@ -56,11 +56,11 @@
               </div>
               <div class="form-group">
                 <label for="purchase_price">Purchase Price</label>
-                <input type="number" name="purchase_price" class="form-control">
+                <input type="number" step="any" name="purchase_price" class="form-control">
               </div>
               <div class="form-group">
                 <label for="exit_price">Exit Price</label>
-                <input type="number" name="exit_price" class="form-control">
+                <input type="number" step="any" name="exit_price" class="form-control">
               </div>
 
             </div>
