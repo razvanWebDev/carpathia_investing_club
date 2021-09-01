@@ -164,7 +164,7 @@ if(isset($_POST['edit_user'])) {
     </div>
     <div class="row">
       <div class="col-12">
-        <a onclick="return confirm('Cancel?')" href="users.php" class="btn btn-secondary">Cancel</a>
+        <a href="users.php" class="btn btn-secondary">Cancel</a>
         <input onclick="return confirm('Edit user?')" type="submit" value="Edit user" name="edit_user"
           class="btn btn-success float-right">
       </div>

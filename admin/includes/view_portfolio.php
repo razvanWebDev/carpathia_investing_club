@@ -34,6 +34,7 @@
             <th>Purchased</th>
             <th>Purchase Price</th>
             <th>Exit Price</th>
+            <th>Exit Date</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -70,12 +71,20 @@
             $totalRowCounter = $rowCounter_per_page + (($page-1) * $articles_per_page);
             
             $id = $row['id'];
+
             $date_pitched = $row['date_pitched'];
+            $date_pitched = strtotime($date_pitched);
+            $date_pitched = date("d/m/Y", $date_pitched);
+
             $company = $row['company'];
             $ticker = $row['ticker'];
             $purchased = $row['purchased'];
             $purchase_price = $row['purchase_price'] > 0 ? $row['purchase_price'] : "";
             $exit_price = $row['exit_price'] > 0 ? $row['exit_price'] : "";
+
+            $exit_date = $row['exit_date'];
+            $exit_date = strtotime($exit_date);
+            $exit_date = date("d/m/Y", $exit_date);
         ?>
           <tr>
             <td>
@@ -98,6 +107,9 @@
             </td>
             <td>
               <?php echo $exit_price ?>
+            </td>
+            <td>
+              <?php echo $exit_date ?>
             </td>
             <td class="text-center">
               <a href="portfolio.php?source=edit_company&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">

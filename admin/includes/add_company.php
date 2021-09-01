@@ -6,8 +6,9 @@
     $purchased = escape($_POST['purchased']);
     $purchase_price = escape($_POST['purchase_price']);
     $exit_price = escape($_POST['exit_price']);
+    $exit_date = escape($_POST['exit_date']);
 
-    addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price);
+    addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date);
 
     header("Location: portfolio.php");
     exit();
@@ -62,6 +63,10 @@
                 <label for="exit_price">Exit Price</label>
                 <input type="number" step="any" name="exit_price" class="form-control">
               </div>
+              <div class="form-group">
+                <label for="exit_date">Exit Date</label>
+                <input type="date" value=<?php echo date("Y-m-d") ?> name="exit_date" class="form-control">
+              </div>
 
             </div>
             <!-- /.card-body -->
@@ -72,7 +77,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <a onclick="return confirm('Cancel?')" href="portfolio.php" class="btn btn-secondary">Cancel</a>
+        <a href="portfolio.php" class="btn btn-secondary">Cancel</a>
         <input onclick="return confirm('Add company?')" type="submit" value="Add company" name="add_company"
           class="btn btn-success float-right">
       </div>

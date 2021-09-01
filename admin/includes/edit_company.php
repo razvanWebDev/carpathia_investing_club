@@ -14,19 +14,22 @@
       $purchased = $row['purchased'];
       $purchase_price = $row['purchase_price'];
       $exit_price = $row['exit_price'];   
+      $exit_date = $row['exit_date'];
     }
 
     if(isset($_POST['edit'])) {
         
       $date_pitched = escape($_POST['date_pitched']);
-      $formated_date = date('d/m/Y',strtotime($date_pitched));
+
       $company = escape($_POST['company']);
       $ticker = escape($_POST['ticker']);
       $purchased = escape($_POST['purchased']);
       $purchase_price = escape($_POST['purchase_price']);
       $exit_price = escape($_POST['exit_price']);
 
-      editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price);
+      $exit_date = escape($_POST['exit_date']);
+
+      editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date);
 
       header("Location: portfolio.php");
       exit();
@@ -75,11 +78,15 @@
               </div>
               <div class="form-group">
                 <label for="purchase_price">Purchase Price</label>
-                <input type="number" name="purchase_price" class="form-control" value=<?php echo $purchase_price ?>>
+                <input type="number" step="any" name="purchase_price" class="form-control" value=<?php echo $purchase_price ?>>
               </div>
               <div class="form-group">
                 <label for="exit_price">Exit Price</label>
-                <input type="number" name="exit_price" class="form-control" value=<?php echo $exit_price ?>>
+                <input type="number" step="any" name="exit_price" class="form-control" value=<?php echo $exit_price ?>>
+              </div>
+              <div class="form-group">
+                <label for="exit_date">Exit Date</label>
+                <input type="date" value=<?php echo $exit_date ?> name="exit_date" class="form-control">
               </div>
 
             </div>
@@ -91,7 +98,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <a onclick="return confirm('Cancel?')" href="portfolio.php" class="btn btn-secondary">Cancel</a>
+        <a href="portfolio.php" class="btn btn-secondary">Cancel</a>
         <input onclick="return confirm('Edit company?')" type="submit" value="Edit company" name="edit"
           class="btn btn-success float-right">
       </div>

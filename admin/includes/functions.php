@@ -55,23 +55,23 @@ function createUser($firstname, $lastname, $username, $email, $phone, $user_imag
   }
 }
 
-function addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price) {
+function addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date) {
   global $connection;
 
-  $query = "INSERT INTO portfolio (date_pitched, company, ticker, purchased, purchase_price, exit_price) VALUES (?, ?, ?, ?, ?, ?);";
+  $query = "INSERT INTO portfolio (date_pitched, company, ticker, purchased, purchase_price, exit_price, exit_date) VALUES (?, ?, ?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($connection);
 
   if(!mysqli_stmt_prepare($stmt, $query)){
     header("Location: portfolio.php?source=add_company");
     exit();
   }else{
-    mysqli_stmt_bind_param($stmt, "ssssss", $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price);
+    mysqli_stmt_bind_param($stmt, "sssssss", $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }
 }
 
-function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price) {
+function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date) {
   global $connection;
 
   $query = "UPDATE portfolio SET ";
@@ -80,7 +80,8 @@ function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker,
             $query .= "ticker = ?, ";
             $query .= "purchased = ?, ";
             $query .= "purchase_price = ?, ";
-            $query .= "exit_price = ? ";
+            $query .= "exit_price = ?, ";
+            $query .= "exit_date = ? ";
             $query .= "WHERE id = ?";
 
   $stmt = mysqli_stmt_init($connection);
@@ -89,7 +90,7 @@ function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker,
     header("Location: portfolio.php?source=edit_company&id=$the_company_id");
     exit();
   }else{
-    mysqli_stmt_bind_param($stmt, "sssssss", $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $the_company_id);
+    mysqli_stmt_bind_param($stmt, "ssssssss", $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date, $the_company_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }
