@@ -85,8 +85,13 @@
                 <input type="number" step="any" name="exit_price" class="form-control" value=<?php echo $exit_price ?>>
               </div>
               <div class="form-group">
-                <label for="exit_date">Exit Date</label>
-                <input type="date" value=<?php echo $exit_date ?> name="exit_date" class="form-control">
+                <label for="exit_price">Exit Date</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <button type="button" class="btn btn-danger clear-input-after">Clear date</button>
+                    </div>
+                    <input type="date" name="exit_date" class="form-control" value=<?php echo $exit_date ?>>
+                </div>
               </div>
 
             </div>

@@ -37,7 +37,6 @@ window.onload = () => {
       const dataPageHeader = sidebarLink.getAttribute("data-page-header");
       const dataPage = sidebarLink.getAttribute("data-page");
       if (currentPageName === dataPage) {
-        console.log("dataPage", dataPage);
         //activate link
         sidebarLink.classList.add("active");
         //open sidebar dropdown
@@ -50,13 +49,29 @@ window.onload = () => {
         sidebarPageTitle.classList.add("active");
         //set active icon
         const navIcon = sidebarLink.querySelector(".nav-icon");
-        console.log("navIcon", navIcon);
         navIcon.classList.remove("fa-circle");
         navIcon.classList.add("fa-dot-circle");
       }
     });
   };
   getCurrentSidebarPage();
+
+  // CLEAR INPUT AFTER BUTTON==================
+  const clearInputAfterBtns = document.querySelectorAll(".clear-input-after");
+
+  const clearInputAfterOnClick = () => {
+    clearInputAfterBtns.forEach(function (clearInputBtn) {
+      clearInputBtn.addEventListener("click", function () {
+        const targetInput = clearInputBtn.parentElement.nextElementSibling;
+        targetInput.value = "";
+      });
+    });
+  };
+
+  if (elementExists(clearInputAfterBtns)) {
+    clearInputAfterOnClick();
+  }
+  // ##############################
 
   //FORMS VALIDATION
   //Add user form validation

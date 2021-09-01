@@ -59,9 +59,11 @@
             $purchase_price = $row['purchase_price'] > 0 ? $row['purchase_price'] : "";
             $exit_price = $row['exit_price'] > 0 ? $row['exit_price'] : "";
 
-            $exit_date = $row['exit_date'];
-            $exit_date = strtotime($exit_date);
-            $exit_date = date("d/m/Y", $exit_date);
+            $exit_date = $row['exit_date'] > 1 ? $row['exit_date'] : "";
+            if(ifExists($exit_date)){
+              $exit_date = strtotime($exit_date);
+              $exit_date = date("d/m/Y", $exit_date);
+            }
         ?>
           <tr>
             <td>
