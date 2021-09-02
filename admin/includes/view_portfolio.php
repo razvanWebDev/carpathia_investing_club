@@ -63,7 +63,7 @@
         $count = mysqli_num_rows($select_post_query_count);
         $count = ceil($count / $articles_per_page); 
 
-        $query = "SELECT * FROM portfolio ORDER BY id DESC LIMIT $page_1, $articles_per_page";
+        $query = "SELECT * FROM portfolio ORDER BY date_pitched LIMIT $page_1, $articles_per_page";
         $select_users = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_users)) {
@@ -79,8 +79,8 @@
             $company = $row['company'];
             $ticker = $row['ticker'];
             $purchased = $row['purchased'];
-            $purchase_price = $row['purchase_price'] > 0 ? $row['purchase_price'] : "";
-            $exit_price = $row['exit_price'] > 0 ? $row['exit_price'] : "";
+            $purchase_price = $row['purchase_price'];
+            $exit_price = $row['exit_price'];
 
             $exit_date = $row['exit_date'] > 1 ? $row['exit_date'] : "";
             if(ifExists($exit_date)){

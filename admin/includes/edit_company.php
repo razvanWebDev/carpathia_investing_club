@@ -12,7 +12,8 @@
       $company = $row['company'];
       $ticker = $row['ticker'];
       $purchased = $row['purchased'];
-      $purchase_price = $row['purchase_price'];
+      $db_purchase_price = $row['purchase_price'];
+      echo $db_purchase_price;
       $exit_price = $row['exit_price'];   
       $exit_date = $row['exit_date'];
     }
@@ -58,15 +59,15 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="date_pitched">Date Pitched</label>
-                <input type="date" value=<?php echo $date_pitched ?> name="date_pitched" class="form-control">
+                <input type="date" value="<?php echo $date_pitched ?>" name="date_pitched" class="form-control">
               </div>
               <div class="form-group">
                 <label for="company">Company</label>
-                <input type="text" name="company" class="form-control" value=<?php echo $company ?>>
+                <input type="text" name="company" class="form-control" value="<?php echo $company ?>">
               </div>
               <div class="form-group">
                 <label for="ticker">Ticker</label>
-                <input type="text" name="ticker" class="form-control" value=<?php echo $ticker ?>>
+                <input type="text" name="ticker" class="form-control" value="<?php echo $ticker ?>">
               </div>
               <div class="form-group">
                 <label for="purchased">Purchased</label>
@@ -78,19 +79,19 @@
               </div>
               <div class="form-group">
                 <label for="purchase_price">Purchase Price</label>
-                <input type="number" step="any" name="purchase_price" class="form-control" value=<?php echo $purchase_price ?>>
+                <input type="text" name="purchase_price" class="form-control" value="<?php echo $db_purchase_price ?>">
               </div>
               <div class="form-group">
                 <label for="exit_price">Exit Price</label>
-                <input type="number" step="any" name="exit_price" class="form-control" value=<?php echo $exit_price ?>>
+                <input type="text" name="exit_price" class="form-control" value="<?php echo $exit_price ?>">
               </div>
               <div class="form-group">
-                <label for="exit_price">Exit Date</label>
+                <label for="exit_date">Exit Date</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                       <button type="button" class="btn btn-danger clear-input-after">Clear date</button>
                     </div>
-                    <input type="date" name="exit_date" class="form-control" value=<?php echo $exit_date ?>>
+                    <input type="date" name="exit_date" class="form-control" value="<?php echo $exit_date ?>">
                 </div>
               </div>
 
