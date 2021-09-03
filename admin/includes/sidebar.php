@@ -95,15 +95,20 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <!-- <li class="nav-item">
-                  <a href="members.php" class="nav-link" data-page="members.php" data-page-header="members-page-header">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Members</p>
-                  </a>
-                </li> -->
             <li class="nav-item">
-              <a href="member-requests.php" class="nav-link" data-page="member-requests.php"
-                data-page-header="members-page-header">
+              <a href="members.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Members</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="members.php?source=add_member" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create Member</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="member-requests.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Member Requests</p>
               </a>
@@ -120,14 +125,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="users.php" class="nav-link" data-page="users.php" data-page-header="users-page-header">
+              <a href="users.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Admin Users</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="users.php?source=add_user" class="nav-link" data-page="users.php?source=add_user"
-                data-page-header="users-page-header">
+              <a href="users.php?source=add_user" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Create User</p>
               </a>

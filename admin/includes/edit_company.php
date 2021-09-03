@@ -104,7 +104,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <a href="portfolio.php" class="btn btn-secondary">Cancel</a>
+        <a href="javascript:history.back(1)" class="btn btn-secondary">Cancel</a>
         <input onclick="return confirm('Edit company?')" type="submit" value="Edit company" name="edit"
           class="btn btn-success float-right">
       </div>

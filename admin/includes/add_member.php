@@ -24,42 +24,42 @@ $emailInputValue = isset($_GET['email']) ? $_GET['email'] : "";
 $phoneInputValue = isset($_GET['phone']) ? $_GET['phone'] : "";
 
 
-if(isset($_POST['add_user'])) {
+if(isset($_POST['add_member'])) {
   $firstname = escape($_POST['firstname']);
   $lastname = escape($_POST['lastname']);
   $username = escape($_POST['username']);
   $email = escape($_POST['email']);
   $phone = escape($_POST['phone']);
-  $user_password = escape($_POST['user_password']);
+  $m_password = escape($_POST['m_password']);
 
-  $image_path = $_FILES["user_image"]["name"];
+  $image_path = $_FILES["m_image"]["name"];
   
   // Check if user already exists
-  if(userExists($username, $username)){
-    header("Location: users.php?source=add_user&signup=username&firstname=$firstname&lastname=$lastname&username=$username&email=$email&phone=$phone&image_path=$image_path");
+  if(memberExists($username, $username)){
+    header("Location: members.php?source=add_member&signup=username&firstname=$firstname&lastname=$lastname&username=$username&email=$email&phone=$phone&image_path=$image_path");
     exit();
   }
-  if(userExists($email, $email)){
-    header("Location: users.php?source=add_user&signup=email&firstname=$firstname&lastname=$lastname&username=$username&email=$email&phone=$phone");
+  if(memberExists($email, $email)){
+    header("Location: members.php?source=add_member&signup=email&firstname=$firstname&lastname=$lastname&username=$username&email=$email&phone=$phone");
     exit();
   }
   else{
     //add new user to db
-    uploadImage('user_image', 'dist/img/users/', 'user_image');
-    createUser($firstname, $lastname, $username, $email, $phone, $user_image, $user_password);
+    uploadImage('m_image', 'dist/img/members/', 'm_image');
+    createMember($firstname, $lastname, $username, $email, $phone, $m_image, $m_password);
 
-    header("Location: users.php");
+    header("Location: members.php");
     exit();
   }
 }
 ?>
 
-<?php $page_title = "Add User"; ?>
+<?php $page_title = "Add member"; ?>
     <?php include "page_title.php"; ?>
 
   <!-- Main content -->
   <section class="content">
-    <form id="user-form" action="" method="post" enctype="multipart/form-data">
+    <form id="add-member-form" action="" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary">
@@ -109,25 +109,25 @@ if(isset($_POST['add_user'])) {
                 <span class="error invalid-feedback" style="display: <?php $showEmailError ?>">Email already taken.</span>
               </div>
               <div class="form-group">
-                <label for="phone">Phone*</label>
+                <label for="phone">Phone</label>
                 <input type="tel" name="phone" class="form-control" value="<?php echo $phoneInputValue ?>">
               </div>
 
               <div class="form-group">
                 <label for="customFile">User Image</label>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="user_image" id="customFile">
+                  <input type="file" class="custom-file-input" name="m_image" id="customFile">
                   <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
               </div>
               
               <div class="form-group">
                 <label for="user_password">Password*</label>
-                <input type="password" id="user_password" name="user_password" class="form-control">
+                <input type="password" id="m_password" name="m_password" class="form-control">
               </div>
               <div class="form-group">
                 <label for="repeat_user_password">Repeat Password*</label>
-                <input type="password" name="repeat_user_password" class="form-control">
+                <input type="password" name="repeat_m_password" class="form-control">
               </div>
             </div>
             <!-- /.card-body -->
@@ -138,7 +138,7 @@ if(isset($_POST['add_user'])) {
       <div class="row">
         <div class="col-12">
           <a href="javascript:history.back(1)" class="btn btn-secondary">Cancel</a>
-          <input onclick="return confirm('Create user?')" type="submit" value="Create new User" name="add_user" class="btn btn-success float-right">
+          <input onclick="return confirm('Create member?')" type="submit" value="Create new member" name="add_member" class="btn btn-success float-right">
         </div>
       </div>
     </form>

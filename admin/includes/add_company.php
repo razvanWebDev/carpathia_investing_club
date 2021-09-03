@@ -82,7 +82,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <a href="portfolio.php" class="btn btn-secondary">Cancel</a>
+        <a href="javascript:history.back(1)" class="btn btn-secondary">Cancel</a>
         <input onclick="return confirm('Add company?')" type="submit" value="Add company" name="add_company"
           class="btn btn-success float-right">
       </div>

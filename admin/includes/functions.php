@@ -55,6 +55,46 @@ function createUser($firstname, $lastname, $username, $email, $phone, $user_imag
   }
 }
 
+function memberExists($username, $email) {
+  global $connection;
+
+  $query = "SELECT * FROM members WHERE m_username = ? OR m_email = ?";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: members.php?source=add_member");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
+    $resultData = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($resultData)){
+      return $row;
+    }else{
+      $result = false;
+      return $result;
+    }
+    mysqli_stmt_close($stmt);
+  }
+}
+
+function createMember($firstname, $lastname, $username, $email, $phone, $m_image, $m_password) {
+  global $connection;
+
+  $query = "INSERT INTO members (m_firstname, m_lastname, m_username, m_email, m_phone, m_image, m_password) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: members.php?source=add_member");
+    exit();
+  }else{
+    $hashed_password = password_hash($m_password, PASSWORD_DEFAULT);
+    mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $username, $email, $phone, $m_image, $hashed_password);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
 function addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date) {
   global $connection;
 
@@ -266,21 +306,33 @@ function deleteItemDiffID($tableName, $id, $delete_id){
     $delete_query = mysqli_query($connection, $query);
   }
 }
-
 function deleteFileFromRow($tblName, $clmnName, $selectedId, $path){
   //When you delete an entire row from the db, CALL THIS TO ALSO REMOVE THE FILE
    // Call example: deleteFileFromRow("news", "post_image", $the_post_id, "../img/");
   global $connection;
+
+  //delete actual file
   $query = "SELECT * FROM {$tblName} WHERE id = '{$selectedId}'";
   $result = mysqli_query($connection, $query);
   while ($row = mysqli_fetch_assoc($result)) {
       $fileName = $row[$clmnName]; 
       if(ifExists($fileName)){
         if (file_exists($path.$fileName)) {
-             unlink($path.$fileName);
+              unlink($path.$fileName);
+        }else {
+          echo 'Could not delete '.$filename.', file does not exist';
         }
-
       }    
+  }
+
+  //delete from db
+  $query = "UPDATE {$tblName} SET ";
+  $query .= "{$clmnName} = '' ";
+  $query .= "WHERE id = {$selectedId}";
+  $update_post = mysqli_query($connection, $query);
+
+  if(!$update_post) {
+      die("QUERY FAILED" . mysqli_error($connection));
   }
 }
 
@@ -289,15 +341,27 @@ function deleteFileFromRowDiffID($tblName, $id, $clmnName, $selectedId, $path){
   //When you delete an entire row from the db, CALL THIS TO ALSO REMOVE THE FILE
    // Call example: deleteFileFromRow("news", "post_image", $the_post_id, "../img/");
   global $connection;
+
+  //delete actual file
   $query = "SELECT * FROM {$tblName} WHERE {$id} = {$selectedId}";
   $result = mysqli_query($connection, $query);
   while ($row = mysqli_fetch_assoc($result)) {
       $fileName = $row[$clmnName]; 
       if(ifExists($fileName)){
         if (file_exists($path.$fileName)) {
-             unlink($path.$fileName);
+              unlink($path.$fileName);
         }
       }    
+  }
+
+  //delete from db
+  $query = "UPDATE {$tblName} SET ";
+  $query .= "{$clmnName} = '' ";
+  $query .= "WHERE {$id} = {$selectedId}";
+  $update_post = mysqli_query($connection, $query);
+
+  if(!$update_post) {
+      die("QUERY FAILED" . mysqli_error($connection));
   }
 }
 

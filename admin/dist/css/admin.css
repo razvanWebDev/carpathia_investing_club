@@ -35,6 +35,9 @@
   height: 2.3em;
   margin: 0 0.4em;
 }
+.change-photo:hover {
+  opacity: 0.8;
+}
 /* ======edit photo========== */
 .edit-photo-img {
   width: 15em;

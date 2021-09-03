@@ -27,20 +27,18 @@ window.onload = () => {
     return currentPage;
   };
 
-  //Get current sideBar page
+  //Get current sideBar page==========
   const getCurrentSidebarPage = () => {
-    //get current page name from URL
-    const currentPageName = getCurrentPageName();
+    const currentPageURL = window.location.href;
 
     sidebarLinks.forEach((sidebarLink) => {
       sidebarLink.classList.remove("active");
-      const dataPageHeader = sidebarLink.getAttribute("data-page-header");
-      const dataPage = sidebarLink.getAttribute("data-page");
-      if (currentPageName === dataPage) {
+      const currentLink = sidebarLink.href;
+      if (currentPageURL === currentLink) {
         //activate link
         sidebarLink.classList.add("active");
         //open sidebar dropdown
-        const currentPageHeader = document.getElementById(dataPageHeader);
+        const currentPageHeader = sidebarLink.closest(".sidebar-page-header");
         currentPageHeader.classList.add("menu-open");
         //add blue color to dropdown header
         const sidebarPageTitle = currentPageHeader.querySelector(
@@ -54,7 +52,11 @@ window.onload = () => {
       }
     });
   };
-  getCurrentSidebarPage();
+
+  if (elementExists(sidebarLinks)) {
+    getCurrentSidebarPage();
+  }
+  // #################################
 
   // CLEAR INPUT AFTER BUTTON==================
   const clearInputAfterBtns = document.querySelectorAll(".clear-input-after");
@@ -74,9 +76,9 @@ window.onload = () => {
   // ##############################
 
   //FORMS VALIDATION
-  //Add user form validation
+  //user forms validation
   $(function () {
-    $("#add-user-form").validate({
+    $("#user-form").validate({
       rules: {
         firstname: {
           required: true,
@@ -135,8 +137,10 @@ window.onload = () => {
       },
     });
   });
+
+  //add member forms validation
   $(function () {
-    $("#edit-user-form").validate({
+    $("#add-member-form").validate({
       rules: {
         firstname: {
           required: true,
@@ -152,16 +156,13 @@ window.onload = () => {
           required: true,
           email: true,
         },
-        phone: {
-          required: true,
-        },
-        user_password: {
+        m_password: {
           required: true,
           minlength: 8,
         },
-        repeat_user_password: {
+        repeat_m_password: {
           required: true,
-          equalTo: "#user_password",
+          equalTo: "#m_password",
         },
       },
       messages: {
