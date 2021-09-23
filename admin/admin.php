@@ -35,10 +35,29 @@
             </div>
           </div>
 
-          <!-- ./col -->
-
           <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
+              <div class="inner">
+                <?php
+                  $query = "SELECT * FROM members";
+                  $result = mysqli_query($connection, $query);
+                  $num_members = mysqli_num_rows($result);
+                ?>
+                <h3>
+                  <?php echo $num_members ?>
+                </h3>
+                <p>Memebers</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <a href="members.php" class="small-box-footer">More info <i
+                  class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div> 
+
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-secondary">
               <div class="inner">
                 <?php
                   $query = "SELECT * FROM member_requests";
@@ -56,7 +75,7 @@
               <a href="member-requests.php" class="small-box-footer">More info <i
                   class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div>   
 
           <div class="col-lg-3 col-6">
             <!-- small box -->

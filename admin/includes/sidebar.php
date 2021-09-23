@@ -46,19 +46,25 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item sidebar-page-header" id="contact-page-header">
+        <li class="nav-item sidebar-page-header" id="home-page-header">
           <a href="#" class="nav-link sidebar-page-title">
             <i class="nav-icon fas fa-envelope"></i>
             <p>
-              Contact
+              Home Page
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="contact.php" class="nav-link" data-page="contact.php" data-page-header="contact-page-header">
+              <a href="contact.php" class="nav-link" data-page="contact.php" data-page-header="home-page-header">
                 <i class="far fa-circle nav-icon"></i>
                 <p>View messages</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="assets.php" class="nav-link" data-page="assets.php" data-page-header="home-page-header">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Assets</p>
               </a>
             </li>
           </ul>

@@ -111,6 +111,25 @@ function addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $pu
   }
 }
 
+function editAssets($new_amount, $id) {
+  global $connection;
+
+  $query = "UPDATE assets_under_advisement SET ";
+            $query .= "amount = ? ";
+            $query .= "WHERE id = ?";
+
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: assets.php?source=edit_assets");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ss", $new_amount, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
 function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date) {
   global $connection;
 

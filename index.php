@@ -45,15 +45,31 @@
 </section>
 <section id="aum-section">
     <div class="counter-container">
-        <div><span class="counter" data-target="120">0</span>k</div>
+        <?php
+            $query = "SELECT * FROM assets_under_advisement WHERE id=1";
+            $select_users = mysqli_query($connection, $query);
+
+            while ($row = mysqli_fetch_assoc($select_users)) {
+                $amount = $row['amount'];
+            }
+        ?>
+        <div><span class="counter" data-target="<?php echo $amount ?>">0</span>k</div>
         <h3>Assets under <br> advisement</h3>
     </div>
     <div class="counter-container">
-        <div><span class="counter" data-target="5">0</span></div>
+    <?php
+        $query = "SELECT * FROM members";
+        $result = mysqli_query($connection, $query);
+        $num_members = mysqli_num_rows($result);
+    ?>
+        <div><span class="counter" data-target="<?php echo $num_members ?>">0</span></div>
         <h3>Members</h3>
     </div>
     <div class="counter-container">
-        <div><span class="counter" data-target="1">0</span></div>
+        <?php
+            $years_established = date('Y') - 2020;
+        ?>
+        <div><span class="counter" data-target="<?php echo $years_established ?>">0</span></div>
         <h3>Years <br> established</h3>
     </div>
 
