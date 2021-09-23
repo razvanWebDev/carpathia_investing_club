@@ -112,6 +112,10 @@
         </div>
       </nav>
 
+      <p class="disclaimer_p">
+      <b>Disclaimer:</b> The information on this page is for educational purpose only. The list is a result of internal pitches, analyzis and debates organized between the members of the club. The information displayed is not to be used for any other purposes and is not to be considered as public investing advice.
+      </p>
+
 </section>
 
 <?php include "PHP/footer.php"; ?>

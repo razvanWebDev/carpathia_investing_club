@@ -666,6 +666,11 @@ footer a:visited {
   text-align: center;
   padding: 1em 0.5em;
 }
+.disclaimer_p {
+  font-size: 0.9em;
+  color: rgb(71, 71, 71);
+  margin-top: 4em;
+}
 
 /* ========================================== */
 .hide {
