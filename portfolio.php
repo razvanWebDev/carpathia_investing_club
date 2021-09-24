@@ -21,7 +21,7 @@
         //pagination
         $rowCounter_per_page = 0;
         //the number of posts per page
-        $articles_per_page = 25;
+        $articles_per_page = 10;
     
         if(isset($_GET['page'])){
             $page = $_GET['page'];
