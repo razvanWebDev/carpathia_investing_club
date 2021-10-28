@@ -17,7 +17,7 @@
                 <!-- <li class="link-to-page"><a href="#">Events</a></li> -->
                 <li class="link-to-page"><a href="portfolio.php">Portfolio</a></li>
                 <li class="link-to-page open-modal-btn" data-modal="become-a-member-modal">Become a member</li>
-                <!-- <li class="link-to-page">Login</li> -->
+                <li class="link-to-page"><a href="chat">Chat</a></li>
             </div>
         </ul>
     </nav>

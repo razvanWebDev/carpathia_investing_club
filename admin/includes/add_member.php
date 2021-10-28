@@ -138,7 +138,7 @@ if(isset($_POST['add_member'])) {
       <div class="row">
         <div class="col-12">
           <a href="javascript:history.back(1)" class="btn btn-secondary">Cancel</a>
-          <input onclick="return confirm('Create member?')" type="submit" value="Create new member" name="add_member" class="btn btn-success float-right">
+          <input onclick="return confirm('Create member?')" type="submit" value="Create new member" name="add_member" class="float-right btn btn-success">
         </div>
       </div>
     </form>

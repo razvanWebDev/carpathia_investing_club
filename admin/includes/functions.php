@@ -81,15 +81,19 @@ function memberExists($username, $email) {
 function createMember($firstname, $lastname, $username, $email, $phone, $m_image, $m_password) {
   global $connection;
 
-  $query = "INSERT INTO members (m_firstname, m_lastname, m_username, m_email, m_phone, m_image, m_password) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  $status = 'inactive';
+  $unique_id = rand(time(), 10000000);
+
+  $query = "INSERT INTO members (m_unique_id, m_firstname, m_lastname, m_username, m_email, m_status, m_phone, m_image, m_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($connection);
 
   if(!mysqli_stmt_prepare($stmt, $query)){
     header("Location: members.php?source=add_member");
     exit();
   }else{
+    $m_image = (empty($m_image) ? "member.png" : $m_image);
     $hashed_password = password_hash($m_password, PASSWORD_DEFAULT);
-    mysqli_stmt_bind_param($stmt, "sssssss", $firstname, $lastname, $username, $email, $phone, $m_image, $hashed_password);
+    mysqli_stmt_bind_param($stmt, "sssssssss", $unique_id, $firstname, $lastname, $username, $email, $status, $phone, $m_image, $hashed_password);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }
