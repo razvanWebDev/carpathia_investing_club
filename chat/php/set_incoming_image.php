@@ -11,6 +11,7 @@ if(isset($_SESSION['incoming_id']) && !empty($_SESSION['incoming_id'])){
 
         $firstname = $row['m_firstname'];
         $lastname = $row['m_lastname'];
+        $username = $row['m_username'];
         $image = !empty($row['m_image']) ? $row['m_image'] : "member.png";
         $status = $row['m_status'];
         $status_color = ($status == "active" ? "bg-green-400" : "bg-gray-400");
@@ -20,7 +21,7 @@ if(isset($_SESSION['incoming_id']) && !empty($_SESSION['incoming_id'])){
                         <div class="absolute bottom-0 right-0 w-4 h-4 '.$status_color.' rounded-full">
                         </div>
                     </div>
-                    <p class="text-sm truncate"><b>'.$firstname . " " . $lastname.'</b></p>';
+                    <p class="text-sm truncate"><b>'.$username.'</b></p>';
 
     }
 }

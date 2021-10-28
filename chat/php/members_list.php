@@ -3,6 +3,7 @@
     while($row = mysqli_fetch_assoc($select_members)){
         $firstname = $row['m_firstname'];
         $lastname = $row['m_lastname'];
+        $username = $row['m_username'];
         $unique_id = $row['m_unique_id'];
         $status = $row['m_status'];
         $status_color = ($status == "active" ? "bg-green-400" : "bg-gray-400");
@@ -47,7 +48,7 @@
                         </div>
                         <div class="flex flex-col flex-auto h-full truncate justify-evenly">
                             <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="'.$fontWeight.' flex-auto mb-1 text-sm uppercase truncate">'.$firstname . " " . $lastname.'</p>
+                                <p class="'.$fontWeight.' flex-auto mb-1 text-sm truncate">'.$username.'</p>
                                 <p class="flex-none float-right ml-2 text-xs text-gray-500">'.$lastMsgTime.'</p>
                             </div>
                             <div>
