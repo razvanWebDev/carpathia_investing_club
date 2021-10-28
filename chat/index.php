@@ -65,17 +65,13 @@ if(!isset($_SESSION["m_username"])){
                         </div>
                         <div class="flex flex-col justify-between flex-auto h-full truncate">
                             <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="flex-auto text-sm truncate"><b>1111Patrick Hendrix Lorem ipsum dolor
-                                        sit amet
-                                        consectetur, adipisicing elit. Nam, minus!</b>
+                                <p class="flex-auto text-sm truncate"><b>Channel 1</b>
                                 </p>
                                 <p class="flex-none float-right ml-2 text-xs text-gray-500">23:44</p>
 
                             </div>
                             <div>
-                                <p class="w-full text-xs text-gray-500 truncate"><span>You</span> : Lorem ipsum
-                                    dolor sit amet Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Delectus, odit!
+                                <p class="w-full text-xs text-gray-500 truncate"><span>You</span>: Sample text 
                                 </p>
                             </div>
                         </div>
@@ -89,17 +85,13 @@ if(!isset($_SESSION["m_username"])){
                         </div>
                         <div class="flex flex-col justify-between flex-auto h-full truncate">
                             <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="flex-auto text-sm truncate"><b>1111Patrick Hendrix Lorem ipsum dolor
-                                        sit amet
-                                        consectetur, adipisicing elit. Nam, minus!</b>
+                                <p class="flex-auto text-sm truncate"><b>Channel 2</b>
                                 </p>
                                 <p class="flex-none float-right ml-2 text-xs text-gray-500">23:44</p>
 
                             </div>
                             <div>
-                                <p class="w-full text-xs text-gray-500 truncate"><span>You</span> : Lorem ipsum
-                                    dolor sit amet Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Delectus, odit!
+                                <p class="w-full text-xs text-gray-500 truncate"><span>You</span>: Sample text
                                 </p>
                             </div>
                         </div>
@@ -139,7 +131,7 @@ if(!isset($_SESSION["m_username"])){
                                 $image = !empty($row['m_image']) ? $row['m_image'] : "member.png";
                         ?>
 
-                        <div style="background-image: url(img/members/<?php echo $image ?>)"
+                        <div style="background-image: url(../admin/dist/img/members/<?php echo $image ?>)"
                             class="relative w-20 h-20 bg-center bg-cover rounded-full">
                         </div>
                         <p class="px-4 text-lg text-center"><?php echo $firstname . " " . $lastname ?></p>
