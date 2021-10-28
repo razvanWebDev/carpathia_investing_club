@@ -60,12 +60,12 @@ if(!isset($_SESSION["m_username"])){
                         <div class="flex-none w-16">
                             <div
                                 class="flex items-center justify-center flex-none w-12 h-12 mr-3 bg-yellow-400 rounded-full">
-                                <span class="inline-block text-2xl align-middle"><b>C</b></span>
+                                <span class="inline-block text-2xl align-middle"><b>T</b></span>
                             </div>
                         </div>
                         <div class="flex flex-col justify-between flex-auto h-full truncate">
                             <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="flex-auto text-sm truncate"><b>Channel 1</b>
+                                <p class="flex-auto text-sm truncate"><b>#TSLA</b>
                                 </p>
                                 <p class="flex-none float-right ml-2 text-xs text-gray-500">23:44</p>
 
@@ -79,13 +79,13 @@ if(!isset($_SESSION["m_username"])){
                     <div class="flex px-4 py-2 mb-2 mr-6 transition rounded cursor-pointer h-18 group-panel-item bg-gray-50">
                         <div class="flex-none w-16">
                             <div
-                                class="flex items-center justify-center flex-none w-12 h-12 mr-3 bg-yellow-400 rounded-full">
-                                <span class="inline-block text-2xl align-middle"><b>C</b></span>
+                                class="flex items-center justify-center flex-none w-12 h-12 mr-3 bg-green-400 rounded-full">
+                                <span class="inline-block text-2xl align-middle"><b>M</b></span>
                             </div>
                         </div>
                         <div class="flex flex-col justify-between flex-auto h-full truncate">
                             <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="flex-auto text-sm truncate"><b>Channel 2</b>
+                                <p class="flex-auto text-sm truncate"><b>#MSFT</b>
                                 </p>
                                 <p class="flex-none float-right ml-2 text-xs text-gray-500">23:44</p>
 
