@@ -37,6 +37,10 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 14px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 p {
@@ -672,6 +676,16 @@ footer a:visited {
   margin-top: 4em;
 }
 
+.members-only-msg h2 {
+  font-size: 1.75em;
+}
+.members-only-msg p {
+  font-size: 1.5em;
+}
+.members-only-msg span {
+  cursor: pointer;
+}
+
 /* ========================================== */
 .hide {
   opacity: 0 !important;
@@ -731,7 +745,7 @@ footer a:visited {
     flex-direction: column;
   }
 
-  header .nav-links a,
+  header .nav-links li a,
   header .nav-links li {
     color: var(--white-color);
     font-size: 1.5em;
@@ -748,7 +762,7 @@ footer a:visited {
 }
 
 @media screen and (max-width: 768px) {
-  header .nav-links a,
+  header .nav-links li a,
   header .nav-links li {
     color: var(--white-color);
     font-size: 1.2em;

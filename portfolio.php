@@ -1,7 +1,11 @@
 <?php include "PHP/header.php"; ?>
 <?php include "PHP/nav.php"; ?>
 
-<section class="portfolio">
+<?php
+if(isset($_SESSION["m_username"])){
+  // if member is logged in
+  ?>
+  <section class="portfolio">
     <h2 class="section-title">Portfolio</h2>
     <table class="portfolio-table">
         <thead>
@@ -117,5 +121,19 @@
       </p>
 
 </section>
+  <?php
+}else{
+?>
+<!-- if NOT loged in -->
+<section class="members-only-msg">
+  <h2>This area is available only for members!</h2>
+  <p>Click <span class="link-to-page open-modal-btn" data-modal="become-a-member-modal">HERE</span> to request membership</p>
+</section>
+
+<?php
+}
+?>
+
+
 
 <?php include "PHP/footer.php"; ?>
