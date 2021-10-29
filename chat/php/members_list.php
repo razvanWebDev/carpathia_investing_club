@@ -52,7 +52,7 @@
                                 <p class="'.$fontWeight.' flex-none float-right ml-2 text-xs text-gray-500">'.$lastMsgTime.'</p>
                             </div>
                             <div>
-                                <p class="w-full text-xs text-gray-500 truncate">
+                                <p class="'.$fontWeight.' w-full text-xs text-gray-500 truncate">
                                     '.$you.$lastMsg.'
                                 </p>
                             </div>
