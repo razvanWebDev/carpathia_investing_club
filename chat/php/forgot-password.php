@@ -13,11 +13,11 @@ if(isset($_POST['submit'])) {
 
     //validate input
     $emailErr = "";
-    if(empty($email)){
+    if(empty($userEmail)){
         $emailErr = "required";
-      }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      }elseif(!filter_var($userEmail, FILTER_VALIDATE_EMAIL)){
         $emailErr = "invalid";
-      }elseif(userExists($email, $email) == false){
+      }elseif(userExists($userEmail, $userEmail) == false){
         $emailErr = "notFound";
     }
     if(!empty($emailErr)){
