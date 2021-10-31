@@ -49,9 +49,6 @@ include "php/header.php";
             $validator = isset($_GET['validator']) ? $_GET['validator'] : "";
 
             if(empty($selector) || empty($validator)){
-                echo "selector: ".$selector;
-                echo "validator: ".$validator;
-
                 echo "<p class='text-red-500'>Could not validate your request!</p>";
             }elseif(ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false){
         ?>

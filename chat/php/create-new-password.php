@@ -34,7 +34,7 @@ if(isset($_POST['reset-password-submit'])) {
 
     //Show possible errors
     if(!empty($errorMsg)){
-      header("Location: ../create-new-password.php?reset=failed$errorMsg");
+      header("Location: ../create-new-password.php?selector=$selector&validator=$validator&reset=failed$errorMsg");
       exit();
     }
     // *********************************
