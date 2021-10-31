@@ -65,21 +65,21 @@ if(isset($_POST['reset-password-submit'])) {
                 $sql = "SELECT * FROM members WHERE m_email=?";
                 $stmt = mysqli_stmt_init($connection);
                 if(!mysqli_stmt_prepare($stmt, $sql)){
-                    echo "There was an error!";
+                    echo "There was an error2!";
                     exit();
                 }else{
                     mysqli_stmt_bind_param($stmt, "s", $tokenEmail);
                     mysqli_stmt_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
                     if(!$row = mysqli_fetch_assoc($result)){
-                        echo "There was an error!";
+                        echo "There was an error3!";
                         exit();
                     }else{
-                        $sql = "UPDATE members SET m_password=? WHERE email=?";
+                        $sql = "UPDATE members SET m_password=? WHERE m_email=?";
 
                         $stmt = mysqli_stmt_init($connection);
                         if(!mysqli_stmt_prepare($stmt, $sql)){
-                            echo "There was an error!";
+                            echo "There was an error4!";
                             exit();
                         }else{
                             $newPwdHash = password_hash($password, PASSWORD_DEFAULT);
@@ -90,7 +90,7 @@ if(isset($_POST['reset-password-submit'])) {
                             $sql = "DELETE FROM pwdreset WHERE pwdResetEmail=?;";
                             $stmt = mysqli_stmt_init($connection);
                             if(!mysqli_stmt_prepare($stmt, $sql)){
-                                echo "There was an error!";
+                                echo "There was an error5!";
                                 exit();
                             }else{
                                 mysqli_stmt_bind_param($stmt, "s", $tokenEmail);

@@ -49,6 +49,9 @@ include "php/header.php";
             $validator = isset($_GET['validator']) ? $_GET['validator'] : "";
 
             if(empty($selector) || empty($validator)){
+                echo "selector: ".$selector;
+                echo "validator: ".$validator;
+
                 echo "<p class='text-red-500'>Could not validate your request!</p>";
             }elseif(ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false){
         ?>
@@ -67,7 +70,7 @@ include "php/header.php";
                 <span class="text-red-500 ml-2 <?php echo $showPasswordError ?>" ><?php echo $password_error_msg ?></span>
 
                 <div class="flex h-10 mt-4 rounded-md shadow-sm">
-                    <input type="password" name="repeat_password*"
+                    <input type="password" name="repeat_password"
                         class="flex-1 block rounded-none input<?php echo $invalidRepeatPasswordInput ?> rounded-l-md sm:text-sm" placeholder="Repeat Password">
                     <div
                         class="inline-flex items-center w-12 h-full p-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50">

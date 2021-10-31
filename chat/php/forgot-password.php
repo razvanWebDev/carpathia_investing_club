@@ -6,7 +6,7 @@ if(isset($_POST['submit'])) {
     // create tokens
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
-    $url = $website_url . "/create-new-password.php?selector=$selector&validator=" . bin2hex($token);
+    $url = $website_url . "/chat/create-new-password.php?selector=$selector&validator=" . bin2hex($token);
     $expires = date("U") + 1800; //60min
 
     $userEmail = escape($_POST['email']);
@@ -54,15 +54,15 @@ if(isset($_POST['submit'])) {
 
     // ========SEND EMAIL=========
     $to = $userEmail;
-    $subject = "Password reset";
+    $subject = "Password reset request";
 
     $message = '<p>We received a password request. The link to reset your password is bellow.
     </br>If you did not make this request, you can ignore this email</p>';
     $message .= '<p>Here is your password reset link: </br>';
     $message .= '<a href="'. $url .'">'. $url . '</a></p>';
 
-    $headers = "From: website <website@gmail.com>\r\n";
-    $headers .= "Reply-To: website@gmail.com\r\n";
+    $headers = "From: carpathiainvestingclub <carpathiainvestingclub@noreply.org> \r\n";
+    $headers .= "Reply-To: noreply@carpathiainvestingclub.org\r\n";
     $headers .= "Content-type: text/html\r\n";
 
     mail($to, $subject, $message, $headers);
