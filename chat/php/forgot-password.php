@@ -21,7 +21,7 @@ if(isset($_POST['submit'])) {
         $emailErr = "notFound";
     }
     if(!empty($emailErr)){
-        header("Location: ../forgot-password.php?error=$emailErr");
+        header("Location: ../forgot-password.php?error=$emailErr&value=$userEmail");
         exit();
     }
 
