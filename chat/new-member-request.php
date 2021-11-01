@@ -147,7 +147,7 @@ include "php/header.php";
             </form>
             <div class="text-primary">
                 <p>
-                    <a href="login" class="hover:opacity-75 mb-1">I already have a membership</a>
+                    <a href="login" class="hover:opacity-75 mb-1">I am already a member</a>
                 </p>
                 <p class="text-center
                   w-full"><a href="../"><b>GO BACK TO SITE</b></a></p>

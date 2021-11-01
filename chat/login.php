@@ -88,7 +88,7 @@ if(isset($_SESSION["m_username"])){
                     <a href="forgot-password" class="hover:opacity-75">I forgot my password</a>
                 </p>
                 <p class="mb-1">
-                    <a href="new-member-request" class="hover:opacity-75">Register a new membership</a>
+                    <a href="new-member-request" class="hover:opacity-75">Become a Member</a>
                 </p>
                 <p class="text-center
                   w-full"><a href="../"><b>GO BACK TO SITE</b></a></p>
