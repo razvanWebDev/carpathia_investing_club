@@ -141,6 +141,10 @@ if(!isset($_SESSION["m_username"])){
                     <div class="flex justify-center py-3 cursor-pointer hover:bg-gray-50">
                         <a href="#">View Pofile</a>
                     </div>
+                    <div class="w-3/5 mx-auto border-b border-gray-200"></div>                    
+                    <div class="flex justify-center py-3 cursor-pointer hover:bg-gray-50">
+                        <a href="../">Back to site</a>
+                    </div>
                     <div class="w-3/5 mx-auto border-b border-gray-200"></div>
                     <div class="flex justify-center py-3 cursor-pointer hover:bg-gray-50">
                         <img src="img/icons/logout.svg" alt="logout" class="w-4 mr-2">
