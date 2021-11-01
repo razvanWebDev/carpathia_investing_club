@@ -40,17 +40,19 @@ if(isset($_POST['submit'])) {
       return str_replace($bad,"",$string);
     }
 
-    $email_message .= "Nume si prenume: ".clean_string($firstname)." ".clean_string($lastname)."\n";
-    $email_message .= "Email: ".clean_string($email)."\n";
-    $email_message .= "Nr. Telefon: ".clean_string($phone)."\n";
-    $email_message .= "Varsta: ".clean_string($age)."\n";
-    $email_message .= "Experienta : ".clean_string($investing_experience)."\n";
-    $email_message .= "Mesaj: ".clean_string($message)."\n\n";
+    $email_message .= "<b>Nume si prenume: </b>".clean_string($firstname)." ".clean_string($lastname)."\n";
+    $email_message .= "<b>Email: </b>".clean_string($email)."\n";
+    $email_message .= "<b>Nr. Telefon: </b>".clean_string($phone)."\n";
+    $email_message .= "<b>Varsta: </b>".clean_string($age)."\n";
+    $email_message .= "<b>Experienta : </b>".clean_string($investing_experience)."\n";
+    $email_message .= "<b>Mesaj: </b>".clean_string($message)."\n\n";
          
     // create email headers
     $headers = 'From: '.$email."\r\n".
     'Reply-To: '.$email."\r\n" .
     'X-Mailer: PHP/' . phpversion();
+    $headers .= "Content-type: text/html\r\n";
+
     mail($email_to, $email_subject, $email_message, $headers);  
 
     //DB =======================================================

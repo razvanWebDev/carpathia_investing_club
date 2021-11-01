@@ -16,5 +16,5 @@
 
 <body>
 <div class="preloader">
-    <img src="img/Logo_small.png" alt="logo">
+    <img src="img/Logo.png" alt="logo">
 </div>
