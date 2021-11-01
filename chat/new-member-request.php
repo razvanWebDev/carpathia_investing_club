@@ -138,9 +138,7 @@ include "php/header.php";
 
                 <div class="mt-3">
                     <label for="message"><b>Message</b></label><br>
-                    <textarea class="input text-sm" name="message" rows="2">
-                        <?php echo $messageInputValue ?>
-                    </textarea>
+                    <textarea class="input text-sm p-0" name="message" rows="2"><?php echo $messageInputValue ?></textarea>
                 </div>
 
                 <button type="submit" name="submit"
