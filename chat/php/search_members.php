@@ -7,7 +7,7 @@
     $searchTerm = escape($_POST['searchTerm']);
     $output = "";
 
-    $query = "SELECT * FROM members WHERE NOT m_unique_id={$outgoing_id} AND (m_firstname LIKE '%{$searchTerm}%' OR m_lastname LIKE '%{$searchTerm}%' OR m_username LIKE '%{$searchTerm}%')";
+    $query = "SELECT * FROM members WHERE NOT m_unique_id={$outgoing_id} AND (m_username LIKE '%{$searchTerm}%')";
     $select_members = mysqli_query($connection, $query);
 
     if(mysqli_num_rows($select_members) > 0){
