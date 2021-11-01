@@ -48,7 +48,7 @@ if(!isset($_SESSION["m_username"])){
             <!-- groups panel title -->
             <div class="flex-none mr-6 h-36">
                 <div class="flex justify-between mb-4">
-                    <h2 class="text-3xl">Groups</h2>
+                    <h2 class="text-3xl">Channels</h2>
                 </div>
                 <input type="text" placeholder="Search group" class="input">
             </div>
