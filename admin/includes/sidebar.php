@@ -144,6 +144,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item sidebar-page-header" id="regulations-page-header">
+          <a href="#" class="nav-link sidebar-page-title">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Regulations
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="terms.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Terms&Conditions</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <!-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>

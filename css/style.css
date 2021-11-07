@@ -489,8 +489,12 @@ footer a:visited {
 }
 .become-a-member-modal label,
 .become-a-member-modal input,
-.become-a-member-modal textarea {
+.become-a-member-modal textarea,
+.become-a-member-modal a {
   color: var(--white-color);
+}
+.become-a-member-modal a {
+  text-decoration: underline;
 }
 .become-a-member-modal input,
 .become-a-member-modal textarea {

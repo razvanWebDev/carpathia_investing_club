@@ -122,7 +122,7 @@
             </div>
             <p class="terms-checkbox">
                 <input type="checkbox" name="terms_and_conditions" class="required-field">
-                I have read and accept the privacy policy and the legal notice
+                I have read and accept the <a href="terms-and-conditions">Terms and Conditions</a>
             </p>
 
             <p class="all-fields-required-message">Please fill in all fields</p>

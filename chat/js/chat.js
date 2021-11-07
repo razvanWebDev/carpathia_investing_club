@@ -114,9 +114,9 @@ const getMessages = () => {
       if (xhr.status === 200) {
         let data = xhr.response;
         chatBox.innerHTML = data;
-        if (refreshChatPanelList) {
-          scrollChatToBottom();
-        }
+        // if (refreshChatPanelList) {
+        //   scrollChatToBottom();
+        // }
         //Put curent panel-item on top of the list
         displayMembers();
       }

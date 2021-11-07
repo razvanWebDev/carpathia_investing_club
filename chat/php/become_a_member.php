@@ -16,7 +16,7 @@ if(isset($_POST['submit'])) {
     $investing_experience = escape($_POST['investing_experience']);
     $message = escape($_POST['message']);
 
-    $errorMsg = $firstnameErr = $lastnameErr = $emailErr = "";
+    $errorMsg = $firstnameErr = $lastnameErr = $emailErr = $termsErr = "";
 
     $userExists = userExists($email, $email);
 
@@ -42,8 +42,13 @@ if(isset($_POST['submit'])) {
     }elseif(userExists($email, $email)){
       $emailErr = "&emailErr=emailExists";
     }
+
+    //Check terms and conditions
+    if(!isset($_POST['terms_and_conditions'])){
+      $termsErr = "&termsErr=required";
+    }
   
-    $errorMsg = $firstnameErr . $lastnameErr . $emailErr;
+    $errorMsg = $firstnameErr . $lastnameErr . $emailErr . $termsErr;
   
     if(!empty($errorMsg)){
       header("Location: ../new-member-request.php?signup=failed$errorMsg&firstname=$firstname&lastname=$lastname&email=$email&phone=$phone&age=$age&investing_experience=$investing_experience&message=$message");

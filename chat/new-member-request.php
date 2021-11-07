@@ -17,6 +17,8 @@ $phoneInputValue = $ageInputValue = $investing_experienceInputValue = $messageIn
 $subtitle_p = "Request a new membership";
 $subtitle_p_color = "";
 
+$terms_and_conditions_color = "";
+
 // Check for errors
 if(isset($_GET['signup'])){
     //failed
@@ -53,6 +55,14 @@ if(isset($_GET['signup'])){
             $emailErrorMessage = "Please enter a valid email";
         }elseif($_GET['emailErr'] == "emailExists"){
             $emailErrorMessage = "Email already taken!";
+        }
+    }
+
+    
+    //terms and conditions
+    if(isset($_GET['termsErr'])){
+        if($_GET['termsErr'] == "required"){
+            $terms_and_conditions_color = "text-red-500";
         }
     }
   }
@@ -140,6 +150,11 @@ include "php/header.php";
                     <label for="message"><b>Message</b></label><br>
                     <textarea class="input text-sm p-0" name="message" rows="2"><?php echo $messageInputValue ?></textarea>
                 </div>
+
+                <p class="text-sm mt-3 <?php echo $terms_and_conditions_color ?>">
+                    <input type="checkbox" name="terms_and_conditions"> 
+                    I have read and accept the <b><a href="terms-and-conditions" target="_blank">Terms and Conditions</a></b>
+                </p>
 
                 <button type="submit" name="submit"
                     class="w-full h-10 py-2 mt-4 text-white transition rounded-md shadow-sm hover:opacity-75 bg-primary">Request

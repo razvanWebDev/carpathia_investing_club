@@ -55,6 +55,30 @@ function createUser($firstname, $lastname, $username, $email, $phone, $user_imag
   }
 }
 
+function loginUser($username, $password){
+  $userExists = userExists($username, $username);
+
+  if($userExists === false) {
+    header("Location: ../index.php");
+    exit();
+  }
+
+  $hashed_password = $userExists["user_password"];
+  $check_passwords = password_verify($password, $hashed_password);
+
+  if($check_passwords === false) {
+    header("Location: ../index.php");
+    exit();
+  }else if($check_passwords === true){
+    $_SESSION["userId"] = $userExists["id"];
+    $_SESSION["username"] = $userExists["username"];
+    $_SESSION["user_image"] = $userExists["user_image"];
+
+    header("Location: ../admin.php");
+    exit();
+  }
+}
+
 function memberExists($username, $email) {
   global $connection;
 
@@ -159,27 +183,20 @@ function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker,
   }
 }
 
-function loginUser($username, $password){
-  $userExists = userExists($username, $username);
+function editTermsAndConditions($page_content) {
+  global $connection;
+  $id = 1;
 
-  if($userExists === false) {
-    header("Location: ../index.php");
+  $query = "UPDATE terms_and_conditions SET page_content = ? WHERE id = ?";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: terms.php?source=edit_terms");
     exit();
-  }
-
-  $hashed_password = $userExists["user_password"];
-  $check_passwords = password_verify($password, $hashed_password);
-
-  if($check_passwords === false) {
-    header("Location: ../index.php");
-    exit();
-  }else if($check_passwords === true){
-    $_SESSION["userId"] = $userExists["id"];
-    $_SESSION["username"] = $userExists["username"];
-    $_SESSION["user_image"] = $userExists["user_image"];
-
-    header("Location: ../admin.php");
-    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ss", $page_content, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
   }
 }
 
@@ -401,6 +418,4 @@ function deleteFolder($dir) {
     echo "Selected folder does not exist!";
   }
 }
-
-
 ?>

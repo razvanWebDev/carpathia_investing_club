@@ -29,6 +29,8 @@ if(!isset($_SESSION["username"])){
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Custom style -->
   <link rel="stylesheet" href="dist/css/admin.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
 
 </head>

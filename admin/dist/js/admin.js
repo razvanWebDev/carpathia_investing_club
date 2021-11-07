@@ -197,8 +197,10 @@ window.onload = () => {
     });
   });
 
-  //Initialize Custom file input
   $(function () {
+    //Initialize Custom file input
     bsCustomFileInput.init();
+    //Initialize summernote
+    $("#summernote").summernote();
   });
 };
