@@ -2,6 +2,7 @@
 <?php include "../PHP/db.php" ?>
 <?php include "php/functions.php" ?>
 <?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,4 +16,4 @@
     <title><?php echo $title ?></title>
 </head>
 
-<body class="overflow-x-hidden text-gray-700 debug-screen">
+<body class="overflow-x-hidden text-gray-700">

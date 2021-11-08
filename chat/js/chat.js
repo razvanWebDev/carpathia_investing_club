@@ -14,6 +14,29 @@ const sendBtn = document.querySelector("#send-btn");
 const elementExists = (element) => {
   return element != undefined && element != null;
 };
+
+// Logout Timer=================
+const logout = () => {
+  location.href = "php/logout.php?reason=timeout";
+};
+const inactivityTime = () => {
+  var time;
+  window.onload = resetTimer;
+  window.onmousemove = resetTimer;
+  window.onmousedown = resetTimer; // catches touchscreen presses as well
+  window.ontouchstart = resetTimer; // catches touchscreen swipes as well
+  window.onclick = resetTimer; // catches touchpad clicks as well
+  window.onkeydown = resetTimer;
+  window.addEventListener("scroll", resetTimer, true); // improved; see comments
+
+  function resetTimer() {
+    clearTimeout(time);
+    time = setTimeout(logout, 900000); //15 min
+  }
+};
+inactivityTime();
+// *****************************
+
 // ============ASYNC======================================
 const chatPanelList = document.querySelector("#chat-panel-list");
 const incomingIdInput = document.querySelector("#incoming-id-input");

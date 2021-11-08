@@ -8,6 +8,12 @@
     $setStatusQuery =  mysqli_query($connection, $query);
     session_unset();
     session_destroy();
+    if(isset($_GET['reason'])){
+       if($_GET['reason'] == 'timeout'){
+         header("Location: ../login.php?reason=timeout");
+         exit();
+       }
+    }
     header("Location: ../login.php");
     exit();
  }else{

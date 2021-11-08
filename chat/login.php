@@ -17,6 +17,14 @@ $pwdInputError = "";
 $showPwdError = "hidden";
 $pwdErrorMsg = "";
 
+// Timed out for inactivity
+if(isset($_GET['reason'])){
+    if($_GET['reason'] == "timeout"){
+        $subtitle_p = "Logged out for inactivity";
+        $subtitle_p_color = "text-red-500";
+    }
+}
+
 // Validate form
 if(isset($_GET['login'])){
     if($_GET['login'] == "failed"){
