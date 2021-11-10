@@ -742,10 +742,6 @@ select {
   background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
 }
 
-.static {
-  position: static;
-}
-
 .fixed {
   position: fixed;
 }
@@ -1154,10 +1150,6 @@ select {
   overflow-x: hidden;
 }
 
-.overflow-y-hidden {
-  overflow-y: hidden;
-}
-
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1253,11 +1245,6 @@ select {
   background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
 }
 
-.bg-red-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(254, 226, 226, var(--tw-bg-opacity));
-}
-
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
   background-color: rgba(251, 191, 36, var(--tw-bg-opacity));
@@ -1297,8 +1284,16 @@ select {
   background-size: cover;
 }
 
+.bg-contain {
+  background-size: contain;
+}
+
 .bg-center {
   background-position: center;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .object-contain {
@@ -1608,10 +1603,6 @@ select {
   overflow-x: hidden;
 }
 
-.scrollbar-thin.overflow-y-hidden {
-  overflow-y: hidden;
-}
-
 .scrollbar-thin::-webkit-scrollbar-track {
   background-color: var(--scrollbar-track);
 }
@@ -1631,10 +1622,6 @@ select {
 
 .scrollbar-track-transparent {
   --scrollbar-track: transparent !important;
-}
-
-.scrollbar-thumb-red-300 {
-  --scrollbar-thumb: #fca5a5 !important;
 }
 
 .scrollbar-track-blue-50 {
