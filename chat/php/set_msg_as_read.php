@@ -1,7 +1,6 @@
 <?php
  include "../../PHP/db.php";
 session_start();
-$output = "";
 
 if(isset($_SESSION['incoming_id']) && !empty($_SESSION['incoming_id'])){
 

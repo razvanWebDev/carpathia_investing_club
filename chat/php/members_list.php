@@ -8,6 +8,16 @@
         $status = $row['m_status'];
         $status_color = ($status == "active" ? "bg-green-400" : "bg-gray-400");
         $image = !empty($row['m_image']) ? $row['m_image'] : "member.png";
+        $last_activity_time = strtotime($row['last_activity_time']);
+        $time_to_wait = 900;
+        //logout inactive users
+        if((time() - $last_activity_time) > $time_to_wait){ // use the same value * 1000 in chat.js, inactivityTime() -> resetTimer
+            $status = "inactive";
+            $query = "UPDATE members SET m_status='{$status}' WHERE m_unique_id = {$unique_id}";
+            $setStatusQuery =  mysqli_query($connection, $query);
+        }
+        $status_color = ($status == "active" ? "bg-green-400" : "bg-gray-400");
+
 
         $currentPanelItem = ($unique_id == $_SESSION['incoming_id'] ? "active-panel-item" : "");
 

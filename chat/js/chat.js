@@ -20,9 +20,11 @@ const logout = () => {
   location.href = "php/logout.php?reason=timeout";
 };
 const inactivityTime = () => {
-  var time;
+  let time;
+  let time_to_wait = 900; // use the same value in php/members_list.php -> $time_to_wait
+
+  //window.onmousemove = resetTimer;
   window.onload = resetTimer;
-  window.onmousemove = resetTimer;
   window.onmousedown = resetTimer; // catches touchscreen presses as well
   window.ontouchstart = resetTimer; // catches touchscreen swipes as well
   window.onclick = resetTimer; // catches touchpad clicks as well
@@ -30,8 +32,18 @@ const inactivityTime = () => {
   window.addEventListener("scroll", resetTimer, true); // improved; see comments
 
   function resetTimer() {
+    //update db expire tieme
+    let xhr = new XMLHttpRequest(); //create XML object
+    xhr.open("POST", "php/reset_session_timeout.php", true);
+    xhr.onload = () => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+        }
+      }
+    };
+    xhr.send();
     clearTimeout(time);
-    time = setTimeout(logout, 900000); //15 min
+    time = setTimeout(logout, time_to_wait * 1000); //15 min -> miliseconds
   }
 };
 inactivityTime();

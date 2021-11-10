@@ -80,7 +80,8 @@ function loginUser($username, $password){
     exit();
   }elseif($check_passwords === true){
     $status = 'active';
-    $query = "UPDATE members SET m_status='{$status}' WHERE m_unique_id = {$userExists["m_unique_id"]}";
+    $last_activity_time = date("Y-m-d H:i:s");
+    $query = "UPDATE members SET m_status='{$status}', last_activity_time='{$last_activity_time}' WHERE m_unique_id = {$userExists["m_unique_id"]}";
     $setStatusQuery =  mysqli_query($connection, $query);
     $_SESSION["memberId"] = $userExists["m_id"];
     $_SESSION["unique_id"] = $userExists["m_unique_id"];
