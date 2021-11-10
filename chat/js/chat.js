@@ -1,7 +1,4 @@
-//window.onload = () => {
-console.log("loaded");
 let panelItems = document.querySelectorAll(".panel-item");
-
 const incomingImageContainer = document.querySelector(
   "#incoming-image-container"
 );
@@ -49,6 +46,11 @@ const inactivityTime = () => {
 inactivityTime();
 // *****************************
 
+//Scroll chat window to bottom
+const scrollChatToBottom = () => {
+  chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
+};
+
 // ============ASYNC======================================
 const chatPanelList = document.querySelector("#chat-panel-list");
 const incomingIdInput = document.querySelector("#incoming-id-input");
@@ -60,6 +62,29 @@ chatBox.onmouseenter = () => {
 };
 chatBox.onmouseleave = () => {
   refreshChatPanelList = true;
+};
+
+//Set SESSION['incoming_id'] when click on a panel item
+const setCurrentIncomingId = () => {
+  panelItems = document.querySelectorAll(".panel-item");
+  panelItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const incomingId = item.getAttribute("data-id");
+      let xhr = new XMLHttpRequest(); //create XML object
+      xhr.open("GET", "php/set_session_incoming_id.php?id=" + incomingId, true);
+      xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            getMessages(true);
+          }
+        }
+      };
+      xhr.send();
+      readMessages();
+      //show text window if on mobile
+      showTextWindow();
+    });
+  });
 };
 
 //Set incoming image for the top bar
@@ -89,16 +114,14 @@ const displayMembers = () => {
         if (refreshChatPanelList) {
           chatPanelList.innerHTML = data;
           setCurrentIncomingId();
+          //set incoming image for top bar
+          setIncomingImage();
         }
       }
     }
   };
   xhr.send();
 };
-displayMembers();
-setInterval(() => {
-  displayMembers();
-}, 3000);
 
 // ######################################################
 
@@ -141,7 +164,8 @@ if (elementExists(searchMembersBar)) {
 // CHAT WINDOW======================================
 
 // get chat
-const getMessages = () => {
+function getMessages(forceScroll = false) {
+  // forceScroll used to force scroll to bottom on click e.g. when switching to another member, and the chat with the revoius member is already scrolled by user
   let xhr = new XMLHttpRequest(); //create XML object
   xhr.open("POST", "php/get_chat.php", true);
   xhr.onload = () => {
@@ -149,29 +173,22 @@ const getMessages = () => {
       if (xhr.status === 200) {
         let data = xhr.response;
         chatBox.innerHTML = data;
-        // if (refreshChatPanelList) {
-        //   scrollChatToBottom();
-        // }
-        //Put curent panel-item on top of the list
-        displayMembers();
+        let notScrolledByUser =
+          chatBoxContainer.scrollHeight -
+            (chatBoxContainer.scrollTop + chatBoxContainer.offsetHeight) <
+          300;
+        if (refreshChatPanelList && (notScrolledByUser || forceScroll)) {
+          scrollChatToBottom();
+        }
       }
     }
   };
   let formData = new FormData(sendForm);
   xhr.send(formData);
-};
-//get messages on load
-getMessages();
-//get messages @ interval
-setInterval(() => {
-  getMessages();
-}, 500);
+  //Put curent panel-item on top of the list
+  displayMembers();
+}
 
-//
-const scrollChatToBottom = () => {
-  chatBoxContainer.scrollTo(0, chatBoxContainer.scrollHeight);
-};
-scrollChatToBottom();
 // send chat
 sendForm.onsubmit = (e) => {
   e.preventDefault();
@@ -184,7 +201,7 @@ const sendMessage = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           sendInput.value = "";
-          getMessages();
+          getMessages(true);
           scrollChatToBottom();
         }
       }
@@ -209,34 +226,6 @@ const readMessages = () => {
   };
   xhr.send();
 };
-
-//Set SESSION['incoming_id'] when click on a panel item
-const setCurrentIncomingId = () => {
-  panelItems = document.querySelectorAll(".panel-item");
-  panelItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      console.log("clicksetCurrentIncomingId");
-      const incomingId = item.getAttribute("data-id");
-      let xhr = new XMLHttpRequest(); //create XML object
-      xhr.open("GET", "php/set_session_incoming_id.php?id=" + incomingId, true);
-      xhr.onload = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            getMessages();
-            displayMembers();
-          }
-        }
-      };
-      xhr.send();
-      readMessages();
-      //set incoming image for top bar
-      setIncomingImage();
-      //show text window if on mobile
-      showTextWindow();
-    });
-  });
-};
-
 // **************************************************
 
 //   logout============================
@@ -263,7 +252,6 @@ if (elementExists(logoutDiv)) {
 // switch between chat/groups=============;
 const switchTabs = document.querySelectorAll(".switch-tab");
 const switchIcons = document.querySelectorAll(".switch-icon");
-
 const sidePanels = document.querySelectorAll(".side-panel");
 
 const switchTabsOnClick = () => {
@@ -298,7 +286,6 @@ if (elementExists(switchTabs)) {
 }
 
 // Show-hide side panel on mobile===============
-
 const showSidePanelArrow = document.querySelector("#show-side-panel-arrow");
 const textWindow = document.querySelector("#text-window");
 
@@ -315,7 +302,6 @@ if (elementExists(showSidePanelArrow)) {
 const showTextWindow = () => {
   textWindow.classList.remove("translate-x-full");
 };
-
 //   ###############################################
 
 //   EMOJIS PICKER===================================
@@ -326,15 +312,12 @@ const emojiPicker = new FgEmojiPicker({
   position: ["top", "left"],
   preFetch: true,
   insertInto: sendInput,
-  emit(obj, triggerElement) {
-    console.log(obj, triggerElement);
-  },
 });
 
 // ##################################################
+
 // Change input type file when file is selected
 const fileInputs = document.querySelectorAll(".chose-image-input");
-
 const changeFileInputs = () => {
   fileInputs.forEach((input) => {
     input.addEventListener("change", () => {
@@ -354,4 +337,14 @@ if (elementExists(fileInputs)) {
   changeFileInputs();
 }
 // *********************************************
-//};
+window.onload = () => {
+  displayMembers();
+  setInterval(() => {
+    displayMembers();
+  }, 3000);
+
+  getMessages(true);
+  setInterval(() => {
+    getMessages(false);
+  }, 1000);
+};

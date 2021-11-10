@@ -156,7 +156,7 @@ if(!isset($_SESSION["m_username"])){
         <!-- chat window -->
         <div id="chat-box-container" style="background-image: linear-gradient(rgba(255, 255, 255, 0.90) 0%,rgba(255, 255, 255, 0.97) 100%),
                                             url(img/chat_bg.jpg);"
-            class="flex-auto overflow-y-auto bg-cover shadow-inner h- scrollbar-thin scrollbar-track-blue-50 scrollbar-thumb-blue-300">
+            class="flex-auto overflow-y-auto bg-cover shadow-inner scrollbar-thin scrollbar-track-blue-50 scrollbar-thumb-blue-300">
             <div id="chat-box"
                 class="flex flex-col justify-end min-h-full gap-8 pb-16 pl-8 pr-10 md:pr-16 md:pl-14">
                 <!-- chat items -->
