@@ -9,7 +9,7 @@
     while ($row = mysqli_fetch_assoc($result)) {
         $page_content = $row['page_content'];
         if(!empty($page_content)){
-          echo "<div>".$page_content."</div>";
+          echo "<div class='terms-container'>".$page_content."</div>";
         }  
     }
 
