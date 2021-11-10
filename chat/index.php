@@ -102,7 +102,7 @@ if(!isset($_SESSION["m_username"])){
 
     <!-- TEXT WINDOW -->
     <div id="text-window"
-        class="absolute flex flex-col w-screen h-screen overflow-y-auto transition-transform duration-300 transform translate-x-full shadow-inner md:static md:translate-x-0 bg-gray-50">
+        class="fixed flex flex-col w-screen h-screen overflow-y-auto transition-transform duration-300 transform translate-x-full shadow-inner md:static md:translate-x-0 bg-gray-50">
         <!-- top bar -->
         <div class="flex items-center justify-between flex-none w-full h-20 px-6 py-4 border-b md:px-12">
             <div class="flex items-center">
