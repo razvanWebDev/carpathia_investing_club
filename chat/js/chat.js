@@ -141,6 +141,7 @@ const cancelSearchMembersBtn = document.querySelector(
 );
 const cancelSearchMembers = () => {
   cancelSearchMembersBtn.onclick = () => {
+    searchMembersBar.value = "";
     searchTerm = "";
     displayMembers();
   };
