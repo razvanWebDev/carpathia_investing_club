@@ -56,15 +56,6 @@ const scrollChatToBottom = () => {
 // ============ASYNC======================================
 const chatPanelList = document.querySelector("#chat-panel-list");
 const incomingIdInput = document.querySelector("#incoming-id-input");
-let refreshChat = true;
-
-//stop chat from scrolling to bottom whe the user scrolles
-chatBox.onmouseenter = () => {
-  refreshChat = false;
-};
-chatBox.onmouseleave = () => {
-  refreshChat = true;
-};
 
 //Set SESSION['incoming_id'] when click on a panel item
 const setCurrentIncomingId = () => {
@@ -166,8 +157,8 @@ function getMessages(forceScroll = false) {
         let notScrolledByUser =
           chatBoxContainer.scrollHeight -
             (chatBoxContainer.scrollTop + chatBoxContainer.offsetHeight) <
-          300;
-        if (refreshChat && (notScrolledByUser || forceScroll)) {
+          150;
+        if (notScrolledByUser || forceScroll) {
           scrollChatToBottom();
         }
       }
