@@ -7,6 +7,8 @@ const chatBoxContainer = document.querySelector("#chat-box-container");
 const sendForm = document.querySelector("#send-form");
 const sendInput = document.querySelector("#send-input");
 const sendBtn = document.querySelector("#send-btn");
+
+let searchTerm = "";
 // Check if element exists before calling function
 const elementExists = (element) => {
   return element != undefined && element != null;
@@ -54,14 +56,14 @@ const scrollChatToBottom = () => {
 // ============ASYNC======================================
 const chatPanelList = document.querySelector("#chat-panel-list");
 const incomingIdInput = document.querySelector("#incoming-id-input");
-let refreshChatPanelList = true;
+let refreshChat = true;
 
 //stop chat from scrolling to bottom whe the user scrolles
 chatBox.onmouseenter = () => {
-  refreshChatPanelList = false;
+  refreshChat = false;
 };
 chatBox.onmouseleave = () => {
-  refreshChatPanelList = true;
+  refreshChat = true;
 };
 
 //Set SESSION['incoming_id'] when click on a panel item
@@ -76,6 +78,7 @@ const setCurrentIncomingId = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
             getMessages(true);
+            displayMembers();
           }
         }
       };
@@ -106,17 +109,15 @@ setIncomingImage();
 //populate chat panel list
 const displayMembers = () => {
   let xhr = new XMLHttpRequest(); //create XML object
-  xhr.open("GET", "php/display_members.php", true);
+  xhr.open("GET", "php/display_members.php?searchTerm=" + searchTerm, true);
   xhr.onload = () => {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         let data = xhr.response;
-        if (refreshChatPanelList) {
-          chatPanelList.innerHTML = data;
-          setCurrentIncomingId();
-          //set incoming image for top bar
-          setIncomingImage();
-        }
+        chatPanelList.innerHTML = data;
+        setCurrentIncomingId();
+        //set incoming image for top bar
+        setIncomingImage();
       }
     }
   };
@@ -127,22 +128,11 @@ const displayMembers = () => {
 
 //search members=============
 const searchMembersBar = document.querySelector("#search-members");
+
 const searchMembers = () => {
   searchMembersBar.onkeyup = () => {
-    let searchTerm = searchMembersBar.value;
-    refreshChatPanelList = searchTerm == "";
-    let xhr = new XMLHttpRequest(); //create XML object
-    xhr.open("POST", "php/search_members.php", true);
-    xhr.onload = () => {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          let data = xhr.response;
-          chatPanelList.innerHTML = data;
-        }
-      }
-    };
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("searchTerm=" + searchTerm);
+    searchTerm = searchMembersBar.value;
+    displayMembers();
   };
 };
 // cancel search members
@@ -151,9 +141,8 @@ const cancelSearchMembersBtn = document.querySelector(
 );
 const cancelSearchMembers = () => {
   cancelSearchMembersBtn.onclick = () => {
-    searchMembersBar.value = "";
+    searchTerm = "";
     displayMembers();
-    refreshChatPanelList = true;
   };
 };
 if (elementExists(searchMembersBar)) {
@@ -177,7 +166,7 @@ function getMessages(forceScroll = false) {
           chatBoxContainer.scrollHeight -
             (chatBoxContainer.scrollTop + chatBoxContainer.offsetHeight) <
           300;
-        if (refreshChatPanelList && (notScrolledByUser || forceScroll)) {
+        if (refreshChat && (notScrolledByUser || forceScroll)) {
           scrollChatToBottom();
         }
       }
