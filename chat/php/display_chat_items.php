@@ -8,14 +8,14 @@
         $searchTerm = $_GET['searchTerm'];
     }
 
-    //filter for searc
+    //display entire list
     if(empty($searchTerm)){
         $query = "SELECT * FROM members LEFT JOIN messages 
         ON members.m_unique_id=messages.incomming_msg_id OR members.m_unique_id=messages.outgoing_msg_id 
         WHERE NOT m_unique_id={$outgoing_id} 
         GROUP BY members.m_unique_id 
         ORDER BY max(messages.msg_id) DESC";
-    //display entire list
+    //filter for search
     }else{
         $query = "SELECT * FROM members LEFT JOIN messages 
         ON members.m_unique_id=messages.incomming_msg_id OR members.m_unique_id=messages.outgoing_msg_id 

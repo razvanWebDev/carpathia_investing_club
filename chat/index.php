@@ -16,8 +16,8 @@ if(!isset($_SESSION["m_username"])){
             <div class="flex justify-center w-2/4 h-full p-4 py-6 bg-blue-100 switch-tab" data-switch="chat">
                 <img id="chat-icon" src="img/icons/chat.svg" alt="chat" class="h-full opacity-100 switch-icon">
             </div>
-            <div class="flex justify-center w-2/4 h-full p-4 py-6 switch-tab" data-switch="groups">
-                <img id="groups-icon" src="img/icons/users.svg" alt="groups" class="h-full opacity-50 switch-icon">
+            <div class="flex justify-center w-2/4 h-full p-4 py-6 switch-tab" data-switch="channels">
+                <img id="channels-icon" src="img/icons/users.svg" alt="channels" class="h-full opacity-50 switch-icon">
             </div>
         </div>
         <!-- Chats Panel -->
@@ -25,7 +25,7 @@ if(!isset($_SESSION["m_username"])){
             <!-- chats panel title -->
             <div class="flex-none mr-6 h-36">
                 <div class="flex justify-between mb-4">
-                    <h2 class="text-3xl">Chat</h2>
+                    <h2 id="active-panel-title" class="text-3xl">Chat</h2>
                 </div>
                 <div class="flex h-10 mt-4 rounded-md shadow-sm">
                     <input type="text" id="search-members" placeholder="Search members"
@@ -40,62 +40,6 @@ if(!isset($_SESSION["m_username"])){
             <!-- chats panel items container -->
             <div id="chat-panel-list"
                 class="flex-auto pb-12 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-blue-300">
-            </div>
-        </div>
-
-        <!-- groups panel -->
-        <div id="groups-side-panel" class="flex-col flex-auto hidden pl-4 overflow-y-auto side-panel">
-            <!-- groups panel title -->
-            <div class="flex-none mr-6 h-36">
-                <div class="flex justify-between mb-4">
-                    <h2 class="text-3xl">Channels</h2>
-                </div>
-                <input type="text" placeholder="Search group" class="input">
-            </div>
-            <!-- groups panel items container -->
-            <div id="groups-panel-list"
-                class="flex-auto pb-12 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-blue-300">
-                    <div
-                        class="flex px-4 py-2 mb-2 mr-6 transition rounded cursor-pointer h-18 group-panel-item active-panel-item bg-gray-50">
-                        <div class="flex-none w-16">
-                            <div
-                                class="flex items-center justify-center flex-none w-12 h-12 mr-3 bg-yellow-400 rounded-full">
-                                <span class="inline-block text-2xl align-middle"><b>T</b></span>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between flex-auto h-full truncate">
-                            <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="flex-auto text-sm truncate"><b>#TSLA</b>
-                                </p>
-                                <p class="flex-none float-right ml-2 text-xs text-gray-500">23:44</p>
-
-                            </div>
-                            <div>
-                                <p class="w-full text-xs text-gray-500 truncate"><span>You</span>: Sample text 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex px-4 py-2 mb-2 mr-6 transition rounded cursor-pointer h-18 group-panel-item bg-gray-50">
-                        <div class="flex-none w-16">
-                            <div
-                                class="flex items-center justify-center flex-none w-12 h-12 mr-3 bg-green-400 rounded-full">
-                                <span class="inline-block text-2xl align-middle"><b>M</b></span>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between flex-auto h-full truncate">
-                            <div class="flex w-full max-w-full overflow-hidden truncate">
-                                <p class="flex-auto text-sm truncate"><b>#MSFT</b>
-                                </p>
-                                <p class="flex-none float-right ml-2 text-xs text-gray-500">23:44</p>
-
-                            </div>
-                            <div>
-                                <p class="w-full text-xs text-gray-500 truncate"><span>You</span>: Sample text
-                                </p>
-                            </div>
-                        </div>
-                    </div>
             </div>
         </div>
     </div>
