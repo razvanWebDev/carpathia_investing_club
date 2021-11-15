@@ -584,7 +584,10 @@ footer a:visited {
 }
 
 #about-us p,
-#strategy p {
+#strategy p,
+#mission p,
+#become-a-member p,
+#membership-benefits p {
   line-height: 1.8;
   margin-bottom: 1em;
 }
