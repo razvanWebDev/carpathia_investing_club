@@ -1,7 +1,8 @@
-<div class="become-a-member-modal">
+<div class="requests-modal">
     <img src="img/icon-close.svg" alt="close" class="close-modal-btn">
-    <h2 class="section-title">Become a member</h2>
-    <form action="PHP/become_a_member.php" method="POST" enctype="multipart/form-data">
+    <h2 class="section-title">Become a Member</h2>
+    <form action="PHP/requests.php" method="POST" enctype="multipart/form-data">
+        <input id="request-type" name="request_type" type="hidden" value="Become a member">
         <div class="form-line">
             <div class="input-container half-width">
                 <label for="firstname" class="floating-label">First Name*</label>

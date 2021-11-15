@@ -93,7 +93,7 @@ include "php/header.php";
             <h2 class="text-3xl text-center">New Member</h2>
             <hr>
             <p class="text-base text-center <?php echo $subtitle_p_color ?>"><?php echo $subtitle_p ?></p>
-            <form action="php/become_a_member.php" method="post"  enctype="multipart/form-data">
+            <form action="php/requests.php" method="post"  enctype="multipart/form-data">
                 <div class="flex h-10 rounded-md shadow-sm">
                     <input type="text" name="firstname" class="flex-1 block rounded-none input<?php echo $invalidFirstnameInput ?> rounded-l-md sm:text-sm"
                         placeholder="First Name*" value="<?php echo $firstNameInputValue ?>">

@@ -79,8 +79,8 @@ if(isset($_POST['submit'])) {
 
       //DB =======================================================
 
-      $query = "INSERT INTO member_requests (firstname, lastname, email, phone, age, investing_experience, message) ";
-      $query .= "VALUES ('{$firstname}', '{$lastname}', '{$email}', '{$phone}', '{$age}', '{$investing_experience}', '{$message}')";
+      $query = "INSERT INTO requests (firstname, lastname, email, phone, age, investing_experience, request_type, message) ";
+      $query .= "VALUES ('{$firstname}', '{$lastname}', '{$email}', '{$phone}', '{$age}', '{$investing_experience}', '{$request_type}', '{$message}')";
 
       $result =  mysqli_query($connection, $query);
 

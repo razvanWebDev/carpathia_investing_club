@@ -127,7 +127,7 @@ if(isset($_SESSION["m_username"])){
 <!-- if NOT loged in -->
 <section class="members-only-msg">
   <h2>This area is available only for members!</h2>
-  <p>Click <span class="link-to-page open-modal-btn" data-modal="become-a-member-modal">HERE</span> to request membership</p>
+  <p>Click <span class="link-to-page open-modal-btn" data-modal="requests-modal">HERE</span> to request membership</p>
 </section>
 
 <?php

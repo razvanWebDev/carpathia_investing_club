@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500;0,900;1,900&display=swap");
 :root {
   --main-color: #176083;
   --main-color-transparent: rgba(23, 96, 131, 0.95);
@@ -150,9 +150,9 @@ section {
 }
 
 .section-title {
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: 400;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 ::placeholder {
@@ -271,10 +271,12 @@ header .nav-links li {
   padding: 0 1em;
   color: var(--main-text-color);
   cursor: pointer;
+  text-align: center;
 }
 
 header .nav-links li a {
   color: var(--main-text-color);
+  text-align: center;
 }
 
 header .nav-links li:first-child {
@@ -282,6 +284,10 @@ header .nav-links li:first-child {
 }
 header .nav-links li:last-child {
   padding-right: 0;
+}
+
+.home-page-link:last-of-type {
+  margin-right: 1em;
 }
 
 .link-to-page {
@@ -453,7 +459,7 @@ footer a:visited {
 
 /* ################################# MAIN CONTENT ############################### */
 /* ================Become a member modal ======================== */
-.become-a-member-modal {
+.requests-modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -482,41 +488,41 @@ footer a:visited {
   cursor: pointer;
   transform: rotate(90deg);
 }
-.become-a-member-modal form {
+.requests-modal form {
   width: 50em;
   max-width: 100%;
 }
-.become-a-member-modal .floating-label {
+.requests-modal .floating-label {
   color: var(--white-color);
 }
-.become-a-member-modal .floating-label.moveUp {
+.requests-modal .floating-label.moveUp {
   color: var(--modal-grey-color);
 }
-.become-a-member-modal label,
-.become-a-member-modal input,
-.become-a-member-modal textarea,
-.become-a-member-modal a {
+.requests-modal label,
+.requests-modal input,
+.requests-modal textarea,
+.requests-modal a {
   color: var(--white-color);
 }
-.become-a-member-modal a {
+.requests-modal a {
   text-decoration: underline;
 }
-.become-a-member-modal input,
-.become-a-member-modal textarea {
+.requests-modal input,
+.requests-modal textarea {
   border-bottom: 1px solid var(--modal-grey-color);
 }
-.become-a-member-modal .current-input {
+.requests-modal .current-input {
   border-bottom: 1px solid var(--white-color);
 }
 
 /* modal custom dropdon */
-.become-a-member-modal .custom-select__trigger {
+.requests-modal .custom-select__trigger {
   color: var(--white-color);
   background: transparent;
   border-bottom: 1px solid var(--modal-grey-color);
 }
-.become-a-member-modal .arrow::before,
-.become-a-member-modal .arrow::after {
+.requests-modal .arrow::before,
+.requests-modal .arrow::after {
   background-color: var(--white-color);
 }
 
@@ -549,15 +555,143 @@ footer a:visited {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-#strategy {
-  background-color: var(--main-text-color);
+#strategy,
+#members-path {
+  flex-wrap: wrap;
+  background: #232427;
   color: var(--white-color);
 }
+
+#mission,
+#become-a-member {
+  padding-bottom: 0;
+}
+
+#about-us p,
+#mission p,
+#membership-benefits p {
+  width: 100%;
+  text-align: left;
+}
+#membership-benefits p {
+  margin-bottom: 0.1em;
+}
+
+#about-us .section-title,
+#mission .section-title,
+#membership-benefits .section-title {
+  align-self: flex-start;
+}
+
 #about-us p,
 #strategy p {
-  text-align: center;
   line-height: 1.8;
   margin-bottom: 1em;
+}
+
+#strategy .section-title,
+#become-a-member .section-title {
+  align-self: flex-end;
+}
+#strategy p,
+#become-a-member p {
+  text-align: right;
+}
+
+#members-path .section-title {
+  text-align: center;
+}
+
+.path-cards-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.path-card {
+  position: relative;
+  width: 30em;
+  height: 35em;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  margin: 2em;
+  transition: 0.5s;
+}
+
+.path-card .box {
+  position: absolute;
+  top: 1.5em;
+  left: 1.5em;
+  right: 1.5em;
+  bottom: 1.5em;
+  background: #2a2b2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.path-card .box:hover {
+  transform: translateY(-1em);
+}
+
+.path-card .box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.path-card .box .box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3em 2em 2em;
+  text-align: center;
+  height: 100%;
+}
+
+.path-card .box .box-content h2 {
+  position: absolute;
+  top: -0.2em;
+  right: 0.2em;
+  font-size: 8em;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.path-card .box .box-content h3 {
+  font-size: 1.5em;
+  color: #fff;
+  z-index: 1;
+  margin-bottom: 1em;
+}
+.path-card .box .box-content h3 span {
+  font-weight: 400;
+}
+
+.path-card .box .box-content ul {
+  text-align: left;
+  padding-left: 1em;
+  margin: 0 2em 2em;
+}
+.path-card .box .box-content ul li {
+  margin-bottom: 0.8em;
+}
+.path-card .box .box-content ul li:last-child {
+  margin-bottom: 0;
+}
+
+.path-card .box .box-content button {
+  color: var(--white-color);
+  border: 1px solid var(--white-color);
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 #aum-section {
@@ -813,11 +947,11 @@ footer a:visited {
   }
 
   /* become a member modal */
-  .become-a-member-modal {
+  .requests-modal {
     padding: 4em 2em;
     font-size: 1.3em;
   }
-  .become-a-member-modal .section-title {
+  .requests-modal .section-title {
     font-size: 1.5em;
     margin-bottom: 1em;
   }

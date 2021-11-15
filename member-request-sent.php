@@ -4,7 +4,7 @@
 <section>
     <h2 class="section-title">Success!</h2>
     <p>
-        Your member request has been succesfully submitted.
+        Your request has been succesfully submitted.
     </p>
     <p>
         We will get in touch with You as soon as possible.

@@ -265,8 +265,18 @@ window.onload = () => {
   const closeModalBtns = document.querySelectorAll(".close-modal-btn");
   // open modal (get modal name from button attribute)
   const openModalOnClick = (openModalBtn) => {
+    //select wich modal to open
     const modalName = openModalBtn.getAttribute("data-modal");
     const currentModal = document.querySelector(`.${modalName}`);
+    console.log(currentModal);
+    const modalTitle = openModalBtn.getAttribute("data-title");
+    if (!!modalTitle) {
+      //set modal title
+      currentModal.querySelector(`.${modalName} .section-title`).innerHTML =
+        modalTitle;
+      //set request type
+      currentModal.querySelector("#request-type").value = modalTitle;
+    }
     currentModal.classList.add("show");
   };
   // open modal event listener

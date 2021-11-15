@@ -41,12 +41,12 @@
             $page_1 = ($page * $articles_per_page) - $articles_per_page;
         }
 
-        $post_query_count = "SELECT * FROM member_requests";
+        $post_query_count = "SELECT * FROM requests WHERE request_type='Become a Member'";
         $select_post_query_count = mysqli_query($connection, $post_query_count);
         $count = mysqli_num_rows($select_post_query_count);
         $count = ceil($count / $articles_per_page); 
 
-        $query = "SELECT * FROM member_requests ORDER BY id DESC LIMIT $page_1, $articles_per_page";
+        $query = "SELECT * FROM requests WHERE request_type='Become a Member' ORDER BY id DESC LIMIT $page_1, $articles_per_page";
         $select_users = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_users)) {

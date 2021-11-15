@@ -60,7 +60,7 @@
             <div class="small-box bg-secondary">
               <div class="inner">
                 <?php
-                  $query = "SELECT * FROM member_requests";
+                  $query = "SELECT * FROM requests WHERE request_type='Become a Member'";
                   $result = mysqli_query($connection, $query);
                   $num_requests = mysqli_num_rows($result);
                   ?>
