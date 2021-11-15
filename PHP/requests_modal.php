@@ -25,7 +25,7 @@
         </div>
         <div class="form-line">
             <div class="input-container half-width">
-                <label for="age" class="floating-label">Age</label>
+                <label for="age" min="0" class="floating-label">Age</label>
                 <input class="label-transform" type="number" name="age">
             </div>
             <div class="input-container half-width">

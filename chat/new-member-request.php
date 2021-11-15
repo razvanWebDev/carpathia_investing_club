@@ -93,7 +93,7 @@ include "php/header.php";
             <h2 class="text-3xl text-center">New Member</h2>
             <hr>
             <p class="text-base text-center <?php echo $subtitle_p_color ?>"><?php echo $subtitle_p ?></p>
-            <form action="php/requests.php" method="post"  enctype="multipart/form-data">
+            <form action="php/become_a_member.php" method="post"  enctype="multipart/form-data">
                 <div class="flex h-10 rounded-md shadow-sm">
                     <input type="text" name="firstname" class="flex-1 block rounded-none input<?php echo $invalidFirstnameInput ?> rounded-l-md sm:text-sm"
                         placeholder="First Name*" value="<?php echo $firstNameInputValue ?>">
@@ -134,11 +134,11 @@ include "php/header.php";
                 </div>
 
                 <div class="flex h-10 mt-3 rounded-md shadow-sm">
-                    <input type="number" name="age" class="flex-1 block rounded-none input rounded-md sm:text-sm"
+                    <input type="number" name="age" min="0" class="flex-1 block rounded-none input rounded-md sm:text-sm"
                         placeholder="Age" value="<?php echo $ageInputValue ?>">
                 </div>
                 <div class="mt-3">
-                    <label for="investing_experience"><b>Ivesting Experience</b></label>
+                    <label for="investing_experience"><b>Investing Experience</b></label>
                     <select value="" name="investing_experience" class="flex h-12 input rounded-md shadow-sm">
                         <option value="Beginner" <?php if($investing_experienceInputValue == "" || $investing_experienceInputValue == "Beginner"){ echo "selected"; }?>>Beginner</option>
                         <option value="Intermediate" <?php if($investing_experienceInputValue == "Intermediate"){ echo "selected"; }?>>Intermediate</option>
@@ -153,7 +153,7 @@ include "php/header.php";
 
                 <p class="text-sm mt-3 <?php echo $terms_and_conditions_color ?>">
                     <input type="checkbox" name="terms_and_conditions"> 
-                    I have read and accept the <b><a href="terms-and-conditions" target="_blank">Terms and Conditions</a></b>
+                    I have read and accept the <b><a href="../terms-and-conditions" target="_blank">Terms and Conditions</a></b>
                 </p>
 
                 <button type="submit" name="submit"
