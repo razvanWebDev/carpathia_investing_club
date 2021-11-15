@@ -4,7 +4,7 @@ window.onload = () => {
   const nav = document.querySelector(".header-menu");
   const labelTransform = document.querySelectorAll(".label-transform");
 
-  const submitBecomeAmember = document.querySelector(".submit-become-a-member");
+  const submitRequestForm = document.querySelectorAll(".submit-request-form");
   const submitContact = document.querySelector(".submit-contact");
   const allFieldsRequiredMessage_p = document.querySelector(
     ".all-fields-required-message"
@@ -340,8 +340,10 @@ window.onload = () => {
   }
 
   //Validate become-a-member form
-  if (elementExists(submitBecomeAmember)) {
-    submitBecomeAmember.addEventListener("click", validateForm);
+  if (elementExists(submitRequestForm)) {
+    submitRequestForm.forEach((requestForm) => {
+      requestForm.addEventListener("click", validateForm);
+    });
   }
   //Validate contact form
   if (elementExists(submitContact)) {

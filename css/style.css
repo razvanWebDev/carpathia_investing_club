@@ -778,7 +778,7 @@ footer a:visited {
 }
 
 .submit-contact,
-.submit-become-a-member {
+.submit-request-form {
   color: var(--white-color);
   background-color: var(--main-color);
   font-size: 1.2em;

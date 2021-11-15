@@ -72,6 +72,6 @@
         </p>
 
         <p class="all-fields-required-message">Please fill in all fields</p>
-        <button type="submit" name="submit" class="submit-become-a-member">SEND</button>
+        <button type="submit" name="submit" class="submit-request-form">SEND</button>
     </form>
 </div>
