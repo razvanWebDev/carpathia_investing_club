@@ -99,8 +99,8 @@ if(!isset($_SESSION["m_username"])){
         </div>
         <!-- chat window -->
         <div id="chat-box-container" style="background-image: linear-gradient(rgba(255, 255, 255, 0.80) 0%,rgba(255, 255, 255, 0.90) 100%),
-                                            url(../img/Logo-small.png);"
-            class="flex-auto overflow-y-auto bg-center bg-no-repeat bg-contain shadow-inner scrollbar-thin scrollbar-track-blue-50 scrollbar-thumb-blue-300">
+                                            url(img/chat_bg.jpg);"
+            class="flex-auto overflow-y-auto bg-center bg-no-repeat bg-cover shadow-inner scrollbar-thin scrollbar-track-blue-50 scrollbar-thumb-blue-300">
             <div id="chat-box"
                 class="flex flex-col justify-end min-h-full gap-8 pb-16 pl-8 pr-10 md:pr-16 md:pl-14">
                 <!-- chat items -->
