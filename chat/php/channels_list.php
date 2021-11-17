@@ -4,6 +4,7 @@
         $unique_id = $row['c_unique_id'];
         $c_name = $row['c_name'];
         $c_short_name = $row['c_short_name'];
+        $bg_color = $row['bg_color'];
 
 
         $currentPanelItem = ($unique_id == $_SESSION['incoming_id'] ? "active-panel-item" : "");
@@ -50,7 +51,7 @@
                         class="'.$currentPanelItem.' flex px-4 py-2 mb-2 mr-6 transition rounded cursor-pointer h-18 group-panel-item panel-item bg-gray-50">
                         <div class="flex-none w-16">
                             <div
-                                class="flex items-center justify-center flex-none w-12 h-12 mr-3 bg-yellow-400 rounded-full">
+                                class="'.$bg_color.' flex items-center justify-center flex-none w-12 h-12 mr-3 rounded-full">
                                 <span class="inline-block text-2xl align-middle"><b>T</b></span>
                             </div>
                         </div>

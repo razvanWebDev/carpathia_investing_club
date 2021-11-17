@@ -84,7 +84,7 @@ if(isset($_POST['add_user'])) {
               <div class="form-group">
                 <label for="username">Username*</label>
                 <input type="text" name="username" class="form-control <?php echo $invalidUsernameClass ?>" value="<?php echo $userNameInputValue ?>">
-                <span class="error invalid-feedback" style="display: <?php $showUsernameError ?>">Username already taken.</span>
+                <span class="error invalid-feedback" style="display: <?php echo $showUsernameError ?>">Username already taken.</span>
               </div>
             </div>
             <!-- /.card-body -->
@@ -106,7 +106,7 @@ if(isset($_POST['add_user'])) {
               <div class="form-group">
                 <label for="email">Email*</label>
                 <input type="email" name="email" class="form-control <?php echo $invalidEmailClass ?>" value="<?php echo $emailInputValue ?>">
-                <span class="error invalid-feedback" style="display: <?php $showEmailError ?>">Email already taken.</span>
+                <span class="error invalid-feedback" style="display: <?php echo $showEmailError ?>">Email already taken.</span>
               </div>
               <div class="form-group">
                 <label for="phone">Phone*</label>

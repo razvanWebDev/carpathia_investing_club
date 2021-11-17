@@ -28,7 +28,7 @@ if(!isset($_SESSION["m_username"])){
                     <h2 id="active-panel-title" class="text-3xl">Chat</h2>
                 </div>
                 <div class="flex h-10 mt-4 rounded-md shadow-sm">
-                    <input type="text" id="search-members" placeholder="Search members"
+                    <input type="text" id="search-members" placeholder="Search"
                         class="flex-1 block border-r-0 rounded-none input rounded-l-md sm:text-sm"
                         placeholder="Password*">
                     <div id="cancel-search-members-btn"

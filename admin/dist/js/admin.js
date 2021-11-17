@@ -1,30 +1,10 @@
 window.onload = () => {
   //HTML elements
-  const sidebarPageTitles = document.querySelectorAll(".sidebar-page-header");
   const sidebarLinks = document.querySelectorAll(".nav-treeview .nav-link");
 
   // Check if element exists before calling function
   const elementExists = (element) => {
     return element != undefined && element != null;
-  };
-
-  //Get current URL page name
-  const getCurrentPageName = () => {
-    const currentPath = window.location.href;
-    //var sPage = sPath.substring(sPath.lastIndexOf('\\') + 1);
-    const currentPage = currentPath.substring(currentPath.lastIndexOf("/") + 1);
-    console.log("currentPage", currentPage);
-
-    //TODO file extension
-    // let lastDotIndex = currentPage.lastIndexOf(".");
-    // lastDotIndex =
-    //   elementExists(lastDotIndex) && lastDotIndex !== -1
-    //     ? lastDotIndex
-    //     : currentPage.length;
-    // const currentPageName = currentPage.substring(0, lastDotIndex);
-    // return currentPageName;
-
-    return currentPage;
   };
 
   //Get current sideBar page==========
@@ -75,6 +55,46 @@ window.onload = () => {
   }
   // ##############################
 
+  // Set select color
+  const channelsColorsSelect = document.querySelector(
+    "#channels-colors-select"
+  );
+  const randomizeSelectBtns = document.querySelectorAll(".randomize-select");
+
+  const setOptionColor = (curentSelect) => {
+    const options = curentSelect.querySelectorAll("option");
+    options.forEach((item) => {
+      if (item.selected == true) {
+        const optionColor = item.getAttribute("data-color");
+        channelsColorsSelect.style.backgroundColor = optionColor;
+      }
+    });
+  };
+
+  const randomizeSelectOnClick = () => {
+    randomizeSelectBtns.forEach(function (selectBtn) {
+      selectBtn.addEventListener("click", function () {
+        const targetSelect = selectBtn.parentElement.nextElementSibling;
+        const items = targetSelect.getElementsByTagName("option");
+        const index = Math.floor(Math.random() * items.length);
+        targetSelect.selectedIndex = index;
+        setOptionColor(targetSelect);
+      });
+    });
+  };
+
+  //event listeners
+  if (!!randomizeSelectBtns) {
+    randomizeSelectOnClick();
+  }
+  if (!!channelsColorsSelect) {
+    // set option color on load
+    setOptionColor(channelsColorsSelect);
+    channelsColorsSelect.addEventListener("change", () => {
+      setOptionColor(channelsColorsSelect);
+    });
+  }
+  // ===================================
   //FORMS VALIDATION
   //user forms validation
   $(function () {

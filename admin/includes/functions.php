@@ -123,6 +123,99 @@ function createMember($firstname, $lastname, $username, $email, $phone, $m_image
   }
 }
 
+function channelExists($c_name, $c_short_name) {
+  global $connection;
+
+  $query = "SELECT * FROM channels WHERE c_name = ? OR c_short_name = ?";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: channels.php?source=add_channel");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ss", $c_name, $c_short_name);
+    mysqli_stmt_execute($stmt);
+    $resultData = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($resultData)){
+      return $row;
+    }else{
+      $result = false;
+      return $result;
+    }
+    mysqli_stmt_close($stmt);
+  }
+}
+
+function createChannel($c_name, $c_short_name, $bg_color) {
+  global $connection;
+  $unique_id = rand(time(), 10000000);
+
+  $query = "INSERT INTO channels (c_unique_id, c_name, c_short_name, bg_color) VALUES (?, ?, ?, ?);";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: channels.php?source=add_channel");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ssss", $unique_id, $c_name, $c_short_name, $bg_color);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt); 
+  }
+}
+
+function editChannel($id, $c_name, $c_short_name, $bg_color) {
+  global $connection;
+
+  $query = "UPDATE channels SET ";
+            $query .= "c_name = ?, ";
+            $query .= "c_short_name = ?, ";
+            $query .= "bg_color = ? ";
+            $query .= "WHERE id = ?";
+
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: channels.php?source=edit_channel&id=$id");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ssss", $c_name, $c_short_name, $bg_color, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
+function convertTailwindColors($color){
+  switch($color) {
+    case 'bg-red-400';
+    $color = "#fc8181";
+    break;
+
+    case 'bg-yellow-400';
+    $color = "#f6e05e";
+    break;
+
+    case 'bg-green-400';
+    $color = "#68d391";
+    break;
+
+    case 'bg-blue-400';
+    $color = "#63b3ed";
+    break;
+
+    case 'bg-indigo-400';
+    $color = "#7f9cf5";
+    break;
+
+    case 'bg-purple-400';
+    $color = "#b794f4";
+    break;
+
+    default:
+    $color = "#f687b3"; //pink
+  }
+  return $color;
+}
+
 function addCompanytoPortfolio($date_pitched, $company, $ticker, $purchased, $purchase_price, $exit_price, $exit_date) {
   global $connection;
 

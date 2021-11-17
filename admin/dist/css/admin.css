@@ -47,3 +47,36 @@
   display: block;
   margin: 0 auto 2em;
 }
+/* ========Add channels=========== */
+
+#channels-colors-select {
+  background-color: #fc8181;
+  color: white !important;
+}
+#channels-colors-select option[value="bg-red-400"] {
+  background-color: #fc8181;
+}
+#channels-colors-select option[value="bg-orange-400"] {
+  background-color: #f6ad55;
+}
+#channels-colors-select option[value="bg-yellow-400"] {
+  background-color: #f6e05e;
+}
+#channels-colors-select option[value="bg-green-400"] {
+  background-color: #68d391;
+}
+#channels-colors-select option[value="bg-teal-400"] {
+  background-color: #4fd1c5;
+}
+#channels-colors-select option[value="bg-blue-400"] {
+  background-color: #63b3ed;
+}
+#channels-colors-select option[value="bg-indigo-400"] {
+  background-color: #7f9cf5;
+}
+#channels-colors-select option[value="bg-purple-400"] {
+  background-color: #b794f4;
+}
+#channels-colors-select option[value="bg-pink-400"] {
+  background-color: #f687b3;
+}

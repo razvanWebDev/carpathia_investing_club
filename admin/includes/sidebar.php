@@ -94,9 +94,9 @@
         </li>
         <li class="nav-item sidebar-page-header" id="members-page-header">
           <a href="#" class="nav-link sidebar-page-title">
-            <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-comments"></i>
             <p>
-              Memebers
+              Chat
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -117,6 +117,18 @@
               <a href="member-requests.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Member Requests</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="channels.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Channels</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="channels.php?source=add_channel" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create Channel</p>
               </a>
             </li>
           </ul>
