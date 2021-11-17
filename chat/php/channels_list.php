@@ -4,6 +4,7 @@
         $unique_id = $row['c_unique_id'];
         $c_name = $row['c_name'];
         $c_short_name = $row['c_short_name'];
+        $first_letter = substr($c_short_name, 0, 1);
         $bg_color = $row['bg_color'];
 
 
@@ -13,7 +14,7 @@
         $getLastMsgQuery = "SELECT * FROM messages WHERE (incomming_msg_id = {$unique_id}) ORDER BY msg_id DESC LIMIT 1";
         $getLastMsg  = mysqli_query($connection, $getLastMsgQuery);
 
-        $lastMsg = $lastMsgTime = $you = "";
+        $lastMsg = $lastMsgTime = $sender = "";
 
         $row2 = mysqli_fetch_assoc($getLastMsg);
         if(mysqli_num_rows($getLastMsg) > 0){
@@ -32,7 +33,7 @@
             //check if the last msg was today
             $dateDiff = date("Ymd") - date("Ymd", $msgTimestamp);
             $lastMsgTime = $dateDiff == 0 ? date('H:i', $msgTimestamp) : ($dateDiff == 1 ? "Yesterday" : date("Y/m/d", $msgTimestamp));
-            $sender =  "You: ";
+            $sender = (empty($lastMsg) ? "" : "You: ");
             if( $_SESSION['unique_id'] != $row2['outgoing_msg_id']){
                 $query = "SELECT m_username FROM members WHERE m_unique_id = {$row2['outgoing_msg_id']}";
                 $get_sender_username  = mysqli_query($connection, $query);
@@ -52,7 +53,7 @@
                         <div class="flex-none w-16">
                             <div
                                 class="'.$bg_color.' flex items-center justify-center flex-none w-12 h-12 mr-3 rounded-full">
-                                <span class="inline-block text-2xl align-middle"><b>T</b></span>
+                                <span class="inline-block text-2xl align-middle"><b>'.$first_letter.'</b></span>
                             </div>
                         </div>
                         <div class="flex flex-col justify-between flex-auto h-full truncate">
