@@ -191,6 +191,7 @@ const sendMessage = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           sendInput.value = "";
+          textAreaAdjust(sendInput);
           getMessages(true);
           scrollChatToBottom();
         }
@@ -308,6 +309,22 @@ const emojiPicker = new FgEmojiPicker({
 });
 
 // ##################################################
+//Grow send input with content
+const textAreaAdjust = (element) => {
+  if (element.scrollHeight < 150) {
+    element.style.overflowY = "hidden";
+    element.style.height = "auto";
+    element.style.height = 2 + element.scrollHeight + "px";
+  } else {
+    element.style.overflowY = "scroll";
+  }
+};
+if (sendInput) {
+  sendInput.addEventListener("keyup", () => {
+    textAreaAdjust(sendInput);
+  });
+}
+// #####################################################
 
 // Change input type file when file is selected
 const fileInputs = document.querySelectorAll(".chose-image-input");

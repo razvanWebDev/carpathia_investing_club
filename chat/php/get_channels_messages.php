@@ -24,9 +24,10 @@ if(isset($_SESSION['unique_id'])){
                 $msgTime = $dateDiff == 0 ? date('H:i', $msgTimestamp) : ($dateDiff == 1 ? "Yesterday, ".date('H:i', $msgTimestamp) : date('Y/m/d, H:i', $msgTimestamp));
    
                 if((int)$row['outgoing_msg_id'] === $outgoing_id){//send message
+                    $msg = nl2br($row['msg']);
                     $output .= '<div class="max-w-3/4 w-max">
                                     <div class="relative self-start px-4 py-1 text-white rounded-lg shadow bg-primary">
-                                        <p>'.$row['msg'].'</p>
+                                        <p>'.$msg.'</p>
                                         <div class="absolute p-1 bg-gray-100 rounded-full -left-6 -top-6">
                                             <div style="background-image: url(../admin/dist/img/members/'.$sender_pic.')"
                                                 class="w-8 h-8 bg-center bg-cover rounded-full ">
@@ -45,7 +46,7 @@ if(isset($_SESSION['unique_id'])){
                     }
                     $output .= '<div class="self-end max-w-3/4 w-max">
                                     <div class="relative px-4 py-1 bg-gray-100 rounded-lg shadow">
-                                        <p>'.$row['msg'].'</p>
+                                        <p>'.$msg.'</p>
                                         <div class="absolute p-1 rounded-full bg-gray-50 -right-6 -top-6">
                                             <div style="background-image: url(../admin/dist/img/members/'.$sender_pic.')"
                                                 class="w-8 h-8 bg-center bg-cover rounded-full ">
