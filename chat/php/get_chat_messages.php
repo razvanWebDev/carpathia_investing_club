@@ -28,10 +28,10 @@ if(isset($_SESSION['unique_id'])){
                //check if the last msg was today
                 $dateDiff = date("Ymd") - date("Ymd", $msgTimestamp);
                 $msgTime = $dateDiff == 0 ? date('H:i', $msgTimestamp) : ($dateDiff == 1 ? "Yesterday, ".date('H:i', $msgTimestamp) : date('Y/m/d, H:i', $msgTimestamp));
-   
+                $msg = nl2br($row['msg']);
+
                 if((int)$row['outgoing_msg_id'] === $outgoing_id){//send message
-                    $msg = nl2br($row['msg']);
-                    $output .= '<div class="max-w-3/4 w-max">
+                    $output .= '<div class="max-w-3/4 w-max text-sm">
                                     <div class="relative self-start px-4 py-1 text-white rounded-lg shadow bg-primary">
                                         <p>'.$msg.'</p>
                                         <div class="absolute p-1 bg-gray-100 rounded-full -left-6 -top-6">
@@ -43,7 +43,7 @@ if(isset($_SESSION['unique_id'])){
                                     <p class="ml-5 text-xs text-gray-500">'.$msgTime.'</p>
                                 </div>';
                 }else{//receive message
-                    $output .= '<div class="self-end max-w-3/4 w-max">
+                    $output .= '<div class="self-end max-w-3/4 w-max text-sm">
                                     <div class="relative px-4 py-1 bg-gray-100 rounded-lg shadow">
                                         <p>'.$msg.'</p>
                                         <div class="absolute p-1 rounded-full bg-gray-50 -right-6 -top-6">
