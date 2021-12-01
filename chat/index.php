@@ -108,7 +108,7 @@ if(!isset($_SESSION["m_username"])){
         </div>
 
         <!-- bottom bar -->
-        <div class="flex flex-none px-8 py-4 border-t md:px-12">
+        <div class="flex flex-none px-8 pt-4 pb-4 border-t md:px-12" id="bottom-bar">
             <form action="" id="send-form" class="flex items-center w-full space-x-6" autocomplete="off">
                 <input id="incoming-id-input" type="text" name="incoming_id" value="<?php echo $member_id ?>" hidden>
                 <textarea style="overflow:hidden;" id="send-input" name="message" placeholder="Enter message..." class="input scrollbar-thin scrollbar-track-blue-50 scrollbar-thumb-blue-300" rows="1"></textarea>
