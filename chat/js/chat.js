@@ -81,6 +81,7 @@ const setCurrentIncomingId = () => {
       readMessages();
       //show text window if on mobile
       showTextWindow();
+      sendInput.focus();
     });
   });
 };
