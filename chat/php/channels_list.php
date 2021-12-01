@@ -5,7 +5,7 @@
         $c_name = $row['c_name'];
         $c_short_name = $row['c_short_name'];
         $first_letter = substr($c_short_name, 0, 1);
-        $bg_color = $row['bg_color'];
+        $channel_color = $row['bg_color'];
 
 
         $currentPanelItem = ($unique_id == $_SESSION['incoming_id'] ? "active-panel-item" : "");
@@ -29,6 +29,11 @@
                 $fontWeight = "font-normal";
             }
 
+            $bg_color = "bg-green-200";
+            if (($row2['outgoing_msg_id'] == $_SESSION['unique_id']) || (strpos($seen_by, $outgoing_id) !== false)) { 
+                $bg_color = "bg-gray-50";
+            }
+
             $msgTimestamp = strtotime($row2['timestamp']);
             //check if the last msg was today
             $dateDiff = date("Ymd") - date("Ymd", $msgTimestamp);
@@ -49,10 +54,10 @@
 
         //Display member
         $output .= '<div data-id="'.$unique_id.'"
-                        class="'.$currentPanelItem.' flex px-4 py-2 mb-2 mr-6 transition rounded cursor-pointer h-18 group-panel-item panel-item bg-gray-50">
+                        class="'.$currentPanelItem.' '.$bg_color.' flex px-4 py-2 mb-2 mr-6 transition rounded cursor-pointer h-18 group-panel-item panel-item bg-gray-50">
                         <div class="flex-none w-16">
                             <div
-                                class="'.$bg_color.' flex items-center justify-center flex-none w-12 h-12 mr-3 rounded-full">
+                                class="'.$channel_color.' flex items-center justify-center flex-none w-12 h-12 mr-3 rounded-full">
                                 <span class="inline-block text-2xl align-middle"><b>'.$first_letter.'</b></span>
                             </div>
                         </div>

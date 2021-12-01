@@ -38,6 +38,7 @@
             $msgTimestamp = strtotime($row2['timestamp']);
             // Set text bold if there are unread messages
             $fontWeight = ($seenMsg == "true" || $outgoing_id == $row2['outgoing_msg_id'] ? "font-normal" : "font-semibold");
+            $bg_color = ($seenMsg == "true" || $outgoing_id == $row2['outgoing_msg_id'] ? "bg-gray-50" : "bg-green-200");
 
             //check if the last msg was today
             $dateDiff = date("Ymd") - date("Ymd", $msgTimestamp);
@@ -49,7 +50,7 @@
 
         //Display member
         $output .= '<div data-id="'.$unique_id.'"
-                        class="'.$currentPanelItem.' flex h-18 py-2 px-4 mb-2 mr-6 transition rounded cursor-pointer bg-gray-50 panel-item chat-panel-item">
+                        class="'.$currentPanelItem.' '.$bg_color.'  flex h-18 py-2 px-4 mb-2 mr-6 transition rounded cursor-pointer bg-gray-50 panel-item chat-panel-item">
                         <div class="flex-none w-16">
                             <div style="background-image: url(../admin/dist/img/members/'.$image.')"
                                 class="relative w-12 h-12 mr-3 bg-center bg-cover rounded-full user-image">
