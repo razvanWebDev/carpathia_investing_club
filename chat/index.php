@@ -102,7 +102,7 @@ if(!isset($_SESSION["m_username"])){
                                             url(img/chat_bg.jpg);"
             class="flex-auto overflow-y-auto bg-center bg-no-repeat bg-cover shadow-inner scrollbar-thin scrollbar-track-blue-50 scrollbar-thumb-blue-300">
             <div id="chat-box"
-                class="flex flex-col justify-end min-h-full gap-8 pb-16 pl-8 pr-10 md:pr-16 md:pl-14">
+                class="flex flex-col justify-end min-h-full gap-8 pt-10 pb-6 pl-8 pr-10 md:pr-16 md:pl-14">
                 <!-- chat items -->
             </div>
         </div>
