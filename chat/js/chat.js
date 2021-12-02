@@ -75,6 +75,9 @@ const setCurrentIncomingId = () => {
           if (xhr.status === 200) {
             getMessages(true);
             displayPanelItems();
+            if (window.innerWidth > 768) {
+              sendInput.focus();
+            }
           }
         }
       };
@@ -82,7 +85,6 @@ const setCurrentIncomingId = () => {
       readMessages();
       //show text window if on mobile
       showTextWindow();
-      sendInput.focus();
     });
   });
 };
