@@ -22,7 +22,10 @@ if(isset($_SESSION['unique_id'])){
                //check if the last msg was today
                 $dateDiff = date("Ymd") - date("Ymd", $msgTimestamp);
                 $msgTime = $dateDiff == 0 ? date('H:i', $msgTimestamp) : ($dateDiff == 1 ? "Yesterday, ".date('H:i', $msgTimestamp) : date('Y/m/d, H:i', $msgTimestamp));
+                //n to <br>
                 $msg = nl2br($row['msg']);
+                //links to hyperlinks
+                $msg = linkify($msg);
                 if((int)$row['outgoing_msg_id'] === $outgoing_id){//send message
                    
                     $output .= '<div class="break-words max-w-11/12 md:max-w-3/4 w-max text-sm">

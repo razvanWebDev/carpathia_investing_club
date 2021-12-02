@@ -1540,6 +1540,10 @@ textarea {
   color: rgba(23, 96, 131, var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .opacity-50 {
   opacity: 0.5;
 }
