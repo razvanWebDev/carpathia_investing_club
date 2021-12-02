@@ -976,8 +976,8 @@ textarea {
   max-width: 100%;
 }
 
-.max-w-3\/4 {
-  max-width: 75%;
+.max-w-11\/12 {
+  max-width: 92%;
 }
 
 .flex-1 {
@@ -1722,6 +1722,10 @@ textarea {
 
   .md\:w-2\/5 {
     width: 40%;
+  }
+
+  .md\:max-w-3\/4 {
+    max-width: 75%;
   }
 
   .md\:translate-x-0 {
