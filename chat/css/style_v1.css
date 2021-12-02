@@ -1163,6 +1163,10 @@ textarea {
   white-space: nowrap;
 }
 
+.break-words {
+  overflow-wrap: break-word;
+}
+
 .rounded-none {
   border-radius: 0px;
 }
