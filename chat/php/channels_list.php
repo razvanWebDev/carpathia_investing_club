@@ -11,7 +11,7 @@
         $currentPanelItem = ($unique_id == $_SESSION['incoming_id'] ? "active-panel-item" : "");
 
         //Get last message
-        $getLastMsgQuery = "SELECT * FROM messages WHERE (incomming_msg_id = {$unique_id}) ORDER BY msg_id DESC LIMIT 1";
+        $getLastMsgQuery = "SELECT * FROM channels_messages WHERE (incomming_msg_id = {$unique_id}) ORDER BY msg_id DESC LIMIT 1";
         $getLastMsg  = mysqli_query($connection, $getLastMsgQuery);
 
         $lastMsg = $lastMsgTime = $sender = "";

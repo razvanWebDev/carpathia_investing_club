@@ -10,7 +10,7 @@ if(isset($_SESSION['unique_id'])){
 
     if(!empty($incoming_id)){
         //get messages
-        $query = "SELECT * FROM messages WHERE (incomming_msg_id = {$incoming_id})";
+        $query = "SELECT * FROM channels_messages WHERE (incomming_msg_id = {$incoming_id})";
         $getMessages = mysqli_query($connection, $query);
 
         if(mysqli_num_rows($getMessages) > 0){

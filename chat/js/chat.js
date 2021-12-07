@@ -190,7 +190,7 @@ sendForm.onsubmit = (e) => {
 const sendMessage = () => {
   sendBtn.onclick = () => {
     let xhr = new XMLHttpRequest(); //create XML object
-    xhr.open("POST", "php/insert_chat.php", true);
+    xhr.open("POST", `php/insert_${currentActivePanel}_messages.php`, true);
     xhr.onload = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
