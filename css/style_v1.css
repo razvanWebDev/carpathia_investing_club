@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500;0,900;1,900&display=swap");
 :root {
   --main-color: #176083;
@@ -255,6 +256,14 @@ header.hideNav {
   font-size: 2em;
   font-weight: 500;
   line-height: 1;
+}
+
+.subtitle-span {
+  font-size: 0.7em;
+  letter-spacing: 0.4em;
+  font-family: "Dancing Script", cursive;
+  display: block;
+  text-align: center !important;
 }
 
 .nav-links {
