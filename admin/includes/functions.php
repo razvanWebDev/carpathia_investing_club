@@ -293,6 +293,43 @@ function editTermsAndConditions($page_content) {
   }
 }
 
+function createArticle($title, $date, $image, $text, $status) {
+  global $connection;
+
+  $query = "INSERT INTO news (title, date, image, article_text, status) VALUES (?, ?, ?, ?, ?);";
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: news.php?source=add_article&signup=unkmown_error");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "sssss", $title, $date, $image, $text, $status);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
+function editArticle($title, $date, $article_text, $id) {
+  global $connection;
+
+  $query = "UPDATE news SET ";
+            $query .= "title = ?, ";
+            $query .= "date = ?, ";
+            $query .= "article_text = ? ";
+            $query .= "WHERE id = ?";
+
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: news.php?source=edit_article&id=$id");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ssss", $title, $date, $article_text, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
 function getYTVideoId($videoLink){
   global $connection;
 

@@ -47,6 +47,16 @@
   display: block;
   margin: 0 auto 2em;
 }
+
+.table-image {
+  height: 5em;
+  display: block;
+  margin: auto;
+}
+
+.edit-delete-btn {
+  min-width: 9em;
+}
 /* ========Add channels=========== */
 
 #channels-colors-select {
@@ -79,4 +89,18 @@
 }
 #channels-colors-select option[value="bg-pink-400"] {
   background-color: #f687b3;
+}
+
+.post-status-select {
+  background-color: #f0ad4e;
+  color: white;
+  padding: 0.5em 0.2em;
+  border: none;
+}
+
+.post-status-select option {
+  background-color: white;
+  color: #222;
+  border: none;
+  outline: none;
 }

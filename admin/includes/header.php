@@ -25,10 +25,14 @@ if(!isset($_SESSION["username"])){
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- CKEeditor-->
+  <script src="plugins/CKEditor/build/ckeditor.js"></script>
+  <!-- CKEditor output style -->
+  <link rel="stylesheet" href="dist/css/ckeditor.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Custom style -->
-  <link rel="stylesheet" href="dist/css/admin.css">
+  <link rel="stylesheet" href="dist/css/admin_v1.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 

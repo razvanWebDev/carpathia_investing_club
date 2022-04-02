@@ -38,6 +38,29 @@ window.onload = () => {
   }
   // #################################
 
+  // CKEditor=======================================
+  const body = document.querySelector("#body");
+  if (body != undefined && body != null) {
+    ClassicEditor.create(body).catch((error) => {
+      console.error("There was a problem initializing the editor.", error);
+    });
+  }
+
+  // Blog================
+  const blogPostStatusSelect = document.querySelectorAll(".post-status-select");
+
+  const setBlogStatusColor = () => {
+    for (statusSelect of blogPostStatusSelect) {
+      if (statusSelect.value == "Published") {
+        statusSelect.style.backgroundColor = "#28a745";
+      }
+    }
+  };
+
+  if (elementExists(blogPostStatusSelect)) {
+    setBlogStatusColor();
+  }
+
   // CLEAR INPUT AFTER BUTTON==================
   const clearInputAfterBtns = document.querySelectorAll(".clear-input-after");
 

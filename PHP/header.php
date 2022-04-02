@@ -13,7 +13,7 @@
         content="Carpathia Investing Club (CIC) was founded in 2021. The club is dedicated to support individuals all around the world to better understand and apply investing principles.">
     <meta name="keywords"
         content="portfolio management Romania, wealth management Romania, investing Romania, financial education, invest in stocks Romania, stock exchange Romania, start to invest, investing roadmap, first steps in investing, educatie financiara, investitii la bursa, profit investitii Romania">
-    <link rel="stylesheet" href="css/style_v1.css">
+    <link rel="stylesheet" href="css/style_v3.css">
     <title>Carpathia Investing Club</title>
     <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site_key ?>"></script>
 </head>

@@ -133,6 +133,31 @@
             </li>
           </ul>
         </li>
+
+        <li class="nav-item sidebar-page-header" id="users-page-header">
+          <a href="#" class="nav-link sidebar-page-title">
+          <i class="far fa-newspaper nav-icon"></i>
+            <p>
+              News
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="news.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>View Articles</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="news.php?source=add_article" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Article</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <li class="nav-item sidebar-page-header" id="users-page-header">
           <a href="#" class="nav-link sidebar-page-title">
             <i class="nav-icon fas fa-user"></i>

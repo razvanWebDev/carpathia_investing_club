@@ -1,0 +1,21 @@
+/* =================TEXT EDITOR OUTPUT=================*/
+/* remove empty space between lines */
+span {
+  display: inline-block;
+}
+.text-tiny {
+  font-size: 0.6em;
+  line-height: 1.2;
+}
+.text-small {
+  font-size: 0.8em;
+  line-height: 1.3;
+}
+.text-big {
+  font-size: 1.4em;
+  line-height: 1.2;
+}
+.text-huge {
+  font-size: 1.8em;
+  line-height: 1.2;
+}
