@@ -45,14 +45,19 @@
   <article class="news-article">
     <h3 class="article-title"><?php echo $title ?></h3>
     <p class="article-date"><i>Published:</i> <?php echo $formated_date ?></p>
-    <div>
+    <div class="article-content">
       <?php
         if(!empty($image)){
       ?>
         <img src="img/news/<?php echo $image ?>" alt="Article poster" class="article-image">
       <?php } ?>
 
-      <div> <?php echo $article_text ?></div>
+      <div class="article-text"> 
+        <?php echo $article_text ?>
+        <div class="read-more-btn-container">
+          <a href="#" class="read-more-btn">READ MORE</a>
+        </div>
+      </div>
     </div>
   </article>
 
