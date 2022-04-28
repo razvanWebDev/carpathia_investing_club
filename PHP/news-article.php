@@ -35,8 +35,6 @@
     
     $id = $row['id'];
     $title = (!empty($row['title']) ? $row['title'] : "");
-    $ticker = (!empty($row['ticker']) ? $row['ticker'] : "");
-    $subtitle = (!empty($row['subtitle']) ? $row['subtitle'] : "");
     $date = $row['date'];
     $formated_date = date('d/m/Y',strtotime($date));
     $image = (!empty($row['image']) ? $row['image'] : "");
@@ -45,14 +43,7 @@
 ?>
 
   <article class="news-article">
-    <h1 class="article-title">
-      <?php echo $title ?>
-      <?php if(!empty($ticker)){ ?>
-        <span class="ticker-span">
-          [<?php echo $ticker ?>]
-        </span>
-      <?php } ?>
-    </h1>
+    <h3 class="article-title"><?php echo $title ?></h3>
     <p class="article-date"><i>Published:</i> <?php echo $formated_date ?></p>
     <div class="article-content">
       <?php
@@ -61,10 +52,7 @@
         <img src="img/news/<?php echo $image ?>" alt="Article poster" class="article-image">
       <?php } ?>
 
-      <div class="article-text">
-      <?php if(!empty($subtitle)){ ?>
-        <h2 class="article-subtitle"><?php echo $subtitle ?></h2>
-      <?php } ?>
+      <div class="article-text"> 
         <?php echo $article_text ?>
         <div class="read-more-btn-container">
           <a href="#" class="read-more-btn">READ MORE</a>

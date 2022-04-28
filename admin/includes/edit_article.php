@@ -9,6 +9,8 @@ $db_id = $db_title = $db_date = $db_image = $db_article_text = "";
 while ($row = mysqli_fetch_assoc($result)) {
   $db_id = $row['id'];
   $db_title = (!empty($row['title']) ? $row['title'] : "");
+  $db_ticker = (!empty($row['ticker']) ? $row['ticker'] : "");
+  $db_subtitle = (!empty($row['subtitle']) ? $row['subtitle'] : "");
   $db_date = (!empty($row['date']) ? $row['date'] : "");
   $db_image = (!empty($row['image']) ? $row['image'] : ""); 
   $db_article_text = (!empty($row['article_text']) ? $row['article_text'] : "");
@@ -43,11 +45,15 @@ if(isset($_GET['failed'])){
 } 
 //get input values in case of error
 $titleInputValue = isset($_GET['title']) ? $_GET['title'] : $db_title;
+$tickerInputValue = isset($_GET['ticker']) ? $_GET['ticker'] : $db_ticker;
+$subtitleInputValue = isset($_GET['subtitle']) ? $_GET['subtitle'] : $db_subtitle;
 $dateInputValue = isset($_GET['date']) ? $_GET['date'] : $db_date;
 $textInputValue = isset($_GET["article_text"]) ? $_GET["article_text"] : $db_article_text;
 
 if(isset($_POST['submit'])) {
   $title = escape($_POST['title']);
+  $ticker = escape($_POST['ticker']);
+  $subtitle = escape($_POST['subtitle']);
   $date = escape($_POST['date']);
   $article_text = $_POST['article_text'];
   
@@ -64,9 +70,9 @@ if(isset($_POST['submit'])) {
   $error_msg = $titleError . $textError;
 
   if(!empty($error_msg)){
-    header('Location: news.php?source=edit_article&id='.$post_id.'&failed=true'.$error_msg.'&title='.$title.'&date='.$date.'&article_text='.$article_text.'');
+    header('Location: news.php?source=edit_article&id='.$post_id.'&failed=true'.$error_msg.'&title='.$title.'&ticker='.$ticker.'&subtitle='.$subtitle.'&date='.$date.'&article_text='.$article_text.'');
   }else{
-    editArticle($title, $date, $article_text, $db_id);
+    editArticle($title, $ticker, $subtitle, $date, $article_text, $db_id);
     header("Location: news.php");
     exit();
   }
@@ -92,6 +98,7 @@ if(isset($_POST['submit'])) {
             </div>
           </div>
           <div class="card-body">
+
             <div class="form-group">
               <label for="title">Title</label>
               <input type="text" name="title" class="form-control <?php echo $invalidTitleClass ?>"
@@ -100,12 +107,26 @@ if(isset($_POST['submit'])) {
                 <?php echo $titleErrorText ?>
               </span>
             </div>
+
+            <div class="form-group">
+              <label for="ticker">Ticker</label>
+              <input type="text" name="ticker" class="form-control" value="<?php echo $tickerInputValue ?>">
+            </div>
+
             <div class="form-group">
               <label for="date">Date</label>
               <input type="date" name="date" class="form-control" value=<?php echo $dateInputValue; ?>>
             </div>
+
             <div class="form-group">
-              <label for="article_text">Continut articol</label>
+                <label for="subtitle">Subtitle</label>
+                <textarea name="subtitle" class="form-control">
+                    <?php echo $subtitleInputValue ?>
+                </textarea>
+              </div>
+            
+            <div class="form-group">
+              <label for="article_text">Article Text *</label>
               <span class="error invalid-feedback" style="display: <?php echo $showTextError ?>"><?php echo $textErrorText ?></span>
               <textarea id="body" name="article_text">
                     <?php echo $textInputValue; ?>

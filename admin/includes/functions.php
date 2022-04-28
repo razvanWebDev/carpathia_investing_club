@@ -293,27 +293,29 @@ function editTermsAndConditions($page_content) {
   }
 }
 
-function createArticle($title, $date, $image, $text, $status) {
+function createArticle($title, $ticker, $subtitle, $date, $image, $text, $status) {
   global $connection;
 
-  $query = "INSERT INTO news (title, date, image, article_text, status) VALUES (?, ?, ?, ?, ?);";
+  $query = "INSERT INTO news (title, ticker, subtitle, date, image, article_text, status) VALUES (?, ?, ?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($connection);
 
   if(!mysqli_stmt_prepare($stmt, $query)){
     header("Location: news.php?source=add_article&signup=unkmown_error");
     exit();
   }else{
-    mysqli_stmt_bind_param($stmt, "sssss", $title, $date, $image, $text, $status);
+    mysqli_stmt_bind_param($stmt, "sssssss", $title, $ticker, $subtitle, $date, $image, $text, $status);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }
 }
 
-function editArticle($title, $date, $article_text, $id) {
+function editArticle($title, $ticker, $subtitle, $date, $article_text, $id) {
   global $connection;
 
   $query = "UPDATE news SET ";
             $query .= "title = ?, ";
+            $query .= "ticker = ?, ";
+            $query .= "subtitle = ?, ";
             $query .= "date = ?, ";
             $query .= "article_text = ? ";
             $query .= "WHERE id = ?";
@@ -324,7 +326,7 @@ function editArticle($title, $date, $article_text, $id) {
     header("Location: news.php?source=edit_article&id=$id");
     exit();
   }else{
-    mysqli_stmt_bind_param($stmt, "ssss", $title, $date, $article_text, $id);
+    mysqli_stmt_bind_param($stmt, "ssssss", $title, $ticker, $subtitle, $date, $article_text, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }

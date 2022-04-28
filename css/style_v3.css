@@ -878,6 +878,9 @@ footer a:visited {
   font-size: 1.7em;
   color: var(--main-color);
 }
+.ticker-span {
+  color: var(--grey-text-color);
+}
 .article-date {
   font-size: 1.2em;
   color: var(--grey-text-color);
@@ -893,6 +896,9 @@ footer a:visited {
   max-width: 60%;
   height: 100%;
   object-fit: contain;
+}
+.article-subtitle {
+  font-size: 1em;
 }
 .article-text {
   position: relative;

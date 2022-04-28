@@ -18,7 +18,7 @@
 
             </div>
             <div>
-                <!-- <li class="link-to-page"><a href="news">News</a></li> -->
+                <li class="link-to-page"><a href="news">News</a></li>
                 <li class="link-to-page"><a href="portfolio">Portfolio</a></li>
                 <li class="link-to-page open-modal-btn" data-modal="requests-modal" data-title="Become a Member">Become a member</li>
                 <li class="link-to-page"><a href="chat">Members Corner</a></li>

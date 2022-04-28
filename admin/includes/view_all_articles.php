@@ -53,6 +53,8 @@ if(isset($_GET["status_select"])){
             <th>#</th>
             <th>Status</th>
             <th>Title</th>
+            <th>Ticker</th>
+            <th>Subtitle</th>
             <th>Date</th>
             <th>Image</th>
             <th>Text</th>
@@ -93,6 +95,8 @@ if(isset($_GET["status_select"])){
           
           $id = $row['id'];
           $title = (!empty($row['title']) ? $row['title'] : "");
+          $ticker = (!empty($row['ticker']) ? $row['ticker'] : "");
+          $subtitle = (!empty($row['subtitle']) ? $row['subtitle'] : "");
           $date = $row['date'];
           $formated_date = date('d.m.Y',strtotime($date));
           $image = (!empty($row['image']) ? $row['image'] : "");
@@ -129,6 +133,12 @@ if(isset($_GET["status_select"])){
             </td>
             <td>
               <?php echo $title ?>
+            </td>
+            <td>
+              <?php echo $ticker ?>
+            </td>
+            <td>
+              <?php echo $subtitle ?>
             </td>
             <td>
               <?php echo $formated_date ?>

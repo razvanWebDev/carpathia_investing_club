@@ -15,14 +15,18 @@ if(isset($_GET['error'])){
     $invalidTextClass = "is-invalid";
     $showTextError = "block";
   }
-} 
-//get input values in case the username or email already exist
+}
+
 $titleInputValue = isset($_GET['title']) ? $_GET['title'] : "";
+$tickerInputValue = isset($_GET['ticker']) ? $_GET['ticker'] : "";
+$subtitleInputValue = isset($_GET['subtitle']) ? $_GET['subtitle'] : "";
 $dateInputValue = isset($_GET['date']) ? $_GET['date'] : date("Y-m-d");
 $textInputValue = isset($_GET['article_text']) ? $_GET['article_text'] : "";
 
 if(isset($_POST['add_article'])) {
   $title = escape($_POST['title']);
+  $ticker = escape($_POST['ticker']);
+  $subtitle = escape($_POST['subtitle']);
   $date = escape($_POST['date']);
   $article_text = escape($_POST['article_text']);
   $status = escape($_POST['status']);
@@ -31,17 +35,17 @@ if(isset($_POST['add_article'])) {
   
   // Check for errors
   if(empty($title)){
-    header("Location: news.php?source=add_article&error=title&title=$title&date=$date&article_text=$article_text");
+    header("Location: news.php?source=add_article&error=title&title=$title&ticker=$ticker&subtitle=$subtitle&date=$date&article_text=$article_text");
     exit();
   }
   if(empty($article_text)){
-    header("Location: news.php?source=add_article&error=text&title=$title&date=$date&article_text=$article_text");
+    header("Location: news.php?source=add_article&error=text&title=$title&ticker=$ticker&subtitle=$subtitle&date=$date&article_text=$article_text");
     exit();
   }
   else{
     //add new user to db
     uploadImage('image', '../img/news/', 'image');
-    createArticle($title, $date, $image, $article_text, $status);
+    createArticle($title, $ticker, $subtitle, $date, $image, $article_text, $status);
 
    header("Location: news.php");
    exit();
@@ -75,6 +79,11 @@ if(isset($_POST['add_article'])) {
               </div>
 
               <div class="form-group">
+                <label for="ticker">Ticker</label>
+                <input type="text" name="ticker" class="form-control" value="<?php echo $tickerInputValue ?>">
+              </div>
+
+              <div class="form-group">
                 <label for="date">Date</label>
                 <input type="date" name="date" class="form-control" value="<?php echo $dateInputValue ?>">
               </div>
@@ -85,6 +94,13 @@ if(isset($_POST['add_article'])) {
                   <input type="file" class="custom-file-input" name="image" id="customFile">
                   <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subtitle">Subtitle</label>
+                <textarea name="subtitle" class="form-control">
+                    <?php echo $subtitleInputValue ?>
+                </textarea>
               </div>
 
               <div class="form-group">
