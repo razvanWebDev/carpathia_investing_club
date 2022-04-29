@@ -922,6 +922,19 @@ footer a:visited {
 
 }
 
+.full-article-content {
+  display: block;
+  height: auto;
+}
+.full-article-image {
+  float: left;
+  margin-right: 3em;
+  margin-bottom: 1em;
+}
+.article-subtitle {
+  margin-bottom: 1em;
+}
+
 
 
 /* ################################## RESPONSIVE ########################## */

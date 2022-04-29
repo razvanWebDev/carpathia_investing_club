@@ -67,7 +67,7 @@
       <?php } ?>
         <?php echo $article_text ?>
         <div class="read-more-btn-container">
-          <a href="#" class="read-more-btn">READ MORE</a>
+          <a href="news-article.php?articleId=<?php echo $id ?>" class="read-more-btn">READ MORE</a>
         </div>
       </div>
     </div>
