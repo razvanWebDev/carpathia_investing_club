@@ -13,7 +13,6 @@
       $ticker = $row['ticker'];
       $purchased = $row['purchased'];
       $db_purchase_price = $row['purchase_price'];
-      echo $db_purchase_price;
       $exit_price = $row['exit_price'];   
       $exit_date = $row['exit_date'];
     }

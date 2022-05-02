@@ -17,6 +17,7 @@
   --link-hover-color: rgb(32, 32, 32);
 
   --danger-color: #ec312b;
+  --success-color: #4b762a;
 
   --sides-padding: 8vw;
   --top-bottom-padding: 4em;
@@ -75,6 +76,10 @@ button {
 button:hover {
   opacity: 0.8;
   transition: all 0.2s ease-in-out;
+}
+button.btn-main-color {
+  background-color: var(--main-color);
+  color: var(--white-color);
 }
 
 /* floating labels */
@@ -171,6 +176,9 @@ section {
 
 .error {
   color: var(--danger-color);
+}
+.success {
+  color: var(--success-color);
 }
 /* ============preloader===================== */
 .preloader {
@@ -889,12 +897,11 @@ footer a:visited {
 .article-content {
   display: flex;
   width: 100%;
-  height: 16em;
   gap: 2em;
 }
 .article-image {
-  max-width: 60%;
-  height: 100%;
+  height: 16em;
+  max-width: calc(100% - 14em);
   object-fit: contain;
 }
 .article-subtitle {
@@ -902,7 +909,7 @@ footer a:visited {
 }
 .article-text {
   position: relative;
-  height: 100%;
+  height: 16em;
   overflow: hidden;
   min-width: 12em;
 }
@@ -933,6 +940,36 @@ footer a:visited {
 }
 .article-subtitle {
   margin-bottom: 1em;
+}
+
+/* =================Newsletter Form================================ */
+.newsletter-signup-container {
+  padding: 1em;
+  min-width: 36em;
+}
+.newsletter-signup-container h1 {
+  text-align: center;
+  color: var(--main-color);
+  margin-bottom: 1em;
+}
+.newsletter-signup-container p {
+  line-height: 1.5;
+  text-align: center;
+}
+.input-btn-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.input-btn-container button {
+  /* width: 10em; */
+  padding: 0.8em 4em;
+}
+.input-container {
+  width: calc(100% - 10em);
 }
 
 
@@ -999,6 +1036,13 @@ footer a:visited {
 
   .hero {
     height: 45vh;
+  }
+  .article-content {
+    flex-direction: column;
+  }
+  .article-image {
+    height: 12em;
+    max-width: 100%;
   }
 }
 

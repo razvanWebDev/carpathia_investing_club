@@ -276,6 +276,25 @@ function editPortfolioCompany($the_company_id, $date_pitched, $company, $ticker,
   }
 }
 
+function editNewsletterSubscriber($selected_id, $email) {
+  global $connection;
+
+  $query = "UPDATE newsletter SET ";
+            $query .= "email = ? ";
+            $query .= "WHERE id = ?";
+
+  $stmt = mysqli_stmt_init($connection);
+
+  if(!mysqli_stmt_prepare($stmt, $query)){
+    header("Location: newsletter.php?source=edit_subscriber&id=$selected_id");
+    exit();
+  }else{
+    mysqli_stmt_bind_param($stmt, "ss", $email, $selected_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+  }
+}
+
 function editTermsAndConditions($page_content) {
   global $connection;
   $id = 1;
@@ -420,7 +439,6 @@ function uploadImage($inputName, $path, $dbClmnName, $inputIndex="no_index"){
   }
 }
 
-
 function deleteBulk($tableName){
   // Delete selected rows from the db (mostly useful for rows without files)
   global $connection;
@@ -458,7 +476,6 @@ function deleteFile($btnName, $tblName, $clmnName, $idName, $selectedId){
     }
   }
 }
-
 
 function deleteItem($tableName, $delete_id){
   //Delete an already selected row frm the db
@@ -548,6 +565,33 @@ function deleteFolder($dir) {
     return rmdir($dir);
   }else{
     echo "Selected folder does not exist!";
+  }
+}
+
+function newsletterSubmit($email) {
+  global $connection;
+
+  //check if email already exists
+  $query = "SELECT * FROM newsletter WHERE email = '$email'";
+  $result = mysqli_query($connection, $query);
+  if ($result) {
+    if (mysqli_num_rows($result) > 0) {
+      echo 'Email already registered!';
+    } else {
+      $query = "INSERT INTO newsletter (email) VALUES (?);";
+      $stmt = mysqli_stmt_init($connection);
+    
+      if(!mysqli_stmt_prepare($stmt, $query)){
+       // header("Location: channels.php?source=add_channel");
+        exit();
+      }else{
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt); 
+      }
+    }
+  } else {
+    echo 'Error: '.mysql_error();
   }
 }
 ?>

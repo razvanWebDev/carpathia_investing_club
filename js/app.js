@@ -6,6 +6,9 @@ window.onload = () => {
 
   const submitRequestForm = document.querySelectorAll(".submit-request-form");
   const submitContact = document.querySelector(".submit-contact");
+  const submitNewsletterForm = document.querySelector(
+    ".submit-newsletter-form"
+  );
   const allFieldsRequiredMessage_p = document.querySelector(
     ".all-fields-required-message"
   );
@@ -349,4 +352,39 @@ window.onload = () => {
   if (elementExists(submitContact)) {
     submitContact.addEventListener("click", validateForm);
   }
+  //Validate newsletter form
+  if (elementExists(submitNewsletterForm)) {
+    submitNewsletterForm.addEventListener("click", validateForm);
+  }
 };
+
+// ==============Newsletter=========================
+const newsletterForm = document.querySelector("#newsletter-form");
+const formMsg = document.querySelector(".form-msg");
+const newsletterEmailInput = document.querySelector("#newsletter-email");
+const newsletterCheckbox = document.querySelector(".newsletter-checkbox");
+const submitNewsletterFormBtn = document.querySelector(
+  ".submit-newsletter-form"
+);
+
+const newsletterSubmited = () => {
+  submitNewsletterFormBtn.onclick = () => {
+    let xhr = new XMLHttpRequest(); //create XML object
+    xhr.open("POST", `PHP/newsletter_submit.php`, true);
+    xhr.onload = () => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          let data = xhr.response;
+          formMsg.innerHTML = data;
+          newsletterEmailInput.value = "";
+          newsletterCheckbox.checked = false;
+        }
+      }
+    };
+    let formData = new FormData(newsletterForm);
+    xhr.send(formData);
+  };
+};
+if (submitNewsletterFormBtn) {
+  newsletterSubmited();
+}

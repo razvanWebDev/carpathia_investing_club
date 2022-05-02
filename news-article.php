@@ -4,6 +4,7 @@
 <section id="news-section">
   <h2 class="section-title">News</h2>
   <?php
+  $article_id = "";
   if(isset($_GET['articleId'])){
     $article_id = $_GET['articleId'];
   }
@@ -53,6 +54,8 @@
   </article>
 
   <?php } ?>
+
+  <?php include "PHP/newsletter_form.php"; ?>
 
 </section>
 

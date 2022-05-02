@@ -142,6 +142,7 @@
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="news.php" class="nav-link">
@@ -155,7 +156,14 @@
                 <p>Add Article</p>
               </a>
             </li>
-          </ul>
+            <li class="nav-item">
+                <a href="newsletter" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Newsletter</p>
+                </a>
+              </li>
+            </ul>
+
         </li>
 
         <li class="nav-item sidebar-page-header" id="users-page-header">
