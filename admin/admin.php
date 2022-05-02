@@ -75,7 +75,28 @@
               <a href="member-requests.php" class="small-box-footer">More info <i
                   class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>   
+          </div>  
+          
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <?php
+                  $query = "SELECT * FROM newsletter";
+                  $result = mysqli_query($connection, $query);
+                  $num_items = mysqli_num_rows($result);
+                  ?>
+                <h3>
+                  <?php echo $num_items ?>
+                </h3>
+                <p>Newsletter Subscribers</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <a href="newsletter.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
 
           <div class="col-lg-3 col-6">
             <!-- small box -->
