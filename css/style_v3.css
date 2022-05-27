@@ -62,8 +62,12 @@ a:hover {
   opacity: 0.6;
 }
 
-ul, ol {
-  padding-left: 2em;
+ul {
+  margin-left: 6em;
+  margin-bottom: 2em;
+}
+ol {
+  padding-left: 5em !important;
 }
 
 button {
@@ -903,6 +907,7 @@ footer a:visited {
   height: 16em;
   max-width: calc(100% - 14em);
   object-fit: contain;
+  clear: both;
 }
 .article-subtitle {
   font-size: 1em;

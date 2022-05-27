@@ -24,12 +24,12 @@ $dateInputValue = isset($_GET['date']) ? $_GET['date'] : date("Y-m-d");
 $textInputValue = isset($_GET['article_text']) ? $_GET['article_text'] : "";
 
 if(isset($_POST['add_article'])) {
-  $title = escape($_POST['title']);
-  $ticker = escape($_POST['ticker']);
-  $subtitle = escape($_POST['subtitle']);
+  $title = $_POST['title'];
+  $ticker = $_POST['ticker'];
+  $subtitle = $_POST['subtitle'];
   $date = escape($_POST['date']);
-  $article_text = escape($_POST['article_text']);
-  $status = escape($_POST['status']);
+  $article_text = $_POST['article_text'];
+  $status = $_POST['status'];
 
   $image = $_FILES["image"]["name"];
   

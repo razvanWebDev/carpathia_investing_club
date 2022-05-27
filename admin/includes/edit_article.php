@@ -51,9 +51,9 @@ $dateInputValue = isset($_GET['date']) ? $_GET['date'] : $db_date;
 $textInputValue = isset($_GET["article_text"]) ? $_GET["article_text"] : $db_article_text;
 
 if(isset($_POST['submit'])) {
-  $title = escape($_POST['title']);
-  $ticker = escape($_POST['ticker']);
-  $subtitle = escape($_POST['subtitle']);
+  $title = $_POST['title'];
+  $ticker = $_POST['ticker'];
+  $subtitle = $_POST['subtitle'];
   $date = escape($_POST['date']);
   $article_text = $_POST['article_text'];
   
