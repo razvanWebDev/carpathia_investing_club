@@ -4,15 +4,15 @@
 <section id="news-section">
   <h2 class="section-title">News</h2>
   <?php
-  $article_id = "";
-  if(isset($_GET['articleId'])){
-    $article_id = $_GET['articleId'];
+  $link_to = "";
+	if(isset($_GET['article'])){
+    $link_to = $_GET['article'];
   }
 
-  $query = "SELECT * FROM news WHERE id = $article_id AND status = 'Published' ORDER BY date DESC LIMIT 1";
-  $select_users = mysqli_query($connection, $query);
+  $query = "SELECT * FROM news WHERE link_to='{$link_to}' AND status = 'Published' ORDER BY date DESC LIMIT 1";
+  $select_article = mysqli_query($connection, $query);
 
-  while ($row = mysqli_fetch_assoc($select_users)) {
+  while ($row = mysqli_fetch_assoc($select_article)) {
     
     $id = $row['id'];
     $title = (!empty($row['title']) ? $row['title'] : "");

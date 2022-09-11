@@ -15,6 +15,23 @@ function getCaptcha($secret_key, $g_response){
   return $return;
 }
 
+//strip special characters & replace space with "-"
+function stripSpecialChars($string){
+  global $connection;
+  return strtolower(preg_replace("/[^a-zA-Z0-9]+/", "-", $string));
+}
+
+//check if item exists in DB
+function isNameTaken ($tblName, $db_name, $name){
+  global $connection;
+
+  $query = "SELECT * FROM {$tblName} WHERE {$db_name} = \"{$name}\"";
+  $result = mysqli_query($connection, $query);
+  $count = mysqli_num_rows($result);
+  $isNameTaken = $count > 0;
+  return $isNameTaken;
+}
+
 function userExists($username, $email) {
   global $connection;
 
@@ -312,23 +329,23 @@ function editTermsAndConditions($page_content) {
   }
 }
 
-function createArticle($title, $ticker, $subtitle, $date, $image, $text, $status) {
+function createArticle($title, $ticker, $subtitle, $date, $image, $text, $link_to, $status) {
   global $connection;
 
-  $query = "INSERT INTO news (title, ticker, subtitle, date, image, article_text, status) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  $query = "INSERT INTO news (title, ticker, subtitle, date, image, article_text, link_to, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($connection);
 
   if(!mysqli_stmt_prepare($stmt, $query)){
     header("Location: news.php?source=add_article&signup=unkmown_error");
     exit();
   }else{
-    mysqli_stmt_bind_param($stmt, "sssssss", $title, $ticker, $subtitle, $date, $image, $text, $status);
+    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $ticker, $subtitle, $date, $image, $text, $link_to, $status);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }
 }
 
-function editArticle($title, $ticker, $subtitle, $date, $article_text, $id) {
+function editArticle($title, $ticker, $subtitle, $date, $article_text, $link_to, $db_id) {
   global $connection;
 
   $query = "UPDATE news SET ";
@@ -336,7 +353,8 @@ function editArticle($title, $ticker, $subtitle, $date, $article_text, $id) {
             $query .= "ticker = ?, ";
             $query .= "subtitle = ?, ";
             $query .= "date = ?, ";
-            $query .= "article_text = ? ";
+            $query .= "article_text = ?, ";
+            $query .= "link_to = ? ";
             $query .= "WHERE id = ?";
 
   $stmt = mysqli_stmt_init($connection);
@@ -345,7 +363,7 @@ function editArticle($title, $ticker, $subtitle, $date, $article_text, $id) {
     header("Location: news.php?source=edit_article&id=$id");
     exit();
   }else{
-    mysqli_stmt_bind_param($stmt, "ssssss", $title, $ticker, $subtitle, $date, $article_text, $id);
+    mysqli_stmt_bind_param($stmt, "sssssss", $title, $ticker, $subtitle, $date, $article_text, $link_to, $db_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);  
   }

@@ -2,6 +2,7 @@
 
 $invalidTitleClass = "";
 $showTitleError = "none";
+$titleErrorMsg = "";
 $invalidTextClass = "";
 $showTextError = "none";
 
@@ -10,7 +11,13 @@ if(isset($_GET['error'])){
   if($_GET['error'] == "title"){
    $invalidTitleClass = "is-invalid";
    $showTitleError = "block";
+   $titleErrorMsg = "You must provide a title.";
   }
+  if($_GET['error'] == "title_taken"){
+    $invalidTitleClass = "is-invalid";
+    $showTitleError = "block";
+    $titleErrorMsg = "This title is already taken! Please choose another.";
+   }
   if($_GET['error'] == "text"){
     $invalidTextClass = "is-invalid";
     $showTextError = "block";
@@ -29,11 +36,20 @@ if(isset($_POST['add_article'])) {
   $subtitle = $_POST['subtitle'];
   $date = escape($_POST['date']);
   $article_text = $_POST['article_text'];
+  $link_to = strtolower(preg_replace("/[^a-zA-Z0-9]+/", "-", $title));
   $status = $_POST['status'];
 
   $image = $_FILES["image"]["name"];
   
   // Check for errors
+  //check if project link exists
+  $link_to = stripSpecialChars($title);
+  $is_name_taken = isNameTaken ("news", "title", $title);
+
+ if($is_name_taken){
+    header("Location: news.php?source=add_article&error=title_taken&title=$title&ticker=$ticker&subtitle=$subtitle&date=$date&article_text=$article_text");
+    exit();
+  }
   if(empty($title)){
     header("Location: news.php?source=add_article&error=title&title=$title&ticker=$ticker&subtitle=$subtitle&date=$date&article_text=$article_text");
     exit();
@@ -45,7 +61,7 @@ if(isset($_POST['add_article'])) {
   else{
     //add new user to db
     uploadImage('image', '../img/news/', 'image');
-    createArticle($title, $ticker, $subtitle, $date, $image, $article_text, $status);
+    createArticle($title, $ticker, $subtitle, $date, $image, $article_text, $link_to, $status);
 
    header("Location: news.php");
    exit();
@@ -75,7 +91,7 @@ if(isset($_POST['add_article'])) {
               <div class="form-group">
                 <label for="title">Title *</label>
                 <input type="text" name="title" class="form-control <?php echo $invalidTitleClass ?>" value="<?php echo $titleInputValue ?>">
-                <span class="error invalid-feedback" style="display: <?php echo $showTitleError ?>">You must provide a title.</span>
+                <span class="error invalid-feedback" style="display: <?php echo $showTitleError ?>"><?php echo $titleErrorMsg ?></span>
               </div>
 
               <div class="form-group">

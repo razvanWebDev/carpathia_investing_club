@@ -192,6 +192,7 @@ section {
   width: 100%;
   height: 100%;
   background-color: rgba(256, 256, 256, 0.95);
+  opacity: 0;
   z-index: 8;
   display: flex;
   justify-content: center;
@@ -913,8 +914,6 @@ footer a:visited {
   font-size: 1em;
 }
 .article-text {
-  position: relative;
-  height: 16em;
   overflow: hidden;
   min-width: 12em;
 }
@@ -926,12 +925,10 @@ footer a:visited {
 
 }
 .read-more-btn-container {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   background-color: var(--white-color);
-  padding: 2em 0 0.5em 2em;
-
+  padding: 2em 0 0 2em;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .full-article-content {
@@ -970,7 +967,6 @@ footer a:visited {
   gap: 1em;
 }
 .input-btn-container button {
-  /* width: 10em; */
   padding: 0.8em 4em;
 }
 .input-container {

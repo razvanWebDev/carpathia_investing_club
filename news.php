@@ -41,7 +41,7 @@
     $formated_date = date('d/m/Y',strtotime($date));
     $image = (!empty($row['image']) ? $row['image'] : "");
     $article_text = (!empty($row['article_text']) ? $row['article_text'] : ""); 
-
+    $link_to = (!empty($row['link_to']) ? $row['link_to'] : "");
 ?>
 
   <article class="news-article">
@@ -61,15 +61,21 @@
         <img src="img/news/<?php echo $image ?>" alt="Article poster" class="article-image">
       <?php } ?>
 
-      <div class="article-text">
-      <?php if(!empty($subtitle)){ ?>
-        <h2 class="article-subtitle"><?php echo $subtitle ?></h2>
-      <?php } ?>
-        <?php echo $article_text ?>
-        <div class="read-more-btn-container">
-          <a href="news-article.php?articleId=<?php echo $id ?>" class="read-more-btn">READ MORE</a>
+      <div>
+        <div class="article-text">
+          <?php if(!empty($subtitle)){ ?>
+            <h2 class="article-subtitle"><?php echo $subtitle ?></h2>
+          <?php } ?>
+          <?php echo $article_text ?>
         </div>
+
+        <?php if(!empty($link_to)) { ?>
+          <div class="read-more-btn-container">
+            <a href="news-article.php?article=<?php echo $link_to ?>" class="read-more-btn">READ MORE</a>
+          </div>
+        <?php } ?>
       </div>
+
     </div>
   </article>
 

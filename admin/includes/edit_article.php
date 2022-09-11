@@ -33,6 +33,9 @@ if(isset($_GET['failed'])){
       if($_GET['titleErr'] == "required"){
         $titleErrorText .= "You must provide a title!";
       }
+      if($_GET['titleErr'] == "name_taken"){
+        $titleErrorText .= "This title is already taken! Please choose another.";
+      }
     }
     if(isset($_GET['textErr'])){
       $showTextError = "block";
@@ -60,8 +63,15 @@ if(isset($_POST['submit'])) {
   $titleError = $textError =  "";
 
   // check for errors
+   //check if project link exists
+   $link_to = stripSpecialChars($title);
+   $is_name_taken = isNameTaken ("news", "title", $title) && ($title != $db_title);
+
   if(empty($title)){
     $titleError .= "&titleErr=required";
+  }
+  if($is_name_taken){
+    $titleError .= "&titleErr=name_taken";
   }
   if(empty($article_text)){
     $textError .= "&textErr=required";
@@ -72,7 +82,7 @@ if(isset($_POST['submit'])) {
   if(!empty($error_msg)){
     header('Location: news.php?source=edit_article&id='.$post_id.'&failed=true'.$error_msg.'&title='.$title.'&ticker='.$ticker.'&subtitle='.$subtitle.'&date='.$date.'&article_text='.$article_text.'');
   }else{
-    editArticle($title, $ticker, $subtitle, $date, $article_text, $db_id);
+    editArticle($title, $ticker, $subtitle, $date, $article_text, $link_to, $db_id);
     header("Location: news.php");
     exit();
   }
