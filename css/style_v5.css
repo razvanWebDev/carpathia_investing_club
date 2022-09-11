@@ -916,6 +916,7 @@ footer a:visited {
 .article-text {
   overflow: hidden;
   min-width: 12em;
+  max-height: 11.5em;
 }
 .read-more-btn {
   color: var(--white-color);
