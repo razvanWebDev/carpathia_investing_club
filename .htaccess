@@ -1,16 +1,16 @@
 RewriteEngine on
 
-# remove page extensions from php files
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [NC,L]
-
 # remove page extensions from html files
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [NC,L]
+RewriteRule ^(.\*)$ $1.html [NC,L]
 
+# remove page extensions from php files
 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
+RewriteRule ^news-article/([0-9a-zA-Z_-]+) news-article.php?article=$1 [NC,L]
+RewriteRule ^portfolio/([0-9]+) portfolio.php?page=$1 [NC,L]

@@ -71,7 +71,7 @@
 
         <?php if(!empty($link_to)) { ?>
           <div class="read-more-btn-container">
-            <a href="news-article.php?article=<?php echo $link_to ?>" class="read-more-btn">READ MORE</a>
+            <a href="news-article/<?php echo $link_to ?>" class="read-more-btn">READ MORE</a>
           </div>
         <?php } ?>
       </div>

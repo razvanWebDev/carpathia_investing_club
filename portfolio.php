@@ -106,9 +106,9 @@ if(isset($_SESSION["m_username"])){
         if($count > 1){
             for($i = 1; $i <= $count; $i++){
                 if($i == $page){
-                    echo "<a class='page-item active' href='portfolio.php?page={$i}'>$i</a>";
+                    echo "<a class='page-item active' href='portfolio/{$i}'>$i</a>";
                 }else{
-                    echo "<a class='page-item' href='portfolio.php?page={$i}'>$i</a>";
+                    echo "<a class='page-item' href='portfolio/{$i}'>$i</a>";
                 }
             }
         }
