@@ -43,20 +43,20 @@ window.onload = () => {
     hamburger.classList.toggle("toggle-burger");
   };
   const closeNav = () => {
-    nav.classList.remove("show-nav");
-    nav.style.animation = `navSlideOut 0.7s`;
-    hamburger.classList.remove("toggle-burger");
+    if (nav.classList.contains("show-nav")) {
+      nav.classList.remove("show-nav");
+      nav.style.animation = `navSlideOut 0.7s`;
+      hamburger.classList.remove("toggle-burger");
+    }
   };
 
   //Scroll to selected sections from menu links
   const homePageLinks = document.querySelectorAll(".home-page-link");
   const scroollToSection = (section) => {
-    console.log("click");
     const dataLink = section.getAttribute("data-link");
     const targetSection = document.querySelector(`#${dataLink}`);
     //smooth scroll if the target section is on the current page
     if (elementExists(targetSection)) {
-      console.log("this");
       const targetPosition =
         targetSection.getBoundingClientRect().top + window.pageYOffset;
       const headerOffset =
@@ -69,7 +69,6 @@ window.onload = () => {
         behavior: "smooth",
       });
     } else {
-      console.log("other");
       //target section is on annother page
       location.href = `index.php#${dataLink}`;
     }

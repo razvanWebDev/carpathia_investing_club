@@ -5,8 +5,9 @@
 <html lang="en">
 
 <head>
-    <!-- <base href="https://www.carpathiainvestingclub.org/">  -->
+    <!-- comment base below to use CSS locally -->
     <base href="../"> 
+    
     <link rel="icon" href="img/Logo.png">
     <meta charset="UTF-8" lang="EN">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
         content="Carpathia Investing Club (CIC) was founded in 2021. The club is dedicated to support individuals all around the world to better understand and apply investing principles.">
     <meta name="keywords"
         content="portfolio management Romania, wealth management Romania, investing Romania, financial education, invest in stocks Romania, stock exchange Romania, start to invest, investing roadmap, first steps in investing, educatie financiara, investitii la bursa, profit investitii Romania">
-    <link rel="stylesheet" href="/css/style_v5.css">
+    <link rel="stylesheet" href="./css/style_v5.css">
     <title>Carpathia Investing Club</title>
     <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $site_key ?>"></script>
 </head>

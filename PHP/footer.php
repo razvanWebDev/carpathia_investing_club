@@ -5,7 +5,7 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?always=1&scrolling=1&top=1&showNoConsent=1"></script> -->
    
     <!-- Custom JS -->
-    <script src="./js/app.js"></script>
+    <script src="./js/app_v1.js"></script>
 </body>
 
 </html>
